@@ -1,0 +1,15 @@
+#Site settings
+
+plugins:
+  - jekyll-sitemap
+
+defaults:
+  -
+    scope:
+      path: ""
+        values:
+        layout: default
+
+url:
+title: Always Free Resumé Builder
+repo:
