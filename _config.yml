@@ -3,6 +3,14 @@
 plugins:
   - jekyll-sitemap
 
+markdown: kramdown
+
+title: Always Free Resumé Builder
+description: >-
+  blah blah
+baseurl: ""
+url: ""
+
 defaults:
   -
     scope:
@@ -10,6 +18,14 @@ defaults:
         values:
         layout: default
 
-url:
-title: Always Free Resumé Builder
-repo:
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
