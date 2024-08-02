@@ -1,6 +1,9 @@
-source 'https://rubygems.org'
-# 2.7.4 is current on https://pages.github.com/versions/
-# 2.7.8 is stable on https://formulae.brew.sh/formula/ruby@2.7
-# Also update in Makefile.
-ruby '2.7.8'
-gem 'github-pages', group: :jekyll_plugins
+source "https://rubygems.org"
+
+# If you want to use GitHub Pages, remove the "gem "jekyll"" above and
+# uncomment the line below. To upgrade, run `bundle update github-pages`.
+gem "github-pages", "~>  231", group: :jekyll_plugins
+
+# kramdown v2 ships without the gfm parser by default. If you're using
+# kramdown v1, comment out this line.
+gem "kramdown-parser-gfm"
