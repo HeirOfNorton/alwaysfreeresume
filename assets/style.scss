@@ -1,2 +1,24 @@
 ---
 ---
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex 1 0 auto;
+}
+
+body > footer {
+    flex-shrink: 0;
+}
+
+.invert {
+    color: var(--pico-primary-inverse);
+    background-color: var(--pico-primary-background);
+}
