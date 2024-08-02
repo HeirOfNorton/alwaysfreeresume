@@ -20,3 +20,7 @@ body > footer {
     color: var(--pico-primary-inverse);
     background-color: var(--pico-primary-background);
 }
+
+.bigtitle {
+    --pico-font-size: 3rem;
+}
