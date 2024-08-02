@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: plain
 ---
 
 # All about me!
