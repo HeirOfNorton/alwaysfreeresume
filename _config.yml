@@ -11,12 +11,12 @@ description: >-
 baseurl: ""
 url: ""
 
-defaults:
-  -
-    scope:
-      path: ""
-        values:
-        layout: default
+# defaults:
+#  -
+#    scope:
+#      path: ""
+#        values:
+#        layout: default
 
 exclude:
   - Gemfile
