@@ -18,6 +18,33 @@ url: ""
 #        values:
 #        layout: default
 
+nav:
+  standard:
+    - Objective
+    - Skills
+    - Experience
+    - Education
+    - Extras
+  student:
+    - Objective
+    - Skills
+    - Education
+    - Projects
+    - Work Experience
+    - Extras
+  Entry Level:
+    - Objective
+    - Skills
+    - Education
+    - Experience
+    - Extras
+  Functional:
+    - Objective
+    - Skills
+    - Experience
+    - Education
+    - Extras
+
 exclude:
   - Gemfile
   - Gemfile.lock
