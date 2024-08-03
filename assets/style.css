@@ -27,13 +27,8 @@ body > footer {
 }
 
 .bigtitle {
-    margin: auto;
     --pico-font-size: 3rem;
     --pico-font-family: "Oleo Script", system-ui;
     --pico-font-weight: 700;
     font-style: normal;
-}
-
-.icon {
-    float: left;
 }
