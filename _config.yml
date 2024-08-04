@@ -8,8 +8,10 @@ markdown: kramdown
 title: Always Free Resumé Builder
 description: >-
   blah blah
-baseurl: ""
-url: ""
+
+# this is temporary while I develop on GH-pages. Will move to proper url later)
+baseurl: "/alwaysfreeresume/"
+url: "https://heirofnorton.github.io"
 
 # defaults:
 #  -
