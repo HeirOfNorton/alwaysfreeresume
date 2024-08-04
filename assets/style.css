@@ -16,6 +16,12 @@ body > footer {
     flex-shrink: 0;
 }
 
+.myheader {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
 .invert {
     color: var(--pico-primary-inverse);
     background-color: var(--pico-primary-background);
