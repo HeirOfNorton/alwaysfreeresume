@@ -20,6 +20,15 @@ layout: section-root
     </ul>
     <ul>
         <li>
+            {% if page.skip %}
+                <a href="{{ page.skip | relative_url }}" role="button">
+                    {% if page.skiptitle %}{{ page.skiptitle }}{% else %}Skip{% endif %}
+                </a>
+            {% endif %}
+        </li>
+    </ul>
+    <ul>
+        <li>
             {% if page.next %}
                 <a href="{{ page.next | relative_url }}" role="button">
                     {% if page.nexttitle %}{{ page.nexttitle }}{% else %}Next{% endif %}

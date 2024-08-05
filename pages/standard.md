@@ -1,7 +1,7 @@
 ---
 layout: section-base
 permalink: /standard/
-next: /standard/objective-skip/
+next: /standard/contact/
 nexttitle: Start
 title: Standard Resume
 section: standard
