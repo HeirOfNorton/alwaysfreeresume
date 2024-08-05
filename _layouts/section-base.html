@@ -2,7 +2,8 @@
 layout: section-root
 ---
 
-<progress value="{{ page.position }}" max="{{ site.navlength[page.section] }}" />
+{% assign sectionlength=site.navlength[page.section] %}
+<progress value="{{ page.position }}" max="{{ sectionlength }}"></progress>
 
 {{ content }}
 
