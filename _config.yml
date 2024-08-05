@@ -10,7 +10,7 @@ description: >-
   blah blah
 
 # this is temporary while I develop on GH-pages. Will move to proper url later)
-baseurl: "/alwaysfreeresume/"
+baseurl: "/alwaysfreeresume"
 url: "https://heirofnorton.github.io"
 
 # defaults:
@@ -19,6 +19,18 @@ url: "https://heirofnorton.github.io"
 #      path: ""
 #        values:
 #        layout: default
+
+navtitle:
+  standard: Standard
+  student: Student
+  functional: Functional
+  entrylevel: Entry Level
+
+navlength:
+  standard: 5
+  student: 6
+  entrylevel: 5
+  functinoal: 5
 
 nav:
   standard:
@@ -34,13 +46,13 @@ nav:
     - Projects
     - Work Experience
     - Extras
-  Entry Level:
+  entrylevel:
     - Objective
     - Skills
     - Education
     - Experience
     - Extras
-  Functional:
+  functional:
     - Objective
     - Skills
     - Experience
