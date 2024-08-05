@@ -1,0 +1,133 @@
+---
+layout: section-base
+---
+
+<!-- displayed items -->
+
+<section>
+    <h2>Jason M Seeley</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th scope="row">Address:</th>
+                <td>***REMOVED***ive</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">City</th>
+                <td>Mounds View</td>
+            </tr>
+            <tr>
+                <th scope="row">State</th>
+                <td>MN</td>
+            </tr>
+            <tr>
+                <th scope="row">Zip</th>
+                <td>55112</td>
+            </tr>
+            <tr>
+                <th scope="row">Phone:</th>
+                <td>***REMOVED***</td>
+            </tr>
+            <tr>
+                <th scope="row">Email:</th>
+                <td>***REMOVED***</td>
+            </tr>
+            <tr>
+                <th scope="row">Website:</th>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
+
+<hr>
+<!-- Editable form -->
+
+<form>
+    <fieldset>
+        <label>
+            Full name
+            <input
+                name="name"
+                placeholder="Full name"
+                autocomplete="name"
+                type="text"
+                aria-label="Full Name"
+                required
+            />
+        </label>
+        <label>
+            Address
+            <input
+                name="address1"
+                placeholder="Address Line 1"
+                type="text"
+                aria-label="Address Line 1"
+                required
+            />
+            <input
+                name="address2"
+                placeholder="Address Line 2"
+                type="text"
+                aria-label="Address Line 2"
+            />
+            <div class="grid">
+                <input
+                    name="city"
+                    placeholder="City"
+                    type="text"
+                    aria-label="City"
+                    required
+                />
+                <select name="state" aria-label="Select state" required>
+                    <option selected disabled value="">
+                        Select state...
+                    </option>
+                    <option>MN</option>
+                    <option>WA</option>
+                </select>
+                <input
+                    name="zip"
+                    placeholder="Zip Code"
+                    type="number"
+                    aria-label="Zip Code"
+                    required
+                />
+            </div>
+        </label>
+        <label>
+            Phone number
+            <input
+                name="phone"
+                placeholder="Phone Number"
+                type="tel"
+                aria-label="Phone Number"
+            />
+        </label>
+        <label>
+            <input
+                name="email"
+                placeholder="Email Address"
+                type="email"
+                aria-label="Email Address"
+            />
+        </label>
+        <label>
+            <input
+                name="website"
+                placeholder="Website"
+                type="url"
+                aria-label="Website"
+            />
+        </label>
+    </fieldset>
+    <input
+        type="submit"
+        value="Accept"
+    />
+</form>
