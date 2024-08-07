@@ -2,92 +2,51 @@
 layout: section-base
 ---
 
-<!-- displayed items -->
-
-<section>
-    <h2>Jason M Seeley</h2>
-    <table>
-        <tbody>
-            <tr>
-                <th scope="row">Address:</th>
-                <td>***REMOVED***ive</td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">City</th>
-                <td>Mounds View</td>
-            </tr>
-            <tr>
-                <th scope="row">State</th>
-                <td>MN</td>
-            </tr>
-            <tr>
-                <th scope="row">Zip</th>
-                <td>55112</td>
-            </tr>
-            <tr>
-                <th scope="row">Phone:</th>
-                <td>***REMOVED***</td>
-            </tr>
-            <tr>
-                <th scope="row">Email:</th>
-                <td>***REMOVED***</td>
-            </tr>
-            <tr>
-                <th scope="row">Website:</th>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<hr>
-<!-- Editable form -->
-
 <form>
+    <label>
+        Full name
+        <input
+            name="name"
+            placeholder="Full name"
+            autocomplete="name"
+            type="text"
+            required
+        />
+    </label>
     <fieldset>
+        <legend>Address</legend>
         <label>
-            Full name
+            Street Address
             <input
-                name="name"
-                placeholder="Full name"
-                autocomplete="name"
+                name="address1"
+                placeholder="Street Address"
                 type="text"
-                aria-label="Full Name"
-                required
             />
         </label>
         <label>
-            Address
-            <input
-                name="address1"
-                placeholder="Address Line 1"
-                type="text"
-                aria-label="Address Line 1"
-                required
-            />
+            Street Address Line 2 (optional)
             <input
                 name="address2"
-                placeholder="Address Line 2"
+                placeholder="Street Address Line 2"
                 type="text"
-                aria-label="Address Line 2"
             />
+        </label>
             <div class="grid">
-                <input
-                    name="city"
-                    placeholder="City"
-                    type="text"
-                    aria-label="City"
-                    required
-                />
-                <select name="state" aria-label="Select state" required>
-                    <option selected disabled value="">
-                        Select state/province...
-                    </option>
+                <label>
+                    City
+                    <input
+                        name="city"
+                        placeholder="City"
+                        type="text"
+                        required
+                    />
+                </label>
+                <label>
+                    State / Province
+                    <select name="state" required>
+                        <option selected disabled value="">
+                            Select state/province...
+                        </option>
                     <option value="AB">Alberta</option>
                     <option value="AK">Alaska</option>
                     <option value="AL">Alabama</option>
@@ -158,36 +117,37 @@ layout: section-base
                     <option value="PR">Puerto Rico</option>
                     <option value="UM">United States Minor Outlying Islands</option>
                     <option value="VI">Virgin Islands</option>
-                </select>
-                <input
-                    name="zip"
-                    placeholder="Zip/Postal Code"
-                    type="text"
-                    aria-label="Zip/Postal Code"
-                    required
-                />
+                    </select>
+                </label>
+                <label>
+                    Zip / Postal Code
+                    <input
+                        name="zip"
+                        placeholder="Zip/Postal Code"
+                        type="text"
+                        required
+                    />
+                </label>
             </div>
         </label>
         <label>
-            Phone number
+            Phone number (optional)
             <input
                 name="phone"
                 placeholder="Phone Number"
                 type="tel"
-                aria-label="Phone Number"
             />
         </label>
         <label>
-            Email address
+            Email address (optional)
             <input
                 name="email"
                 placeholder="Email Address"
                 type="email"
-                aria-label="Email Address"
             />
         </label>
         <label>
-            Website
+            Website (optional)
             <input
                 name="website"
                 placeholder="Website"
@@ -195,9 +155,4 @@ layout: section-base
                 aria-label="Website"
             />
         </label>
-    </fieldset>
-    <input
-        type="submit"
-        value="Accept"
-    />
 </form>
