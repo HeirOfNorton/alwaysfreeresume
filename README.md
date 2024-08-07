@@ -1,2 +1,2 @@
 # alwaysfreeresume
-Always Free Resume Builder - web app for building a basic resume. Completely free, no sign up, no data collection.
+Always Free Resumé Builder - web app for building a basic resumé. Completely free, no sign up, no data collection.

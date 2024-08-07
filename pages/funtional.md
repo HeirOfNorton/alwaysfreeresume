@@ -3,9 +3,9 @@ layout: section-base
 permalink: /functional/
 next: /functional/objective-skip/
 nexttitle: Start
-title: Functional Resume
+title: Functional Resumé
 section: functional
 position: 0
 ---
 
-All about creating a Functional Resume. Let's get started!
+All about creating a Functional Resumé. Let's get started!
