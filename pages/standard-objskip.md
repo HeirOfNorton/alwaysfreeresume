@@ -6,7 +6,7 @@ nexttitle: Continue
 title: Objective or Summary
 previous: /standard/contact/
 prevtitle: Back
-skip: /standard/skills/
+skip: /standard/skills-skip/
 skiptitle: Skip this step
 section: standard
 position: 2
