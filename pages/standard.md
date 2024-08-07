@@ -3,9 +3,9 @@ layout: section-base
 permalink: /standard/
 next: /standard/contact/
 nexttitle: Start
-title: Standard Resume
+title: Standard Resumé
 section: standard
 position: 0
 ---
 
-All about creating a Standard Resume. Let's get started!
+All about creating a Standard Resumé. Let's get started!
