@@ -4,7 +4,7 @@ layout: section-base
 
 <form>
     <h1>{{ page.default-section-name }}</h1>
-    {% for 1 in (1..page.default-section-item-count) %}
+    {% for i in (1..page.default-section-item-count) %}
         <fieldset index="{{ i }}">
             <label>
                 {{ page.item-name }}
