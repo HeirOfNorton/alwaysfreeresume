@@ -1,0 +1,35 @@
+---
+layout: section-base
+---
+
+<form>
+    <h1>{{ page.default-section-name }}</h1>
+    {% for 1 in (1..page.default-section-item-count) %}
+        <fieldset index="{{ i }}">
+            <label>
+                {{ page.item-name }}
+                <input
+                    type="text"
+                    name="{{ page.item-name }} {{ i }}"
+                    placeholder="{{ page.item-name }}"
+                />
+            </label>
+            {% if page.has-skill-level %}
+                <label>
+                    Proficiency (optional)
+                    <select name="level">
+                        <option selected disabled value="">
+                            Select level...
+                        </option>
+                        <option value="3">Intermediate</option>
+                        <option value="4">High</option>
+                        <option value="5">Expert</option>
+                    </select>
+                </label>
+            {% endif %}
+        </fieldset>
+    {% endfor %}
+    <button class="secondary">
+        Add More
+    </button>
+</form>
