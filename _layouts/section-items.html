@@ -1,0 +1,22 @@
+---
+layout: section-base
+---
+
+<form>
+    <h1>{{ page.default-section-name }}</h1>
+    {% for i in (1..page.default-section-item-count) %}
+        <fieldset index="{{ i }}">
+            <label>
+                {{ page.item-name }}
+                <input
+                    type="text"
+                    name="{{ page.item-name }} {{ i }}"
+                    placeholder="{{ page.item-name }}"
+                />
+            </label>
+        </fieldset>
+    {% endfor %}
+    <button class="secondary">
+        Add More
+    </button>
+</form>
