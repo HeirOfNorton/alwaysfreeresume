@@ -1,0 +1,51 @@
+
+---
+layout: section-form
+edit-section-name: True
+---
+
+    <fieldset>
+        <label>
+            {{ page.item-name }}
+            <input
+                type="text"
+                name="{{ page.item-name }} {{ i }}"
+                placeholder="{{ page.item-name }}"
+            />
+        </label>
+        <label>
+            Title and Employer (if relevant)
+            <input
+                type="text"
+                name="Title"
+                placeholder="Title"
+            />
+        </label>
+        <label>
+            Relationship
+            <input
+                type="text"
+                name="Relationship"
+                placeholder="Relationship"
+            />
+        </label>
+        <label>
+            Phone number (optional)
+            <input
+                name="phone"
+                placeholder="Phone Number"
+                type="tel"
+            />
+        </label>
+        <label>
+            Email address (optional)
+            <input
+                name="email"
+                placeholder="Email Address"
+                type="email"
+            />
+        </label>
+    </fieldset>
+    <button class="secondary">
+        Add More
+    </button>
