@@ -3,18 +3,16 @@ layout: section-form
 edit-section-name: True
 ---
 
-    {% for i in (1..page.default-section-item-count) %}
-        <fieldset index="{{ i }}">
-            <label>
-                {{ page.item-name }}
-                <input
-                    type="text"
-                    name="{{ page.item-name }} {{ i }}"
-                    placeholder="{{ page.item-name }}"
-                />
-            </label>
-        </fieldset>
-    {% endfor %}
+    <fieldset index="{{ i }}">
+        <label>
+            {{ page.item-name }}
+            <input
+                type="text"
+                name="{{ page.item-name }} {{ i }}"
+                placeholder="{{ page.item-name }}"
+            />
+        </label>
+    </fieldset>
     <button class="secondary">
         Add More
     </button>
