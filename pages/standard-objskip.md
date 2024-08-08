@@ -1,5 +1,5 @@
 ---
-layout: section-base
+layout: section-page
 permalink: /standard/objective-skip/
 next: /standard/objective/
 nexttitle: Continue

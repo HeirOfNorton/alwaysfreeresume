@@ -1,5 +1,5 @@
 ---
-layout: section-base
+layout: section-page
 permalink: /standard/skills-skip/
 next: /standard/skills/
 nexttitle: Continue

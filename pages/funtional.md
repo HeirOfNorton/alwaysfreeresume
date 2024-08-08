@@ -1,5 +1,5 @@
 ---
-layout: section-base
+layout: section-page
 permalink: /functional/
 next: /functional/objective-skip/
 nexttitle: Start
