@@ -8,7 +8,7 @@ previous: /standard/languages/
 prevtitle: Back
 skip: /standard/review/
 skiptitle: Skip
-section: standard
+type: standard
 position: 6
 ---
 

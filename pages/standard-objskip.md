@@ -8,7 +8,7 @@ previous: /standard/contact/
 prevtitle: Back
 skip: /standard/skills-skip/
 skiptitle: Skip this step
-section: standard
+type: standard
 position: 2
 ---
 

@@ -4,7 +4,7 @@ permalink: /entrylevel/
 next: /entrylevel/objective-skip/
 nexttitle: Start
 title: Entry Level Resumé
-section: entrylevel
+type: entrylevel
 position: 0
 ---
 

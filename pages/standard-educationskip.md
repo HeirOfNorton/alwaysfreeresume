@@ -8,7 +8,7 @@ previous: /standard/experience/
 prevtitle: Back
 skip: /standard/extras-skip/
 skiptitle: Skip this step
-section: standard
+type: standard
 position: 5
 ---
 

@@ -8,7 +8,7 @@ previous: /standard/certifications/
 prevtitle: Back
 skip: /standard/languages-skip/
 skiptitle: Skip
-section: standard
+type: standard
 position: 6
 ---
 
