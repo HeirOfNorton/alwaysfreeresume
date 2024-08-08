@@ -1,5 +1,5 @@
 ---
-layout: section-base
+layout: section-page
 permalink: /entrylevel/
 next: /entrylevel/objective-skip/
 nexttitle: Start

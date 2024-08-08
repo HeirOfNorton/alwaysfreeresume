@@ -1,5 +1,5 @@
 ---
-layout: section-base
+layout: section-page
 permalink: /student/
 next: /student/objective-skip/
 nexttitle: Start

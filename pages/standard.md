@@ -1,5 +1,5 @@
 ---
-layout: section-base
+layout: section-page
 permalink: /standard/
 next: /standard/contact/
 nexttitle: Start

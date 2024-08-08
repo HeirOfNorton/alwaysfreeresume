@@ -1,9 +1,8 @@
 ---
-layout: section-base
+layout: section-form
+edit-section-name: True
 ---
 
-<form>
-    <h1>{{ page.default-section-name }}</h1>
     {% for i in (1..page.default-section-item-count) %}
         <fieldset index="{{ i }}">
             <label>
@@ -19,4 +18,3 @@ layout: section-base
     <button class="secondary">
         Add More
     </button>
-</form>
