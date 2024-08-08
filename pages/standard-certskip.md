@@ -8,7 +8,7 @@ previous: /standard/extras/
 prevtitle: Back to Extras
 skip: /standard/awards-skip/
 skiptitle: Skip
-section: standard
+type: standard
 position: 6
 ---
 

@@ -4,7 +4,7 @@ permalink: /functional/
 next: /functional/objective-skip/
 nexttitle: Start
 title: Functional Resumé
-section: functional
+type: functional
 position: 0
 ---
 

@@ -4,7 +4,7 @@ permalink: /student/
 next: /student/objective-skip/
 nexttitle: Start
 title: Student Resumé
-section: student
+type: student
 position: 0
 ---
 

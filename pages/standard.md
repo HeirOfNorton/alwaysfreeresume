@@ -4,7 +4,7 @@ permalink: /standard/
 next: /standard/contact/
 nexttitle: Start
 title: Standard Resumé
-section: standard
+type: standard
 position: 0
 ---
 

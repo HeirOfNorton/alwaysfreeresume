@@ -8,7 +8,7 @@ previous: /standard/awards/
 prevtitle: Back
 skip: /standard/references-skip/
 skiptitle: Skip
-section: standard
+type: standard
 position: 6
 ---
 
