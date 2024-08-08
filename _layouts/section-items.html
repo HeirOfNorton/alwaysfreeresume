@@ -12,6 +12,60 @@ edit-section-name: True
                 placeholder="{{ page.item-name }}"
             />
         </label>
+        <label>
+            {{ page.item-org }}
+            <input
+                type="text"
+                name="{{ page.item-org }} {{ i }}"
+                placeholder="{{ page.item-org }}"
+            />
+        </label>
+        <label>
+            {{ page.item-location }}
+            <input
+                type="text"
+                name="{{ page.item-location }} {{ i }}"
+                placeholder="{{ page.item-location }}"
+            />
+        </label>
+        <div class="grid">
+            {% if page.item-start-date %}
+                <label>
+                    {{ page.item-start-date }}
+                    <input
+                        type="month"
+                        name="{{ page.item-start-date }}"
+                    />
+                </label>
+            {% endif %}
+            {% if page.item-current-date %}
+                <label>
+                    {{ page.item-current-date }}
+                    <input
+                        type="checkbox"
+                        name="current"
+                    />
+                </label>
+            {% endif %}
+            {% if page.item-end-date %}
+                <label>
+                    {{ page.item-end-date }}
+                    <input
+                        type="month"
+                        name="{{ page.item-end-date }}"
+                </label>
+            {% endif %}
+        </div>
+        {% if page.item-subitems %}
+        <label>
+            {{ page.item-subitems }}
+            <input
+                type="text"
+                name="{{ page.item-subitems }}"
+                placeholder="{{ page.item-subitems }}"
+            />
+            <button>Add more</button>
+        </label>
     </fieldset>
     <button class="secondary">
         Add More
