@@ -2,6 +2,111 @@
 layout: section-root
 ---
 
-Not sure what to do with this yet, since it wil have to be populated entirely by javascript.
-Maybe make dummy versions of each section and convert them to template tags later?
+<h1>Review and Confirm</h1>
 
+{% for section in page.sections %}
+
+<article>
+    <header>
+        <div class="grid">
+            <h2>
+                {{ section.title }}
+            </h2>
+            <div>
+            <a
+                href="{{ section.page | relative_url }}"
+                role="button"
+            >Edit</a>
+            {% if section.removable %}
+                <button>X</button>
+            {% endif %}
+            </div>
+        </div>
+    </header>
+
+    {% case section.type %}
+        {% when 'contact' %}
+
+            <h3>Jason M. Seeley</h3>
+            <p>
+                <br>
+                <br>
+                <br>
+            </p>
+
+        {% when 'paragraph' %}
+
+            <p>
+                This is my great big summary
+            </p>
+
+        {% when 'shortlist' %}
+
+            <ul>
+                <li>
+                    Computers{% if section.skilllevel %}: Expert{% endif %}
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    German{% if section.skilllevel %}: Expert{% endif %}
+                </li>
+            </ul>
+
+        {% when 'items' %}
+
+            <div>
+                <h3>Adult Services Librarian</h3>
+                <h4>Hennepin County Library</h4>
+                <div class="grid">
+                    <p>October, 2015</p>
+                    <p>Current</p>
+                </div>
+                {% if section.subitems %}
+                    <div>
+                        <ul>
+                            <li>Develop programs</li>
+                            <li>Customer Service</li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div>
+                <h3>Master of Library and Information Science</h3>
+                <h4>San Jose State University</h4>
+                <div class="grid">
+                    <p>December, 2013</p>
+                </div>
+                {% if section.subitems %}
+                    <div>
+                        <ul>
+                            <li>Develop programs</li>
+                            <li>Customer Service</li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+
+        {% when 'references' %}
+
+            <div>
+                <p>
+                    Bethany Wagenaar<br>
+                    Patron Experience Supervisor<br>
+                    Hennepin County Library<br>
+                    bwagenaar@hclib.org
+                </p>
+            </div>
+
+    {% endcase %}
+</article>
+
+{% endfor %}
+
+<div class="grid">
+    <a href="{{ page.next | relative_url }}" role="button">
+        {% if page.nexttitle %}{{ page.nexttitle }}{% else %}Next{% endif %}
+    </a>
+</div>
