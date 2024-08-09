@@ -20,45 +20,6 @@ url: "https://heirofnorton.github.io"
 #        values:
 #        layout: default
 
-navtitle:
-  standard: Standard
-  student: Student
-  functional: Functional
-  entrylevel: Entry Level
-
-navlength:
-  standard: 6
-  student: 6
-  entrylevel: 5
-  functinoal: 5
-
-nav:
-  standard:
-    - Objective
-    - Skills
-    - Experience
-    - Education
-    - Extras
-  student:
-    - Objective
-    - Skills
-    - Education
-    - Projects
-    - Work Experience
-    - Extras
-  entrylevel:
-    - Objective
-    - Skills
-    - Education
-    - Experience
-    - Extras
-  functional:
-    - Objective
-    - Skills
-    - Experience
-    - Education
-    - Extras
-
 exclude:
   - Gemfile
   - Gemfile.lock
