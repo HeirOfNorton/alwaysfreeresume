@@ -1,5 +1,5 @@
 ---
-layout: plain
+layout: front
 ---
 
 # Under construction!
