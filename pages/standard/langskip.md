@@ -6,7 +6,7 @@ nexttitle: Continue
 title: Languages
 previous: /standard/awards/
 prevtitle: Back
-skip: /standard/references-skip/
+skip: /standard/review/
 skiptitle: Skip
 type: standard
 position: 6
