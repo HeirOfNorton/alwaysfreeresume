@@ -3,7 +3,7 @@ layout: section-form
 edit-section-name: True
 ---
 
-    <fieldset index="{{ i }}">
+    <fieldset>
         <label>
             {{ page.item-name }}
             <input
@@ -12,6 +12,7 @@ edit-section-name: True
                 placeholder="{{ page.item-name }}"
             />
         </label>
+        {% if page.item-org %}
         <label>
             {{ page.item-org }}
             <input
@@ -20,6 +21,8 @@ edit-section-name: True
                 placeholder="{{ page.item-org }}"
             />
         </label>
+        {% endif %}
+        {% if page.item-location %}
         <label>
             {{ page.item-location }}
             <input
@@ -28,6 +31,7 @@ edit-section-name: True
                 placeholder="{{ page.item-location }}"
             />
         </label>
+        {% endif %}
         <div class="grid">
             {% if page.item-start-date %}
                 <label>
