@@ -1,6 +1,6 @@
 ---
 layout: section-page
-permalink: /standard/photoskip/
+permalink: /standard/photo-skip/
 next: /standard/photo/
 skip: /standard/objective-skip/
 skiptitle: Skip Photo
