@@ -58,11 +58,21 @@ layout: section-root
 
             <div>
                 <h3>Adult Services Librarian</h3>
-                <h4>Hennepin County Library</h4>
-                <div class="grid">
-                    <p>October, 2015</p>
-                    <p>Current</p>
-                </div>
+                {% if section.org %}
+                    <h4>Hennepin County Library</h4>
+                {% endif %}
+                {% if section.dates %}
+                <p>
+                    <strong>
+                        {% if section.dates.start %}
+                            October, 2015 -
+                        {% endif %}
+                        {% if section.dates.end %}
+                            Current
+                        {% endif %}
+                    </strong>
+                </p>
+                {% endif %}
                 {% if section.subitems %}
                     <div>
                         <ul>
@@ -75,10 +85,21 @@ layout: section-root
 
             <div>
                 <h3>Master of Library and Information Science</h3>
-                <h4>San Jose State University</h4>
-                <div class="grid">
-                    <p>December, 2013</p>
-                </div>
+                {% if section.org %}
+                    <h4>San Jose State University</h4>
+                {% endif %}
+                {% if section.dates %}
+                <p>
+                    <strong>
+                        {% if section.dates.start %}
+                            September, 2011 -
+                        {% endif %}
+                        {% if section.dates.end %}
+                            December, 2013
+                        {% endif %}
+                    </strong>
+                </p>
+                {% endif %}
                 {% if section.subitems %}
                     <div>
                         <ul>
@@ -87,17 +108,6 @@ layout: section-root
                         </ul>
                     </div>
                 {% endif %}
-            </div>
-
-        {% when 'references' %}
-
-            <div>
-                <p>
-                    Bethany Wagenaar<br>
-                    Patron Experience Supervisor<br>
-                    Hennepin County Library<br>
-                    bwagenaar@hclib.org
-                </p>
             </div>
 
     {% endcase %}
