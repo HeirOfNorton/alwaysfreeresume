@@ -191,11 +191,104 @@ layout: page
                     />
                 </label>
             {% when 'paragraph' %}
-
+                <textarea
+                    name="summary"
+                    placeholder="Write a short objective or summary paragraph."
+                    aria-label="Objective or summary"
+                >
+                </textarea>
             {% when 'list' %}
-
+                <label>
+                    {{ form.item-name }}
+                    <input
+                        type="text"
+                        name="{{ form.item-name }} {{ i }}"
+                        placeholder="{{ form.item-name }}"
+                    />
+                </label>
+                {% if form.list-levels %}
+                    <label>
+                        Proficiency (optional)
+                        <select name="level">
+                            <option selected disabled value="">
+                                Select level...
+                            </option>
+                            <option value="3">Intermediate</option>
+                            <option value="4">High</option>
+                            <option value="5">Expert</option>
+                        </select>
+                    </label>
+                {% endif %}
             {% when 'items' %}
-
+                <label>
+                    {{ form.item-name }}
+                    <input
+                        type="text"
+                        name="{{ form.item-name }}"
+                        placeholder="{{ form.item-name }}"
+                    />
+                </label>
+                {% if form.org %}
+                <label>
+                    {{ form.org }}
+                    <input
+                        type="text"
+                        name="{{ form.org }}"
+                        placeholder="{{ form.org }}"
+                    />
+                </label>
+                {% endif %}
+                {% if form.location %}
+                <label>
+                    {{ form.location }}
+                    <input
+                        type="text"
+                        name="{{ form.location }}"
+                        placeholder="{{ form.location }}"
+                    />
+                </label>
+                {% endif %}
+                {% if form.dates %}
+                <div>
+                    {% if form.dates.start %}
+                        <label>
+                            {{ form.dates.start }}
+                            <input
+                                type="month"
+                                name="{{ form.dates.start }}"
+                            />
+                        </label>
+                    {% endif %}
+                    {% if form.dates.current %}
+                        <label>
+                            {{ form.dates.current }}
+                            <input
+                                type="checkbox"
+                                name="current"
+                            />
+                        </label>
+                    {% endif %}
+                    {% if form.dates.end %}
+                        <label>
+                            {{ form.dates.end }}
+                            <input
+                                type="month"
+                                name="{{ form.dates.end }}"
+                        </label>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if form.subitems %}
+                <label>
+                    {{ form.subitems }}
+                    <input
+                        type="text"
+                        name="{{ form.subitems }}"
+                        placeholder="{{ form.subitems }}"
+                    />
+                    <button>Add more</button>
+                </label>
+                {% endif %}
         {% endcase %}
         </div>
         {% if form.add-more %}
