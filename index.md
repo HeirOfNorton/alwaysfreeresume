@@ -1,6 +1,0 @@
----
-layout: front
----
-
-# Under construction!
-
