@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+{% if page.navbar %}
+    <p>navbar goes here</p>
+{% endif %}
+
+{% if page.previous %}
+    <a href="{{ page.revious | relative_url }}">
+        {% if page.previous-title %}
+            {{ page.previous-title }}
+        {% else %}
+            Go back
+        {% endif %}
+    </a>
+{% endif %}
+
+{{ content }}
