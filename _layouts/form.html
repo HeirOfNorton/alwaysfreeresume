@@ -14,7 +14,7 @@ layout: page
                 Start
             {% endif %}
         </button>
-        <a href="{{ page.next }}">
+        <a href="{{ page.next | relative_url }}">
         <button>
             {% if page.skip-title %}
                 {{ page.skip-title }}
