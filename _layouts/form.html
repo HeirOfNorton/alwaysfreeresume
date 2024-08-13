@@ -283,12 +283,17 @@ layout: page
                 {% if form.subitems %}
                 <label>
                     {{ form.subitems }}
+                    <!--
                     <input
                         type="text"
                         name="{{ form.subitems }}"
                         placeholder="{{ form.subitems }}"
                     />
                     <button>Add more</button>
+                    -->
+                    <div contenteditable="true">
+                        <div style="display: list-item;"></div>
+                    </div>
                 </label>
                 {% endif %}
             {% when 'photo' %}
