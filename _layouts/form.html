@@ -2,7 +2,7 @@
 layout: page
 ---
 
-<section class="container content">
+<section class="container content is-max-widescreen">
 {{ content }}
 
 {% if page.skippable %}
@@ -28,7 +28,7 @@ layout: page
 
 </section>
 
-<section class="container">
+<section class="container is-max-widescreen">
 <div class="field">
     {% for form in page.forms %}
         <header>
@@ -321,7 +321,6 @@ layout: page
             <button class="button">Add more</button>
         {% endif %}
     {% endfor %}
-</div>
 
 <a href="{{ page.next | relative_url }}">
     <button class="button">
@@ -333,4 +332,5 @@ layout: page
     </button>
 </a>
 
+</div>
 </section>
