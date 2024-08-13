@@ -2,12 +2,12 @@
 layout: page
 ---
 
-<section>
+<section class="container content">
 {{ content }}
 
 {% if page.skippable %}
-    <div>
-        <button>
+    <div class="is-puled-right">
+        <button class="button">
             {% if page.noskip-title %}
                 {{ page.noskip-title }}
             {% else %}
@@ -15,7 +15,7 @@ layout: page
             {% endif %}
         </button>
         <a href="{{ page.next | relative_url }}">
-        <button>
+        <button class="button">
             {% if page.skip-title %}
                 {{ page.skip-title }}
             {% else %}
@@ -28,21 +28,22 @@ layout: page
 
 </section>
 
-<section>
-<form>
+<section class="container">
+<div class="field">
     {% for form in page.forms %}
         <header>
             <h2>{{ form.name }}</h2>
             {% if form.name-edit %}
-                <button>Edit Header</button>
+                <button class="button">Edit Header</button>
             {% endif %}
         </header>
         <div>
         {% case form.type %}
             {% when 'contact' %}
-                <label>
+                <label class="label">
                     Full name
                     <input
+                        class="input"
                         name="name"
                         placeholder="Full name"
                         autocomplete="name"
@@ -52,35 +53,38 @@ layout: page
                 </label>
                 <fieldset>
                     <legend>Address</legend>
-                    <label>
+                    <label class="label">
                         Street Address
                         <input
+                            class="input"
                             name="address1"
                             placeholder="Street Address"
                             type="text"
                         />
                     </label>
-                    <label>
+                    <label class="label">
                         Street Address Line 2 (optional)
                         <input
+                            class="input"
                             name="address2"
                             placeholder="Street Address Line 2"
                             type="text"
                         />
                     </label>
                         <div class="grid">
-                            <label>
+                            <label class="label">
                                 City
                                 <input
+                                    class="input"
                                     name="city"
                                     placeholder="City"
                                     type="text"
                                     required
                                 />
                             </label>
-                            <label>
+                            <label class="label">
                                 State / Province
-                                <select name="state" required>
+                                <select class="select" name="state" required>
                                     <option selected disabled value="">
                                         Select state/province...
                                     </option>
@@ -156,9 +160,10 @@ layout: page
                                     <option value="VI">Virgin Islands</option>
                                 </select>
                             </label>
-                            <label>
+                            <label class="label">
                                 Zip / Postal Code
                                 <input
+                                    class="input"
                                     name="zip"
                                     placeholder="Zip/Postal Code"
                                     type="text"
@@ -167,25 +172,28 @@ layout: page
                             </label>
                         </div>
                 </fieldset>
-                <label>
+                <label class="label">
                     Phone number (optional)
                     <input
+                        class="input"   
                         name="phone"
                         placeholder="Phone Number"
                         type="tel"
                     />
                 </label>
-                <label>
+                <label class="label">
                     Email address (optional)
                     <input
+                        class="input"
                         name="email"
                         placeholder="Email Address"
                         type="email"
                     />
                 </label>
-                <label>
+                <label class="label">
                     Website (optional)
                     <input
+                        class="input"
                         name="website"
                         placeholder="Website"
                         type="url"
@@ -194,24 +202,26 @@ layout: page
                 </label>
             {% when 'paragraph' %}
                 <textarea
+                    class="textarea"
                     name="summary"
                     placeholder="Write a short objective or summary paragraph."
                     aria-label="Objective or summary"
                 >
                 </textarea>
             {% when 'list' %}
-                <label>
+                <label class="label">
                     {{ form.item-name }}
                     <input
+                        class="input"
                         type="text"
                         name="{{ form.item-name }}"
                         placeholder="{{ form.item-name }}"
                     />
                 </label>
                 {% if form.list-levels %}
-                    <label>
+                    <label class="label">
                         Proficiency (optional)
-                        <select name="level">
+                        <select class="select" name="level">
                             <option selected disabled value="">
                                 Select level...
                             </option>
@@ -222,18 +232,20 @@ layout: page
                     </label>
                 {% endif %}
             {% when 'items' %}
-                <label>
+                <label class="label">
                     {{ form.item-name }}
                     <input
+                        class="input"
                         type="text"
                         name="{{ form.item-name }}"
                         placeholder="{{ form.item-name }}"
                     />
                 </label>
                 {% if form.org %}
-                <label>
+                <label class="label">
                     {{ form.org }}
                     <input
+                        class="input"
                         type="text"
                         name="{{ form.org }}"
                         placeholder="{{ form.org }}"
@@ -241,9 +253,10 @@ layout: page
                 </label>
                 {% endif %}
                 {% if form.location %}
-                <label>
+                <label class="label">
                     {{ form.location }}
                     <input
+                        class="input"
                         type="text"
                         name="{{ form.location }}"
                         placeholder="{{ form.location }}"
@@ -253,16 +266,17 @@ layout: page
                 {% if form.dates %}
                 <div>
                     {% if form.dates.start %}
-                        <label>
+                        <label class="label">
                             {{ form.dates.start }}
                             <input
+                                class="input"
                                 type="month"
                                 name="{{ form.dates.start }}"
                             />
                         </label>
                     {% endif %}
                     {% if form.dates.current %}
-                        <label>
+                        <label class="label">
                             {{ form.dates.current }}
                             <input
                                 type="checkbox"
@@ -271,9 +285,10 @@ layout: page
                         </label>
                     {% endif %}
                     {% if form.dates.end %}
-                        <label>
+                        <label class="label">
                             {{ form.dates.end }}
                             <input
+                                class="input"
                                 type="month"
                                 name="{{ form.dates.end }}"
                         </label>
@@ -281,7 +296,7 @@ layout: page
                 </div>
                 {% endif %}
                 {% if form.subitems %}
-                <label>
+                <label class="label">
                     {{ form.subitems }}
                     <!--
                     <input
@@ -291,7 +306,7 @@ layout: page
                     />
                     <button>Add more</button>
                     -->
-                    <div contenteditable="true">
+                    <div class="textarea" contenteditable="true">
                         <div style="display: list-item; list-style-type: disc; list-style-position: outside; margin-left: 1em;"></div>
                     </div>
                 </label>
@@ -303,13 +318,13 @@ layout: page
         {% endcase %}
         </div>
         {% if form.add-more %}
-            <button>Add more</button>
+            <button class="button">Add more</button>
         {% endif %}
     {% endfor %}
-</form>
+</div>
 
 <a href="{{ page.next | relative_url }}">
-    <button>
+    <button class="button">
         {% if page.next-title %}
             {{ page.next-title }}
         {% else %}
