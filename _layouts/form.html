@@ -29,7 +29,7 @@ layout: page
 </section>
 
 <section class="container is-max-widescreen">
-<div class="field">
+<div class="block">
     {% for form in page.forms %}
         <header>
             <h2>{{ form.name }}</h2>
@@ -55,16 +55,16 @@ layout: page
             <button class="button">Add more</button>
         {% endif %}
     {% endfor %}
-
-<a href="{{ page.next | relative_url }}">
-    <button class="button">
-        {% if page.next-title %}
-            {{ page.next-title }}
-        {% else %}
-            Save and Continue
-        {% endif %}
-    </button>
-</a>
-
+    <div class="field is-pulled-right">
+        <a href="{{ page.next | relative_url }}">
+            <button class="button">
+                {% if page.next-title %}
+                    {{ page.next-title }}
+                {% else %}
+                    Save and Continue
+                {% endif %}
+            </button>
+        </a>
+    </div>
 </div>
 </section>
