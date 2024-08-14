@@ -4,20 +4,23 @@ layout: default
 
 {% if page.navbar %}
 
-<div class="columns">
+<div class="container columns">
     <div class="column is-one-third is-hidden-mobile">
-        <p>navbar goes here</p>
+        <div class="box">
+            <p>navbar goes here</p>
+        </div>
     </div>
 
     <div class="column">
 {% else %}
 
-<div class="container is-max-widescreen">
+<div class="container is-max-desktop">
     <div>
 
 {% endif %}
 
 {% if page.previous %}
+    <div class="block">
     <a href="{{ page.previous | relative_url }}">
         <span class="icon-text">
             <span class="icon">{% include icon.html i='left-long' %}</span>
@@ -30,6 +33,7 @@ layout: default
             </span>
         </span>
     </a>
+    </div>
 {% endif %}
 
 {{ content }}
