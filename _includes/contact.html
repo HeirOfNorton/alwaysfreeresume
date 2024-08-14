@@ -14,40 +14,58 @@
     />
     </div>
 </div>
-<fieldset>
-    <legend>Address</legend>
-    <label class="label">
-        Street Address
-        <input
-            class="input"
-            name="address1"
-            placeholder="Street Address"
-            type="text"
-        />
-    </label>
-    <label class="label">
-        Street Address Line 2 (optional)
-        <input
-            class="input"
-            name="address2"
-            placeholder="Street Address Line 2"
-            type="text"
-        />
-    </label>
-        <div class="grid">
+
+<div>
+    <h3 class="is-title">Address</h3>
+
+    <div class="field">
+        <label class="label">
+            Address Line 1
+        </label>
+        <div class="control">
+            <input
+                class="input"
+                name="address1"
+                placeholder="Address Line 1"
+                type="text"
+            />
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">
+            Address Line 2 (optional)
+        </label>
+        <div class="control">
+            <input
+                class="input"
+                name="address2"
+                placeholder="Address Line 2"
+                type="text"
+            />
+        </div>
+    </div>
+
+    <div class="is-grouped">
+        <div class="field">
             <label class="label">
                 City
-                <input
-                    class="input"
-                    name="city"
-                    placeholder="City"
-                    type="text"
-                    required
-                />
             </label>
+            <input
+                class="input"
+                name="city"
+                placeholder="City"
+                type="text"
+                required
+            />
+        </div>
+
+        <div class="field">
             <label class="label">
                 State / Province
-                <select class="select" name="state" required>
+            </label>
+            <div class="select">
+                <select name="state" required>
                     <option selected disabled value="">
                         Select state/province...
                     </option>
@@ -122,9 +140,14 @@
                     <option value="UM">United States Minor Outlying Islands</option>
                     <option value="VI">Virgin Islands</option>
                 </select>
-            </label>
+            </div>
+        </div>
+
+        <div class="field">
             <label class="label">
                 Zip / Postal Code
+            </label>
+            <div class="control">
                 <input
                     class="input"
                     name="zip"
@@ -132,34 +155,50 @@
                     type="text"
                     required
                 />
-            </label>
+            </div>
         </div>
-</fieldset>
-<label class="label">
-    Phone number (optional)
-    <input
-        class="input"   
-        name="phone"
-        placeholder="Phone Number"
-        type="tel"
-    />
-</label>
-<label class="label">
-    Email address (optional)
-    <input
-        class="input"
-        name="email"
-        placeholder="Email Address"
-        type="email"
-    />
-</label>
-<label class="label">
-    Website (optional)
-    <input
-        class="input"
-        name="website"
-        placeholder="Website"
-        type="url"
-        aria-label="Website"
-    />
-</label>
+    </div>
+</div>
+
+<div class="field">
+    <label class="label">
+        Phone number (optional)
+    </label>
+    <div class="control">
+        <input
+            class="input"   
+            name="phone"
+            placeholder="Phone Number"
+            type="tel"
+        />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label">
+        Email address (optional)
+    </label>
+    <div class="control">
+        <input
+            class="input"
+            name="email"
+            placeholder="Email Address"
+            type="email"
+        />
+    </div>
+</div>
+
+<div class="field">
+    <label class="label">
+        Website (optional)
+    </label>
+    <div class="control">
+        <input
+            class="input"
+            name="website"
+            placeholder="Website"
+            type="url"
+            aria-label="Website"
+        />
+    </div>
+</div>
