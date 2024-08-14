@@ -32,7 +32,7 @@ layout: page
 <div class="block">
     {% for form in page.forms %}
         <header>
-            <h2>{{ form.name }}</h2>
+            <h2 class="title is-2">{{ form.name }}</h2>
             {% if form.name-edit %}
                 <button class="button">Edit Header</button>
             {% endif %}
