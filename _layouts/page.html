@@ -18,13 +18,18 @@ layout: default
 {% endif %}
 
 {% if page.previous %}
-    <a href="{{ page.previous | relative_url }}">
-        {% if page.previous-title %}
-            {{ page.previous-title }}
-        {% else %}
-            Go back
-        {% endif %}
-    </a>
+    <span class="icon-text">
+        <span class="icon">{% include icon.html i='left-long' %}</span>
+        <span>
+            <a href="{{ page.previous | relative_url }}">
+                {% if page.previous-title %}
+                    {{ page.previous-title }}
+                {% else %}
+                    Go back
+                {% endif %}
+            </a>
+        </span>
+    </span>
 {% endif %}
 
 {{ content }}
