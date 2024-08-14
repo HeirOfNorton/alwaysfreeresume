@@ -3,7 +3,18 @@ layout: default
 ---
 
 {% if page.navbar %}
-    <p>navbar goes here</p>
+
+<div class="columns">
+    <div class="column is-one-third is-hidden-mobile">
+        <p>navbar goes here</p>
+    </div>
+
+    <div class="column">
+{% else %}
+
+<div class="container is-max-widescreen">
+    <div>
+
 {% endif %}
 
 {% if page.previous %}
@@ -17,3 +28,6 @@ layout: default
 {% endif %}
 
 {{ content }}
+
+    </div>
+</div>
