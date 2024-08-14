@@ -1,0 +1,80 @@
+
+                <label class="label">
+                    {{ include.vars.item-name }}
+                    <input
+                        class="input"
+                        type="text"
+                        name="{{ include.vars.item-name }}"
+                        placeholder="{{ include.vars.item-name }}"
+                    />
+                </label>
+                {% if include.vars.org %}
+                <label class="label">
+                    {{ include.vars.org }}
+                    <input
+                        class="input"
+                        type="text"
+                        name="{{ include.vars.org }}"
+                        placeholder="{{ include.vars.org }}"
+                    />
+                </label>
+                {% endif %}
+                {% if include.vars.location %}
+                <label class="label">
+                    {{ include.vars.location }}
+                    <input
+                        class="input"
+                        type="text"
+                        name="{{ include.vars.location }}"
+                        placeholder="{{ include.vars.location }}"
+                    />
+                </label>
+                {% endif %}
+                {% if include.vars.dates %}
+                <div>
+                    {% if include.vars.dates.start %}
+                        <label class="label">
+                            {{ include.vars.dates.start }}
+                            <input
+                                class="input"
+                                type="month"
+                                name="{{ include.vars.dates.start }}"
+                            />
+                        </label>
+                    {% endif %}
+                    {% if include.vars.dates.current %}
+                        <label class="label">
+                            {{ include.vars.dates.current }}
+                            <input
+                                type="checkbox"
+                                name="current"
+                            />
+                        </label>
+                    {% endif %}
+                    {% if include.vars.dates.end %}
+                        <label class="label">
+                            {{ include.vars.dates.end }}
+                            <input
+                                class="input"
+                                type="month"
+                                name="{{ include.vars.dates.end }}"
+                        </label>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if include.vars.subitems %}
+                <label class="label">
+                    {{ include.vars.subitems }}
+                    <!--
+                    <input
+                        type="text"
+                        name="{{ include.vars.subitems }}"
+                        placeholder="{{ include.vars.subitems }}"
+                    />
+                    <button>Add more</button>
+                    -->
+                    <div class="textarea" contenteditable="true">
+                        <div style="display: list-item; list-style-type: disc; list-style-position: outside; margin-left: 1em;"></div>
+                    </div>
+                </label>
+                {% endif %}

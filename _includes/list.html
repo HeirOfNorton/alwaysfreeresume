@@ -1,0 +1,23 @@
+
+                <label class="label">
+                    {{ include.vars.item-name }}
+                    <input
+                        class="input"
+                        type="text"
+                        name="{{ include.vars.item-name }}"
+                        placeholder="{{ include.vars.item-name }}"
+                    />
+                </label>
+                {% if include.vars.list-levels %}
+                    <label class="label">
+                        Proficiency (optional)
+                        <select class="select" name="level">
+                            <option selected disabled value="">
+                                Select level...
+                            </option>
+                            <option value="3">Intermediate</option>
+                            <option value="4">High</option>
+                            <option value="5">Expert</option>
+                        </select>
+                    </label>
+                {% endif %}
