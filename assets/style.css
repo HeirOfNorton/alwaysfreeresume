@@ -1,25 +1,4 @@
 
-/*
 html, body {
     height: 100%;
 }
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
-
-body > footer {
-    flex-shrink: 0;
-}
-
-.myheader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-*/
