@@ -45,6 +45,11 @@ layout: page
                 {% endif %}
             </div>
         </header>
+        {% if form.intro -%}
+            <div class="block my-3 is-size-5">
+                <p>{{ form.intro }}</p>
+            </div>
+        {%- endif %}
         <div class="block">
         {% case form.type %}
             {% when 'contact' %}
