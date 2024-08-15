@@ -2,12 +2,12 @@
 layout: page
 ---
 
-<section class="block container content">
+<section class="block container content is-size-4-desktop is-size-5-touch">
 {{ content }}
 
 {% if page.skippable %}
-    <div class="block is-grouped is-pulled-right">
-        <button class="button">
+    <div class="block buttons is-right">
+        <button class="button is-primary">
             {% if page.noskip-title %}
                 {{ page.noskip-title }}
             {% else %}
@@ -15,7 +15,7 @@ layout: page
             {% endif %}
         </button>
         <a href="{{ page.next | relative_url }}">
-        <button class="button">
+        <button class="button is-link-inverted">
             {% if page.skip-title %}
                 {{ page.skip-title }}
             {% else %}
@@ -28,14 +28,22 @@ layout: page
 
 </section>
 
-<section class="container box mb-6">
+<section class="container box my-5">
 <div class="block is-clearfix">
     {% for form in page.forms %}
-        <header class="block">
-            <h3 class="subtitle">{{ form.name }}</h3>
-            {% if form.name-edit %}
-                <button class="button">Edit Header</button>
-            {% endif %}
+        <header class="block level">
+            <div class="level-left">
+                <div class="level-item">
+                    <h3 class="title">{{ form.name }}</h3>
+                </div>
+            </div>
+            <div class="level-right">
+                {% if form.name-edit %}
+                    <div class="level-item">
+                        <button class="button is-small is-primary-inverted">Edit Header</button>
+                    </div>
+                {% endif %}
+            </div>
         </header>
         <div class="block">
         {% case form.type %}
@@ -52,11 +60,11 @@ layout: page
         {% endcase %}
         </div>
         {% if form.add-more %}
-            <button class="block button">Add more</button>
+            <button class="block button is-small is-link-inverted">Add more</button>
         {% endif %}
     {% endfor %}
 
-    <div class="block is-pulled-right">
+    <div class="block buttons is-right">
         <a href="{{ page.next | relative_url }}">
             <button class="is-link button">
                 {% if page.next-title %}
