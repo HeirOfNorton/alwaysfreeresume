@@ -3,3 +3,7 @@ html, body {
     height: 100%;
     background-color: var(--bulma-white-ter);
 }
+
+.is-fit {
+    width: fit-content;
+}
