@@ -6,7 +6,7 @@
                         type="text"
                         name="{{ include.vars.item-name }}"
                         placeholder="{{ include.vars.item-name }}"
-                    />
+                    >
                 </label>
                 {% if include.vars.org %}
                 <label class="label">
@@ -16,7 +16,7 @@
                         type="text"
                         name="{{ include.vars.org }}"
                         placeholder="{{ include.vars.org }}"
-                    />
+                    >
                 </label>
                 {% endif %}
                 {% if include.vars.location %}
@@ -27,7 +27,7 @@
                         type="text"
                         name="{{ include.vars.location }}"
                         placeholder="{{ include.vars.location }}"
-                    />
+                    >
                 </label>
                 {% endif %}
                 {% if include.vars.dates %}
@@ -39,7 +39,7 @@
                                 class="input"
                                 type="month"
                                 name="{{ include.vars.dates.start }}"
-                            />
+                            >
                         </label>
                     {% endif %}
                     {% if include.vars.dates.current %}
@@ -48,7 +48,7 @@
                             <input
                                 type="checkbox"
                                 name="current"
-                            />
+                            >
                         </label>
                     {% endif %}
                     {% if include.vars.dates.end %}
@@ -58,6 +58,7 @@
                                 class="input"
                                 type="month"
                                 name="{{ include.vars.dates.end }}"
+                            >
                         </label>
                     {% endif %}
                 </div>
