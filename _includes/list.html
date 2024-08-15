@@ -1,13 +1,18 @@
+<div class="field">
+    <label class="label">
+        {{ include.vars.item-name }}
+    </label>
+    <div class="control">
+        <input
+            class="input"
+            type="text"
+            name="{{ include.vars.item-name }}"
+            placeholder="{{ include.vars.item-name }}"
+        >
+    </div>
+</div>
 
-                <label class="label">
-                    {{ include.vars.item-name }}
-                    <input
-                        class="input"
-                        type="text"
-                        name="{{ include.vars.item-name }}"
-                        placeholder="{{ include.vars.item-name }}"
-                    >
-                </label>
+
                 {% if include.vars.list-levels %}
                     <label class="label">
                         Proficiency (optional)
