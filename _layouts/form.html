@@ -2,11 +2,11 @@
 layout: page
 ---
 
-<section class="container content is-max-widescreen">
+<section class="block container content">
 {{ content }}
 
 {% if page.skippable %}
-    <div class="is-pulled-right">
+    <div class="block is-grouped is-pulled-right">
         <button class="button">
             {% if page.noskip-title %}
                 {{ page.noskip-title }}
@@ -28,16 +28,16 @@ layout: page
 
 </section>
 
-<section class="container is-max-widescreen">
-<div class="block">
+<section class="container box">
+<div class="block is-clearfix">
     {% for form in page.forms %}
-        <header>
+        <header class="block">
             <h3 class="subtitle">{{ form.name }}</h3>
             {% if form.name-edit %}
                 <button class="button">Edit Header</button>
             {% endif %}
         </header>
-        <div>
+        <div class="block">
         {% case form.type %}
             {% when 'contact' %}
                 {% include contact.html %}
@@ -52,12 +52,13 @@ layout: page
         {% endcase %}
         </div>
         {% if form.add-more %}
-            <button class="button">Add more</button>
+            <button class="block button">Add more</button>
         {% endif %}
     {% endfor %}
-    <div class="field is-pulled-right">
+
+    <div class="block is-pulled-right">
         <a href="{{ page.next | relative_url }}">
-            <button class="button">
+            <button class="is-link button">
                 {% if page.next-title %}
                     {{ page.next-title }}
                 {% else %}

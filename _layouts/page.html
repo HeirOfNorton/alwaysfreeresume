@@ -2,21 +2,14 @@
 layout: default
 ---
 
-{% if page.navbar %}
+<div class="container is-max-widescreen">
 
-<div class="container columns">
-    <div class="column is-one-third is-hidden-mobile">
-        <div class="box">
+{% if page.navbar %}
+    <div class="is-hidden-mobile">
+        <div class="">
             <p>navbar goes here</p>
         </div>
     </div>
-
-    <div class="column">
-{% else %}
-
-<div class="container is-max-desktop">
-    <div>
-
 {% endif %}
 
 {% if page.previous %}
@@ -38,5 +31,4 @@ layout: default
 
 {{ content }}
 
-    </div>
 </div>
