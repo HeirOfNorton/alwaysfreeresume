@@ -3,6 +3,19 @@
         {{ include.vars.item-name }}
     </label>
     <div class="control">
+        <div class="textarea" contenteditable="true">
+            <div style="display: list-item; list-style-type: disc; list-style-position: outside; margin-left: 1em;"></div>
+        </div>
+    </div>
+</div>
+
+{% comment %} - Line by line version. I think I'll go with a simple Bullet list instead.
+
+<div class="field">
+    <label class="label">
+        {{ include.vars.item-name }}
+    </label>
+    <div class="control">
         <input
             class="input"
             type="text"
@@ -12,17 +25,23 @@
     </div>
 </div>
 
+{% if include.vars.list-levels %}
+<div class="field">
+    <label class="label">
+        Skill Level (optional)
+    </label>
+    <div class="control">
+        <select class="select" name="level">
+            <option selected disabled value="">
+                Select level...
+            </option>
+            <option value="2">Beginner</option>
+            <option value="3">Intermediate</option>
+            <option value="4">High</option>
+            <option value="5">Expert</option>
+        </select>
+    </div>
+</div>
+{% endif %}
 
-                {% if include.vars.list-levels %}
-                    <label class="label">
-                        Proficiency (optional)
-                        <select class="select" name="level">
-                            <option selected disabled value="">
-                                Select level...
-                            </option>
-                            <option value="3">Intermediate</option>
-                            <option value="4">High</option>
-                            <option value="5">Expert</option>
-                        </select>
-                    </label>
-                {% endif %}
+{% endcomment %}
