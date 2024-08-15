@@ -6,14 +6,14 @@ layout: default
 
 {% if page.navbar %}
     <div class="is-hidden-mobile">
-        <div class="">
+        <div class="block my-5 container is-text-centered is-size-4">
             <p>navbar goes here</p>
         </div>
     </div>
 {% endif %}
 
 {% if page.previous %}
-    <div class="block">
+    <div class="block is-size-4 my-3">
     <a href="{{ page.previous | relative_url }}">
         <span class="icon-text">
             <span class="icon">{% include icon.html i='left-long' %}</span>
