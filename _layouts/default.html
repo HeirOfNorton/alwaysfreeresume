@@ -12,12 +12,40 @@
     {% if page.noheader %}
     {% else %}
       <header>
-        <div>My Icon</div>
-        <div>
-          <button>
-            Reset
-          </button>
-        </div>
+        <nav class="navbar is-primary">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="{{ '/' | absolute_url }}">
+              <span class="icon-text">
+                <span class="icon is-large is-skeleton">
+                  {% include icon.html i='pen-nib' size='2' %}
+                </span>
+                <span>AFR</span>
+              </span>
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-start">
+            </div>
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button is-link">
+                    <strong>Continue</strong>
+                  </a>
+                  <a class="button is-danger">
+                    Start Over
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
       </header>
     {% endif %}
 
@@ -25,8 +53,10 @@
 
     {% if page.nofooter %}
     {% else %}
-      <footer>
-        My footer goes here.
+      <footer class="footer is-primary">
+        <div class="content has-text-centered">
+          My footer goes here.
+        </div>
       </footer>
     {% endif %}
   </body>
