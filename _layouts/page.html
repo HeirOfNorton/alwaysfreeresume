@@ -34,11 +34,11 @@ layout: default
 {%- if site.debugforms -%}
 
 <div class="block field">
-    <div x-data="{ mytext: $persist('Placeholder').as('mylocalkey')}">
+    <div x-data>
         <input
             type="text"
             placeholder="Placeholder"
-            x-model="mytext"
+            x-model="$store.mylocalkey.txt"
         >
     </div>
 </div>
@@ -46,9 +46,9 @@ layout: default
 <div class="content container box is-max-desktop">
 
     <div class="block"
-        x-data="{ result: $persist('Nothing here yet.').as('mylocalkey')}"
+        x-data
     >
-        <p x-text="result"></p>
+        <p x-text="$store.mylocalkey.txt"></p>
     </div>
 
 
