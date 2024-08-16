@@ -2,5 +2,7 @@
 
 
 document.addEventListener('alpine:init', () => {
-    Alpine.store('mylocalkey', Alpine.$persist('Nothing here yet.').as('mylocalkey'));
+    Alpine.store('mylocalkey', {
+        txt: Alpine.$persist('Nothing here yet.').as('mylocalkey'));
+    }
 });
