@@ -33,6 +33,16 @@ layout: default
 
 {%- if site.debugforms -%}
 
+<div class="block field">
+    <div x-data="{ mytext: $persist('Placeholder').as('mylocalkey')}">
+        <input
+            type="text"
+            placeholder="Placeholder"
+            x-model="mytext"
+        >
+    </div>
+</div>
+
 <div class="content container box is-max-desktop">
 
     <div class="block"
@@ -51,16 +61,6 @@ layout: default
         {% endfor %}
         </ul>
     {% endif %}
-</div>
-
-<div class="block field">
-    <div x-data="{ mytext: $persist('Placeholder').as('mylocalkey')}">
-        <input
-            type="text"
-            placeholder="Placeholder"
-            x-model="mytext"
-        >
-    </div>
 </div>
 
 {%- endif -%}
