@@ -6,6 +6,9 @@
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="{{ '/assets/bulma.min.css' | absolute_url }}">
     <link rel="stylesheet" href="{{ '/assets/style.css' | absolute_url }}">
+    {% if page.extracss %}<link rel="stylesheet" href="{{ page.extracss | |prepend: '/assets/' | absolute_url }}">{% endif %}
+    <script defer src="{{ '/assets/alpine-plugins.min.js' | absolute_url }}"></script>
+    <script defer src="{{ '/assets/alpine.min.js' | absolute_url }}"></script>
     <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
   </head>
   <body class="is-flex is-flex-direction-column">
