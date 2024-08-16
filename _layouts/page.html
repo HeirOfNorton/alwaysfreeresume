@@ -31,7 +31,7 @@ layout: default
 
 {{ content }}
 
-{%- if site.debug -%}
+{%- if site.debugforms -%}
 
 <div class="content container box is-max-desktop">
 
@@ -45,7 +45,7 @@ layout: default
     {% if page.vars %}
         <h2 class="title is-2">Page variables:</h2>
         <ul>
-        {% for var is page.vars %}
+        {% for var in page.vars %}
             <strong>{{ var }}:</strong>
             <span></span>
         {% endfor %}
