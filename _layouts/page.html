@@ -34,6 +34,14 @@ layout: default
 {%- if site.debug -%}
 
 <div class="content container box is-max-desktop">
+
+    <div class="block"
+        x-data="{ result: $persist('Nothing here yet.').as('mylocalkey')}"
+    >
+        <p x-text="result"></p>
+    </div>
+
+
     {% if page.vars %}
         <h2 class="title is-2">Page variables:</h2>
         <ul>
@@ -43,6 +51,16 @@ layout: default
         {% endfor %}
         </ul>
     {% endif %}
+</div>
+
+<div class="block field">
+    <div x-data="{ mytext: $persist('Placeholder').as('mylocalkey')}">
+        <input
+            type="text"
+            placeholder="Placeholder"
+            x-model="mytext"
+        >
+    </div>
 </div>
 
 {%- endif -%}
