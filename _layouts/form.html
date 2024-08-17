@@ -38,7 +38,7 @@ layout: page
         <div class="block box"
             x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}', {% if form.skippable %}true{% else %}false{% endif %})).as('{{ form.key }}') }"
             {%- if page.skippable -%}@skipall.window="self.skipped = true"{%- endif -%}
-            @resetPage.window="self = blank{{form.type}}('{{form.title}}', false)"
+            @resetpage.window="self = blank{{form.type}}('{{form.title}}', false)"
         >
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
@@ -108,7 +108,7 @@ layout: page
                 <p class="block is-size-2">Reset the entire page? This cannot be undone.</p>
                 <div class="block buttons is-centered">
                     <button @click="showReset=false" class="button is-medium is-primary" aria-label="close">Close and Continue</button>
-                    <button @click="$dispatch('resetPage'); showReset=false" class="button is-medium is-danger">Reset Page</button>
+                    <button @click="$dispatch('resetpage'); showReset=false" class="button is-medium is-danger">Reset Page</button>
                 </div>
                 </div>
             </div>
