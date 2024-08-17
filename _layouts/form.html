@@ -28,50 +28,53 @@ layout: page
 
 </section>
 
-<section class="container box my-5">
-<div class="block is-clearfix">
+<section class="container block my-5 is-clearfix">
     {% for form in page.forms %}
-        <header class="block level">
-            <div class="level-left">
-                <div class="level-item">
-                    <h3 class="title">{{ form.name }}</h3>
-                </div>
-            </div>
-            <div class="level-right">
-                {% if form.name-edit %}
+        <div class="block"
+            x-data="{ self: $persist(blank{{ form.type }}({{ form.title }})).as({{ form.key }}) }"
+        >
+            <header class="block level">
+                <div class="level-left">
                     <div class="level-item">
-                        <button class="button is-small is-primary-inverted">Edit Header</button>
+                        <h3 class="title" x-text="self.title"></h3>
                     </div>
-                {% endif %}
+                </div>
+                <div class="level-right">
+                    {% if form.title-edit %}
+                        <div class="level-item">
+                            <button class="button is-small is-primary-inverted">Edit Header</button>
+                        </div>
+                    {% endif %}
+                </div>
+            </header>
+            {% if form.intro -%}
+                <div class="block my-3 is-size-5">
+                    <p>{{ form.intro }}</p>
+                </div>
+            {%- endif %}
+            <div class="block">
+            {% case form.type %}
+                {% when 'contact' %}
+                    {% include contact.html %}
+                {% when 'paragraph' %}
+                    {% include paragraph.html %}
+                {% when 'list' %}
+                    {% include list.html vars=form %}
+                {% when 'items' %}
+                    {% include items.html vars=form %}
+                {% when 'photo' %}
+                    {% include photo.html %}
+            {% endcase %}
             </div>
-        </header>
-        {% if form.intro -%}
-            <div class="block my-3 is-size-5">
-                <p>{{ form.intro }}</p>
-            </div>
-        {%- endif %}
-        <div class="block">
-        {% case form.type %}
-            {% when 'contact' %}
-                {% include contact.html %}
-            {% when 'paragraph' %}
-                {% include paragraph.html %}
-            {% when 'list' %}
-                {% include list.html vars=form %}
-            {% when 'items' %}
-                {% include items.html vars=form %}
-            {% when 'photo' %}
-                {% include photo.html %}
-        {% endcase %}
+            {% if form.add-more %}
+                <button class="block button is-small is-link-inverted">Add more</button>
+            {% endVif %}
         </div>
-        {% if form.add-more %}
-            <button class="block button is-small is-link-inverted">Add more</button>
-        {% endif %}
     {% endfor %}
 
     <div class="block buttons is-right">
         <a href="{{ page.next | relative_url }}">
-            <button class="is-link button">
+            <button class="is-link button is-large">
                 {% if page.next-title %}
                     {{ page.next-title }}
                 {% else %}
@@ -80,5 +83,4 @@ layout: page
             </button>
         </a>
     </div>
-</div>
 </section>

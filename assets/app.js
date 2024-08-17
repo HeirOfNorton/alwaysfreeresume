@@ -9,10 +9,10 @@ function createRandomString(length) {
     return result;
 }
 
-function blankContact() {
+function blankContact(title) {
     return {
         skipped: false,
-        title: 'Contact',
+        title: title,
         fullname: '',
         address: {
             line1: '',
@@ -27,15 +27,34 @@ function blankContact() {
     };
 }
 
-function blankSummary() {
+function blankSummary(title) {
     return {
         skipped: false,
-        title: 'Summary',
+        title: title,
         contents: ''
     };
 }
 
+function blankList(title){
+    return {
+        skipped: false,
+        title: title,
+    };
+}
 
+function blankItems(title) {
+    return {
+        skipped: false,
+        title: title,
+    };
+}
+
+function blankPhoto(title) {
+    return {
+        skipped: false,
+        title: title,
+    };
+}
 
 document.addEventListener('alpine:init', () => {
     //Alpine.store('mylocalkey', {
