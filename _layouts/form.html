@@ -38,7 +38,7 @@ layout: page
         <div class="block box"
             x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}', {% if form.skippable %}true{% else %}false{% endif %})).as('{{ form.key }}') }"
             {%- if page.skippable -%}@skipall.window="self.skipped = true"{%- endif -%}
-            @resetpage.window="self = blank{{form.type}}('{{form.title}}', false)"
+            @resetpage.window="self = blank{{form.type}}('{{form.title}}', {% if form.skippable %}true{% else %}false{% endif %})"
         >
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
