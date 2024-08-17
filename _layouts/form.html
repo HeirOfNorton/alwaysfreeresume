@@ -38,6 +38,7 @@ layout: page
         <div class="block box"
             x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}', {% if form.skippable %}true{% else %}false{% endif %})).as('{{ form.key }}') }"
             {%- if page.skippable -%}@skipall.window="self.skipped = true"{%- endif -%}
+            @resetPage.window="self = blank{{form.type}}('{{form.title}}', false)"
         >
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
@@ -94,7 +95,25 @@ layout: page
         </div>
     {% endfor %}
 
-    <div class="block buttons is-right">
+    <div class="block buttons is-right" x-data="{ showReset: false }">
+        <button class="button is-danger is-medium"
+            @click="showReset = true"
+        >
+            Reset Page
+        </button>
+        <div x-cloak class="modal" :class="{ 'is-active': showReset }">
+            <div @click="showReset=false" class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                <p class="block is-size-2">Reset the entire page? This cannot be undone.</p>
+                <div class="block buttons is-centered">
+                    <button @click="showReset=false" class="button is-medium is-primary" aria-label="close">Close and Continue</button>
+                    <button @click="$dispatch('resetPage'); showReset=false" class="button is-medium is-danger">Reset Page</button>
+                </div>
+                </div>
+            </div>
+            <button @click="resetOpen=false" class="modal-close is-large" aria-label="close"></button>
+        </div>
         <a href="{{ page.next | relative_url }}">
             <button class="is-link button is-large">
                 {% if page.next-title %}
