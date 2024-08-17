@@ -31,38 +31,4 @@ layout: default
 
 {{ content }}
 
-{%- if site.debugforms -%}
-
-<div class="block field">
-    <div x-data>
-        <input
-            type="text"
-            placeholder="Placeholder"
-            x-model="$store.mylocalkey.txt.inner"
-        >
-    </div>
-</div>
-
-<div class="content container box is-max-desktop">
-
-    <div class="block"
-        x-data
-    >
-        <p x-text="$store.mylocalkey.txt.inner"></p>
-    </div>
-
-
-    {% if page.vars %}
-        <h2 class="title is-2">Page variables:</h2>
-        <ul>
-        {% for var in page.vars %}
-            <strong>{{ var }}:</strong>
-            <span></span>
-        {% endfor %}
-        </ul>
-    {% endif %}
-</div>
-
-{%- endif -%}
-
 </div>
