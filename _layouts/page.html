@@ -31,4 +31,12 @@ layout: default
 
 {{ content }}
 
+<div class="box">
+    <p class="block">New test</p>
+    <div class="box" x-data="{ myobject: $persist({inner: 'Nice!' }).as('mycoolobject') }">
+        <input type="text" x-model="myobject.inner">
+        <p x-text="myobject.inner"></p>
+    </div>
+</div>
+
 </div>
