@@ -10,6 +10,7 @@
                 placeholder="Full name"
                 autocomplete="name"
                 type="text"
+                x-model="self.fullname"
                 required
             >
             </div>
@@ -25,6 +26,7 @@
                     name="address1"
                     placeholder="Address Line 1"
                     type="text"
+                    x-model="self.address.line1"
                 >
             </div>
 </div>
@@ -39,6 +41,7 @@
                     name="address2"
                     placeholder="Address Line 2"
                     type="text"
+                    x-model="self.address.line2"
                 >
             </div>
 
@@ -56,6 +59,7 @@
                 placeholder="City"
                 type="text"
                 required
+                x-model="self.address.city"
             >
         </div>
 
@@ -64,7 +68,7 @@
                 State / Province
             </label>
             <div class="select">
-                <select name="state" required>
+                <select name="state" required x-model="self.address.state">
                     <option selected disabled value="">
                         Select state/province...
                     </option>
@@ -153,6 +157,7 @@
                     placeholder="Zip/Postal Code"
                     type="text"
                     required
+                    x-model="self.address.zip"
                 >
             </div>
         </div>
@@ -169,6 +174,7 @@
                     name="phone"
                     placeholder="Phone Number"
                     type="tel"
+                    x-model="self.phone"
                 >
             </div>
 </div>
@@ -183,6 +189,7 @@
                     name="email"
                     placeholder="Email Address"
                     type="email"
+                    x-model="self.email"
                 >
             </div>
 </div>
@@ -198,6 +205,7 @@
                     placeholder="Website"
                     type="url"
                     aria-label="Website"
+                    x-model="self.website"
                 >
             </div>
 </div>
