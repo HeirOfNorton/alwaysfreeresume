@@ -1,20 +1,23 @@
 ---
 layout: page
 ---
+{% if page.skippable %}
+    <div x-data="{ pageSkip = $persist(true).as('skip_{{ page.url }}') }" >
+{% endif %}
 
 <section class="block container content is-size-4-desktop is-size-5-touch">
 {{ content }}
 
 {% if page.skippable %}
     <div class="block buttons my-4">
-        <button class="button is-medium is-primary">
+        <button class="button is-medium is-primary" @click="pageSkip = false">
             {% if page.noskip-title %}
                 {{ page.noskip-title }}
             {% else %}
                 Start
             {% endif %}
         </button>
-        <a href="{{ page.next | relative_url }}">
+        <a href="{{ page.next | relative_url }}" @click="pageSkip = true; $dispatch('skipall')">
         <button class="button is-medium is-link-inverted">
             {% if page.skip-title %}
                 {{ page.skip-title }}
@@ -28,10 +31,13 @@ layout: page
 
 </section>
 
-<section class="container block my-5 is-clearfix">
+<section class="container block my-5 is-clearfix"
+    {%- if page.skippable -%} x-show="!pageSkip" x-cloak {% endif %}
+>
     {% for form in page.forms %}
         <div class="block box"
             x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}', {% if form.skippable %}true{% else %}false{% endif %})).as('{{ form.key }}') }"
+            {%- if page.skippable -%}@skipall.window="self.skipped = true"{%- endif -%}
         >
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
@@ -100,3 +106,7 @@ layout: page
         </a>
     </div>
 </section>
+
+{% if page.skippable %}
+    </div>
+{% endif %}
