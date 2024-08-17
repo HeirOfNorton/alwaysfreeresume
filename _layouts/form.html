@@ -31,7 +31,7 @@ layout: page
 <section class="container block my-5 is-clearfix">
     {% for form in page.forms %}
         <div class="block box"
-            x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}')).as('{{ form.key }}') }"
+            x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}', {% if form.skippable %}true{% else %}false{% endif %})).as('{{ form.key }}') }"
         >
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
@@ -39,10 +39,14 @@ layout: page
                 </div>
             {%- endif %}
             {% if form.skippable %}
-
+                <div class="block buttons my-3">
+                    <button class="button is-primary" x-show="self.skipped" @click="self.skipped=false">Add {{ form.title }} Section</button>
+                    <button class="button is-danger" x-show="!self.skipped" @click="self.skipped=true">Remove {{ form.title }} Section</button>
+                </div>
+                <div x-show="self.skipped">
             {% endif %}
             <div x-data="{ editing: false }">
-                <header class="block level">
+                <header class="block level my-4">
                     <div class="level-left">
                         <div class="level-item">
                             <h3 class="title" x-show="!editing" x-text="self.title"></h3>
@@ -77,6 +81,9 @@ layout: page
             </div>
             {% if form.add-more %}
                 <button class="block button is-small is-link-inverted">Add more</button>
+            {% endif %}
+            {% if form.skippable %}
+                </div>
             {% endif %}
         </div>
     {% endfor %}

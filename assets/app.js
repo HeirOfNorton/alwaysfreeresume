@@ -9,9 +9,9 @@ function createRandomString(length) {
     return result;
 }
 
-function blankContact(title) {
+function blankContact(title, preskip=false) {
     return {
-        skipped: false,
+        skipped: preskip,
         title: title,
         fullname: '',
         address: {
@@ -27,31 +27,31 @@ function blankContact(title) {
     };
 }
 
-function blankSummary(title) {
+function blankSummary(title, preskip=false) {
     return {
-        skipped: false,
+        skipped: preskip,
         title: title,
         contents: ''
     };
 }
 
-function blankList(title){
+function blankList(title, preskip=false) {
     return {
-        skipped: false,
+        skipped: preskip,
         title: title,
     };
 }
 
-function blankItems(title) {
+function blankItems(title, preskip=false) {
     return {
-        skipped: false,
+        skipped: preskip,
         title: title,
     };
 }
 
-function blankPhoto(title) {
+function blankPhoto(title, preskip=false) {
     return {
-        skipped: false,
+        skipped: preskip,
         title: title,
     };
 }
