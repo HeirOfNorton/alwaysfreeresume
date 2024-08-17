@@ -33,25 +33,34 @@ layout: page
         <div class="block box"
             x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}')).as('{{ form.key }}') }"
         >
-            <header class="block level">
-                <div class="level-left">
-                    <div class="level-item">
-                        <h3 class="title" x-text="self.title"></h3>
-                    </div>
-                </div>
-                <div class="level-right">
-                    {% if form.title-edit %}
-                        <div class="level-item">
-                            <button class="button is-small is-primary-inverted">Edit Header</button>
-                        </div>
-                    {% endif %}
-                </div>
-            </header>
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
                     <p>{{ form.intro }}</p>
                 </div>
             {%- endif %}
+            {% if form.skippable %}
+
+            {% endif %}
+            <div x-data="editing: false">
+                <header class="block level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <h3 class="title" x-show="!editing" x-text="self.title"></h3>
+                            <div class="control" x-show="editing">
+                                <input class="input is-medium" x-model="self.title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        {% if form.title-edit %}
+                            <div class="level-item">
+                                <button class="button is-small is-primary-inverted" x-show="!editing" @click="editing=true">Edit Title</button>
+                                <button class="button is-small is-primary" x-show="editing" @click="editing=false">Save Title</button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </header>
+            </div>
             <div class="block">
             {% case form.type %}
                 {% when 'Contact' %}
