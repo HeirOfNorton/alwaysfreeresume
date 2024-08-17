@@ -48,10 +48,12 @@
                   <div x-cloak class="modal" :class="{ 'is-active': resetOpen }">
                     <div @click="resetOpen=false" class="modal-background"></div>
                     <div class="modal-content">
+                      <div class="box">
                       <p class="block is-size-2">Delete <strong>all</strong> saved data and start over?</p>
-                      <div class="block buttons is-centered">
-                        <button @click="resetOpen=false" class="button is-large is-primary" aria-label="close">Keep Going</button>
-                        <a @click="localStorage.clear()" href="{{ '/start/' | relative_url }}" class="button is-large is-danger">Delete and Start Over</a>
+                        <div class="block buttons is-centered">
+                          <button @click="resetOpen=false" class="button is-large is-primary" aria-label="close">Keep Going</button>
+                          <a @click="localStorage.clear()" href="{{ '/start/' | relative_url }}" class="button is-large is-danger">Delete and Start Over</a>
+                        </div>
                       </div>
                     </div>
                     <button @click="resetOpen=false" class="modal-close is-large" aria-label="close"></button>
