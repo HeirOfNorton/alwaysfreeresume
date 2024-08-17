@@ -41,7 +41,7 @@ layout: page
             {% if form.skippable %}
 
             {% endif %}
-            <div x-data="editing: false">
+            <div x-data="{ editing: false }">
                 <header class="block level">
                     <div class="level-left">
                         <div class="level-item">
@@ -65,8 +65,8 @@ layout: page
             {% case form.type %}
                 {% when 'Contact' %}
                     {% include contact.html %}
-                {% when 'Paragraph' %}
-                    {% include paragraph.html %}
+                {% when 'Summary' %}
+                    {% include summary.html %}
                 {% when 'List' %}
                     {% include list.html vars=form %}
                 {% when 'Items' %}
