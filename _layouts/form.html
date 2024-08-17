@@ -2,7 +2,7 @@
 layout: page
 ---
 {% if page.skippable %}
-    <div x-data="{ pageSkip = $persist(true).as('skip_{{ page.url }}') }" >
+    <div x-data="{ pageSkip: $persist(true).as('skip_{{ page.url }}') }" >
 {% endif %}
 
 <section class="block container content is-size-4-desktop is-size-5-touch">
