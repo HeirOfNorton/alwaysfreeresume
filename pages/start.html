@@ -4,76 +4,97 @@ permalink: /start/
 title: Let's get started!
 ---
 
-<section class="block is-size-4-desktop is-size-5-touch has-text-centered">
+<section
+    class="block is-size-4-desktop is-size-5-touch has-text-centered"
+    x-data="{
+        experience_level: $persist('').as('experience_level'),
+        school_level: $persist('').as('school_level'),
+        in_school: $persist('').as('in_school')
+    }"
+>
     <p class="block is-size-3-desktop is-size-4-touch">
         We just have a few questions to help personalize your resume.
     </p>
 
-    <div class="block box my-4 mx-auto is-fit" x-data="{ value: $persist('').as('experience_level') }" >
+    <div class="block box my-4 mx-auto is-fit">
         <p class="block">
             How much work experience do you have?
         </p>
         <div class="buttons is-centered">
-            <button class="button is-success" :class="value == '0' || 'is-light' " @click="value = '0'">
+            <button class="button is-success" :class="experience_level == '0' || 'is-light is-outlined' " @click="experience_level = '0'">
                 Less than 1 Year
             </button>
-            <button class="button is-success" :class="value == '1' || 'is-light' " @click="value = '1'">
+            <button class="button is-success" :class="experience_level == '1' || 'is-light is-outlined' " @click="experience_level = '1'">
                 1-3 Years
             </button>
-            <button class="button is-success" :class="value == '3' || 'is-light' " @click="value = '3'">
+            <button class="button is-success" :class="experience_level == '3' || 'is-light is-outlined' " @click="experience_level = '3'">
                 3-5 Years
             </button>
-            <button class="button is-success" :class="value == '5' || 'is-light' " @click="value = '5'">
+            <button class="button is-success" :class="experience_level == '5' || 'is-light is-outlined' " @click="experience_level = '5'">
                 More than 5 Years
             </button>
         </div>
     </div>
 
-    <div class="block box my-4 mx-auto is-fit">
+    <div
+        class="block box my-4 mx-auto is-fit"
+        x-show="experience_level != ''"
+        x-cloak x-transition
+    >
         <p class="block">
             What is your highest level of school you have completed?
         </p>
         <div class="buttons is-centered">
-            <button class="button">
+            <button class="button is-success" :class="school_level == 'n' || 'is-light is-outlined' " @click="school_level = 'n'">
                 I Have Not Graduated High School
             </button>
-            <button class="button">
+            <button class="button is-success" :class="school_level == 'h' || 'is-light is-outlined' " @click="school_level = 'h'">
                 High School Diploma or Equivalent (GED, HiSET)
             </button>
-            <button class="button">
+            <button class="button is-success" :class="school_level == 'a' || 'is-light is-outlined' " @click="school_level = 'a'">
                 A.A., A.A.S, Certificate, or Trade School Degree
             </button>
-            <button class="button">
+            <button class="button is-success" :class="school_level == 'b' || 'is-light is-outlined' " @click="school_level = 'b'">
                 Bachelor Level or 4-Year College Degree
             </button>
-            <button class="button">
+            <button class="button is-success" :class="school_level == 'm' || 'is-light is-outlined' " @click="school_level = 'm'">
                 Master's Degree or Higher
             </button>
         </div>
     </div>
 
-    <div class="block box my-4 mx-auto is-fit">
+    <div
+        class="block box my-4 mx-auto is-fit"
+        x-show="school_level != '' "
+        x-cloak x-transition
+    >
         <p class="block">
             Are you still a student?
         </p>
         <div class="buttons is-centered">
-            <button class="button">
+            <button class="button is-success" :class="in_school == 'y' || 'is-light is-outlined' " @click="in_school = 'y'">
                 Yes
             </button>
-            <button class="button">
+            <button class="button is-success" :class="in_school == 'n' || 'is-light is-outlined' " @click="in_school = 'n'">
                 No
             </button>
         </div>
     </div>
 
-    <p class="block is-size-3-desktop is-size-4-touch">
-        All right! We're ready to get started building your resume!
-    </p>
-    <div class="block buttons is-centered">
-        <a href="{{ '/contact/' | relative_url }}">
-            <button class="button is-medium is-link">
-                Continue
-            </button>
-        </a>
+    <div
+        class="block my-4 mx-auto is-fit"
+        x-show="in_school != '' "
+        x-cloak x-transition
+    >
+        <p class="block is-size-3">
+            All right! We're ready to get started building your resume!
+        </p>
+        <div class="block buttons is-centered">
+            <a href="{{ '/contact/' | relative_url }}">
+                <button class="button is-medium is-link">
+                    Continue
+                </button>
+            </a>
+        </div>
     </div>
 </section>

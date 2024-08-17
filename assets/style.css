@@ -7,3 +7,7 @@ html, body {
 .is-fit {
     width: fit-content;
 }
+
+[x-cloak] {
+    display: none !important;
+}
