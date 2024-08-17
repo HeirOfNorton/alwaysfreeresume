@@ -40,10 +40,10 @@ layout: page
             {%- endif %}
             {% if form.skippable %}
                 <div class="block buttons my-3">
-                    <button class="button is-primary" x-show="self.skipped" @click="self.skipped=false">Add {{ form.title }} Section</button>
-                    <button class="button is-danger" x-show="!self.skipped" @click="self.skipped=true">Remove {{ form.title }} Section</button>
+                    <button class="button is-primary" x-show="!self.skipped" @click="self.skipped=false">Add {{ form.title }} Section</button>
+                    <button class="button is-danger" x-show="self.skipped" @click="self.skipped=true">Remove {{ form.title }} Section</button>
                 </div>
-                <div x-show="self.skipped">
+                <div x-show="!self.skipped">
             {% endif %}
             <div x-data="{ editing: false }">
                 <header class="block level my-4">
