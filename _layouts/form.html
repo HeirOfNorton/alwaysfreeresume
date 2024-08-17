@@ -30,8 +30,8 @@ layout: page
 
 <section class="container block my-5 is-clearfix">
     {% for form in page.forms %}
-        <div class="block"
-            x-data="{ self: $persist(blank{{ form.type }}({{ form.title }})).as({{ form.key }}) }"
+        <div class="block box"
+            x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}')).as('{{ form.key }}') }"
         >
             <header class="block level">
                 <div class="level-left">
@@ -54,15 +54,15 @@ layout: page
             {%- endif %}
             <div class="block">
             {% case form.type %}
-                {% when 'contact' %}
+                {% when 'Contact' %}
                     {% include contact.html %}
-                {% when 'paragraph' %}
+                {% when 'Paragraph' %}
                     {% include paragraph.html %}
-                {% when 'list' %}
+                {% when 'List' %}
                     {% include list.html vars=form %}
-                {% when 'items' %}
+                {% when 'Items' %}
                     {% include items.html vars=form %}
-                {% when 'photo' %}
+                {% when 'Photo' %}
                     {% include photo.html %}
             {% endcase %}
             </div>
