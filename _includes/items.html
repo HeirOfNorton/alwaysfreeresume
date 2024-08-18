@@ -124,7 +124,7 @@
                     <div class="control">
                         <button class="button is-primary" @click="addSubItem(self, itemidx, subindex+1)">Add</button>
                     </div>
-                    <div class="control" :class="item.subitems.length > 1 || 'is-hidden'">
+                    <div class="control" :class="item.subitems.length > 1 || 'is-invisible'">
                         <button class="button is-danger" @click="delSubItem(self, itemidx, subindex)">Delete</button>
                     </div>
                 </div>
