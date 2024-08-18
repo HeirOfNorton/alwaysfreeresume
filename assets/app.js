@@ -40,8 +40,8 @@ function blankList(title, preskip=false) {
         skipped: preskip,
         title: title,
         items: [],
-        addItem: function () {
-            this.items.push({
+        addItem: function (idx=-1) {
+            this.items.splice(idx, 0, {
                 contents: '',
                 key: createRandomString(20)
             });
