@@ -15,7 +15,7 @@
                 <button class="button is-primary" @click="addListItem(self, index+1)">Add</button>
             </div>
             <div class="control" :class="self.items.length > 1 || 'is-invisible'" >
-                <button class="button is-danger" @click="delListItem(self, index)">Delete</button>
+                <button class="button is-danger" @click="delItem(self, index)">Delete</button>
             </div>
         </div>
     </template>
