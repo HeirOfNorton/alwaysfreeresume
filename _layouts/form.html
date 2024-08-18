@@ -37,9 +37,9 @@ layout: page
     {% for form in page.forms %}
         {%- capture newform -%}
             blankForm(
-                {{ form.title }},
+                '{{ form.title }}'',
                 {% if form.skippable %}true{% else %}false{% endif -%}
-                {%- if form.subitems -%}, {{ form.subitems }}{% endif %}
+                {%- if form.subitems -%}, '{{ form.subitems }}'{% endif %}
             )
         {%- endcapture -%}
         <div class="block box"

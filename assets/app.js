@@ -58,7 +58,7 @@ function blankList(title, preskip) {
 
 function addFullItem(list, idx) {
     var newitem = {
-        key: createRandomString(20)
+        key: createRandomString(20),
         title: '',
         org: '',
         loc: '',
