@@ -52,7 +52,7 @@ function blankList(title, preskip=false) {
         title: title,
         items: [],
     };
-    addListItem(lst, -1);
+    addListItem(lst, 0);
     return lst;
 }
 
