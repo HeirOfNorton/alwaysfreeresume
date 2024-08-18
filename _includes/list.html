@@ -4,18 +4,18 @@
     </label>
     <template x-for="(item, index) in self.items" :key="item.key">
         <div class="field has-addons">
-            <div class="control">
+            <div class="control is-expanded">
                 <input
-                    class="input is-expanded"
+                    class="input"
                     type="text"
                     x-model="item.contents"
                 >
             </div>
             <div class="control">
-                <button class="button is-primary" @click="self.addItem(index)">Add</button>
+                <button class="button is-primary" @click="addListItem(self, index)">Add</button>
             </div>
             <div class="control">
-                <button class="button is-danger" @click="self.delItem(index)">Delete</button>
+                <button class="button is-danger" @click="delListItem(self, index)">Delete</button>
             </div>
         </div>
     </template>

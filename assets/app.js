@@ -35,22 +35,24 @@ function blankSummary(title, preskip=false) {
     };
 }
 
+function addListItem(list, idx) {
+    list.items.splice(idx, 0, {
+        contents: '',
+        key: createRandomString(20)
+    });
+}
+
+function delListItem(list, idx) {
+    list.items.splice(idx, 1);
+}
+
 function blankList(title, preskip=false) {
     var lst = {
         skipped: preskip,
         title: title,
         items: [],
-        addItem: function (idx=-1) {
-            this.items.splice(idx, 0, {
-                contents: '',
-                key: createRandomString(20)
-            });
-        },
-        delItem: function (idx) {
-            this.items.splice(idx, 1);
-        }
     };
-    lst.addItem();
+    addListItem(lst, -1);
     return lst;
 }
 
