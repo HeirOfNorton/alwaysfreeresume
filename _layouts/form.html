@@ -35,10 +35,17 @@ layout: page
     {%- if page.skippable -%} x-show="!pageSkip" x-cloak {% endif %}
 >
     {% for form in page.forms %}
+        {%- capture newform -%}
+            blankForm(
+                {{ form.title }},
+                {% if form.skippable %}true{% else %}false{% endif -%}
+                {%- if form.subitems -%}, {{ form.subitems }}{% endif %}
+            )
+        {%- endcapture -%}
         <div class="block box"
-            x-data="{ self: $persist(blank{{ form.type }}('{{ form.title }}', {% if form.skippable %}true{% else %}false{% endif %})).as('{{ form.key }}') }"
+            x-data="{ self: $persist({{ newForm }}).as('{{ form.key }}') }"
             {%- if page.skippable -%}@skipall.window="self.skipped = true"{%- endif -%}
-            @resetpage.window="self = blank{{form.type}}('{{form.title}}', {% if form.skippable %}true{% else %}false{% endif %})"
+            @resetpage.window="self = {{ newForm }}"
         >
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
@@ -86,9 +93,6 @@ layout: page
                     {% include photo.html %}
             {% endcase %}
             </div>
-            {% if form.add-more %}
-                <button class="block button is-small is-link-inverted">Add more</button>
-            {% endif %}
             {% if form.skippable %}
                 </div>
             {% endif %}

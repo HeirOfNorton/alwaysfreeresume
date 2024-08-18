@@ -1,105 +1,134 @@
-<div class="field">
-    <label class="label">
-        {{ include.vars.item-name }}
-    </label>
-    <div class="control">
-        <input
-            class="input"
-            type="text"
-            name="{{ include.vars.item-name }}"
-            placeholder="{{ include.vars.item-name }}"
-        >
-    </div>
-</div>
+<template x-for="(item, itemidx) in self.items" :key="item.key">
+    <section class="section">
 
-{% if include.vars.org %}
-<div class="field">
-    <label class="label">
-        {{ include.vars.org }}
-    </label>
-    <div class="control">
-        <input
-            class="input"
-            type="text"
-            name="{{ include.vars.org }}"
-            placeholder="{{ include.vars.org }}"
-        >
-    </div>
-</div>
-{% endif %}
-
-{% if include.vars.location %}
-<div class="field">
-    <label class="label">
-        {{ include.vars.location }}
-    </label>
-    <div class="control">
-        <input
-            class="input"
-            type="text"
-            name="{{ include.vars.location }}"
-            placeholder="{{ include.vars.location }}"
-        >
-    </div>
-</div>
-{% endif %}
-
-
-{% if include.vars.dates %}
-    <div class="columns">
-        {% if include.vars.dates.start %}
-            <div class="column">
-                <div class="field">
-                    <label class="label">
-                        {{ include.vars.dates.start }}
-                    </label>
-                    <div class="control">
-                        <input
-                            class="input"
-                            type="month"
-                            name="{{ include.vars.dates.start }}"
-                        >
-                    </div>
-                </div>
+        <div class="field">
+            <label class="label">
+                {{ include.vars.item-name }}
+            </label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="{{ include.vars.item-name }}"
+                    placeholder="{{ include.vars.item-name }}"
+                    x-model="item.title"
+                >
             </div>
-        {% endif %}
-        {% if include.vars.dates.end %}
-            <div class="column">
-                <div class="field">
-                    <label class="label">
-                        {{ include.vars.dates.end }}
-                    </label>
-                    <div class="control">
-                        <input
-                            class="input"
-                            type="month"
-                            name="{{ include.vars.dates.end }}"
-                        >
-                    </div>
-                    {% if include.vars.dates.current %}
-                    <label class="checkbox is-small">
-                        <input
-                            type="checkbox"
-                            name="current"
-                        >
-                        {{ include.vars.dates.current }}
-                    </label>
-                    {% endif %}
-                </div>
-            </div>
-        {% endif %}
-    </div>
-{% endif %}
-
-{% if include.vars.subitems %}
-<div class="field">
-    <label class="label">
-        {{ include.vars.subitems }}
-    </label>
-    <div class="control">
-        <div class="textarea" contenteditable="true">
-            <div style="display: list-item; list-style-type: disc; list-style-position: outside; margin-left: 1em;"></div>
         </div>
-    </div>
+
+        {% if include.vars.org %}
+        <div class="field">
+            <label class="label">
+                {{ include.vars.org }}
+            </label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="{{ include.vars.org }}"
+                    placeholder="{{ include.vars.org }}"
+                    x-model="item.org"
+                >
+            </div>
+        </div>
+        {% endif %}
+
+        {% if include.vars.location %}
+        <div class="field">
+            <label class="label">
+                {{ include.vars.location }}
+            </label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="{{ include.vars.location }}"
+                    placeholder="{{ include.vars.location }}"
+                    x-model="item.loc"
+                >
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if include.vars.dates %}
+            <div class="columns">
+                {% if include.vars.dates.start %}
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">
+                                {{ include.vars.dates.start }}
+                            </label>
+                            <div class="control">
+                                <input
+                                    class="input"
+                                    type="month"
+                                    name="{{ include.vars.dates.start }}"
+                                    x-model="item.dates.start"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if include.vars.dates.end %}
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">
+                                {{ include.vars.dates.end }}
+                            </label>
+                            <div class="control">
+                                <input
+                                    class="input"
+                                    type="month"
+                                    name="{{ include.vars.dates.end }}"
+                                    x-model="item.dates.end"
+                                >
+                            </div>
+                            {% if include.vars.dates.current %}
+                            <label class="checkbox is-small">
+                                <input
+                                    type="checkbox"
+                                    name="current"
+                                    x-model="item.dates.current"
+                                >
+                                {{ include.vars.dates.current }}
+                            </label>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if include.vars.subitems %}
+        <div class="field">
+            <label class="label">
+                {{ include.vars.subitems }}
+            </label>
+            <template x-for="(subitem, subindex) in item.subitems" :key="subitem.key">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input
+                            class="input"
+                            type="text"
+                            x-model="subitem.contents"
+                        >
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary" @click="addSubItem(self, itemidx, subindex+1)">Add</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-danger" @click="delSubItem(self, itemidx, subindex)">Delete</button>
+                    </div>
+                </div>
+            </template>
+        </div>
+        {% endif %}
+
+    </section>
+</template>
+
+<div class="field buttons">
+    <button class="block button is-small is-link-inverted" @click="addFullItem(self, -1)">Add more</button>
 </div>
-{% endif %}
+
