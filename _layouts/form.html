@@ -43,9 +43,9 @@ layout: page
             )
         {%- endcapture -%}
         <div class="block box"
-            x-data="{ self: $persist({{ newForm }}).as('{{ form.key }}') }"
+            x-data="{ self: $persist({{ newform }}).as('{{ form.key }}') }"
             {%- if page.skippable -%}@skipall.window="self.skipped = true"{%- endif -%}
-            @resetpage.window="self = {{ newForm }}"
+            @resetpage.window="self = {{ newform }}"
         >
             {% if form.intro -%}
                 <div class="block my-3 is-size-5">
