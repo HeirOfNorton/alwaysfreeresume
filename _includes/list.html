@@ -11,11 +11,14 @@
                 </span>
             </div>
             <div class="control column">
+                {% comment %}
                 <input
                     class="input"
                     type="text"
                     x-model="item.contents"
                 >
+                {% endcomment %}
+                <textarea class="textarea" x-model="item.contents" rows="1"></textarea>
             </div>
             <div class="control column is-narrow">
                 <button class="delete" :class="self.items.length > 1 || 'is-invisible'" @click="delItem(self, index)"></button>
