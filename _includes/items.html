@@ -82,6 +82,7 @@
                                     type="month"
                                     name="{{ include.vars.dates.end }}"
                                     x-model="item.dates.end"
+                                    :disabled="item.dates.current"
                                 >
                             </div>
                             {% if include.vars.dates.current %}
@@ -117,7 +118,7 @@
                     <div class="control">
                         <button class="button is-primary" @click="addSubItem(self, itemidx, subindex+1)">Add</button>
                     </div>
-                    <div class="control">
+                    <div class="control" x-show="item.subitems.length > 1">
                         <button class="button is-danger" @click="delSubItem(self, itemidx, subindex)">Delete</button>
                     </div>
                 </div>
@@ -129,6 +130,6 @@
 </template>
 
 <div class="field buttons">
-    <button class="block button is-small is-link-inverted" @click="addFullItem(self, -1)">Add more</button>
+    <button class="block button is-small is-link-inverted" @click="addFullItem(self)">Add more</button>
 </div>
 

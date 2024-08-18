@@ -72,7 +72,7 @@ function addFullItem(list, idx) {
             key: createRandomString(20)
         }]
     };
-    list.items.splice(idx, 0, newitem);
+    list.items.push(newitem);
 }
 
 function addSubItem(list, itemidx, subidx) {
@@ -95,7 +95,7 @@ function blankItems(title, preskip, subtitle) {
         subtitle: subtitle,
         items: []
     }
-    addFullItem(itemlist, 0);
+    addFullItem(itemlist);
     return itemlist;
 }
 
