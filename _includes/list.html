@@ -2,6 +2,12 @@
     <label class="label">
         {{ include.vars.item-name }}
     </label>
+
+    <ul contenteditable="true">
+        <l1>This is a test.</l1>
+    </ul>
+
+    {% comment %}
     <template x-for="(item, index) in self.items" :key="item.key">
         <div class="field has-addons">
             <div class="control is-expanded">
@@ -19,45 +25,5 @@
             </div>
         </div>
     </template>
+    {% endcomment %}
 </div>
-
-{% comment %} - Line by line version. I think I'll go with a simple Bullet list instead.
-
-        <div class="textarea">
-            <input type="text" style="display: list-item; list-style-type: disc; list-style-position: outside; margin-left: 1em;">
-        </div>
-
-<div class="field">
-    <label class="label">
-        {{ include.vars.item-name }}
-    </label>
-    <div class="control">
-        <input
-            class="input"
-            type="text"
-            name="{{ include.vars.item-name }}"
-            placeholder="{{ include.vars.item-name }}"
-        >
-    </div>
-</div>
-
-{% if include.vars.list-levels %}
-<div class="field">
-    <label class="label">
-        Skill Level (optional)
-    </label>
-    <div class="control">
-        <select class="select" name="level">
-            <option selected disabled value="">
-                Select level...
-            </option>
-            <option value="2">Beginner</option>
-            <option value="3">Intermediate</option>
-            <option value="4">High</option>
-            <option value="5">Expert</option>
-        </select>
-    </div>
-</div>
-{% endif %}
-
-{% endcomment %}
