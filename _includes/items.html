@@ -1,6 +1,12 @@
 <template x-for="(item, itemidx) in self.items" :key="item.key">
     <section class="section">
 
+        <hr class="block" x-show="itemidx > 0">
+
+        <div class="field buttons is-right" x-show="self.items.length > 1">
+            <button class="button is small is-danger-light" @click="delItem(self, itemidx)">Delete this job</button>
+        </div>
+
         <div class="field">
             <label class="label">
                 {{ include.vars.item-name }}
@@ -118,7 +124,7 @@
                     <div class="control">
                         <button class="button is-primary" @click="addSubItem(self, itemidx, subindex+1)">Add</button>
                     </div>
-                    <div class="control" x-show="item.subitems.length > 1">
+                    <div class="control" :class="item.subitems.length > 1 || 'is-hidden'">
                         <button class="button is-danger" @click="delSubItem(self, itemidx, subindex)">Delete</button>
                     </div>
                 </div>
@@ -130,6 +136,6 @@
 </template>
 
 <div class="field buttons">
-    <button class="block button is-small is-link-inverted" @click="addFullItem(self)">Add more</button>
+    <button class="block button is-link-inverted" @click="addFullItem(self)">Add more</button>
 </div>
 
