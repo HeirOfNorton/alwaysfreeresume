@@ -36,10 +36,22 @@ function blankSummary(title, preskip=false) {
 }
 
 function blankList(title, preskip=false) {
-    return {
+    var lst = {
         skipped: preskip,
         title: title,
+        items: [],
+        addItem: function () {
+            this.items.push({
+                contents: '',
+                key: createRandomString(20)
+            });
+        },
+        delItem: function (idx) {
+            this.items.splice(idx, 1);
+        }
     };
+    lst.addItem();
+    return lst;
 }
 
 function blankItems(title, preskip=false) {
