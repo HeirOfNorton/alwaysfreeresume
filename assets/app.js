@@ -135,7 +135,7 @@ function blankForm(title, preskip, subtitle='') {
 }
 
 function nodesToList(elems) {
-    var t = elems.filter(a => a.tagName == "DIV").map(a => a.textContent);
+    var t = Array.from(elems).filter(a => a.tagName == "DIV").map(a => a.textContent);
     if (t.length > 0) {
         return t;
     } else {
@@ -189,7 +189,7 @@ function setCursor (parent, range, stat) {
 document.addEventListener('alpine:init', () => {
     Alpine.bind('listable', () => ({
         'contenteditable': true,
-        '@input': '$el._x_model.set(nodesToList($el.childNodes))',
+        '@input': '$el._x_model.set(nodesToList($el.children))',
         'x-init': `$nextTick(() => {
             $el.innerHTML = listToNodes($el._x_model.get())
             $watch($el.attributes["x-model"].nodeValue, (v) => {
