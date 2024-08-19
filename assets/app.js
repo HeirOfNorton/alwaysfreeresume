@@ -56,7 +56,7 @@ function blankList(title, preskip) {
     return lst;
 }
 
-function addFullItem(list, idx) {
+function addFullItem(list) {
     var newitem = {
         key: createRandomString(20),
         title: '',
@@ -67,10 +67,7 @@ function addFullItem(list, idx) {
             end: '',
             current: false
         },
-        subitems: [{
-            contents: '',
-            key: createRandomString(20)
-        }]
+        subitems: ['']
     };
     list.items.push(newitem);
 }

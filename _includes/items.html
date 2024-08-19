@@ -112,6 +112,18 @@
             <label class="label">
                 {{ include.vars.subitems }}
             </label>
+            <div class="field">
+                <div class="control">
+                    <div
+                        class="textarea bulletbox"
+                        rows
+                        x-bind="listable"
+                        x-model="item.subitems"
+                    >
+                    </div>
+                </div>
+            </div>
+    {% comment %}
             <template x-for="(subitem, subindex) in item.subitems" :key="subitem.key">
                 <div class="field has-addons">
                     <div class="control is-expanded">
@@ -129,6 +141,7 @@
                     </div>
                 </div>
             </template>
+    {% endcomment %}
         </div>
         {% endif %}
 
