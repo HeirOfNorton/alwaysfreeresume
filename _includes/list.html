@@ -1,35 +1,4 @@
 <div class="field">
-    <label class="label">
-        {{ include.vars.item-name }}
-    </label>
-{% comment %}
-    <template x-for="(item, index) in self.items" :key="item.key">
-        <div class="columns is-mobile">
-            <div class="column is-narrow">
-                <span class="icon">
-                    {% include icon.html i='circle' size='.75' %}
-                </span>
-            </div>
-            <div class="control column">
-                {% comment %}
-                <input
-                    class="input"
-                    type="text"
-                    x-model="item.contents"
-                >
-                {% endcomment %}
-                <textarea class="textarea" x-model="item.contents" rows="1"></textarea>
-            </div>
-            <div class="control column is-narrow">
-                <button class="delete" :class="self.items.length > 1 || 'is-invisible'" @click="delItem(self, index)"></button>
-            </div>
-        </div>
-    </template>
-    <div class="control">
-        <button class="button is-primary" @click="addListItem(self)">Add</button>
-    </div>
-{% endcomment %}
-
     <div class="field">
         <div class="control">
             <div
@@ -41,18 +10,4 @@
             </div>
         </div>
     </div>
-
-    {% comment %}
-    <ul>
-        <l1 class="field is-grouped">
-            <textarea class="textarea"></textarea>
-            <button class="delete"></button>
-        </l1>
-    </ul>
-
-    <div id="theparagraph" class="textarea" contenteditable="true">
-        <div style="displat: list-item; list-item-type: disc; margin-left: 1.5em; outline: none;"></div>
-    </div>
-
-    {% endcomment %}
 </div>

@@ -35,13 +35,6 @@ function blankSummary(title, preskip) {
     };
 }
 
-function addListItem(list, idx) {
-    list.items.splice(idx, 0, {
-        contents: '',
-        key: createRandomString(20)
-    });
-}
-
 function delItem(list, idx) {
     list.items.splice(idx, 1);
 }
@@ -52,7 +45,6 @@ function blankList(title, preskip) {
         title: title,
         items: [''],
     };
-//    addListItem(lst, 0);
     return lst;
 }
 
@@ -70,19 +62,6 @@ function addFullItem(list) {
         subitems: ['']
     };
     list.items.push(newitem);
-}
-
-function addSubItem(list, itemidx, subidx) {
-    list.items[itemidx].subitems.splice(
-        subidx, 0, {
-            contents: '',
-            key: createRandomString(20)
-        }
-    );
-}
-
-function delSubItem(list, itemidx, subidx) {
-    list.items[itemidx].subitems.splice(subidx, 1);
 }
 
 function blankItems(title, preskip, subtitle) {
@@ -144,27 +123,6 @@ function listToNodes(list) {
     return list.map(a => '<div>' + a + '</div>').reduce((old, i) => old + i, '');
 }
 
-// Saving and resetting cursor position, found on StackOverflow:
-// https://stackoverflow.com/a/70800591
-/*
-function getCursorOld (parent, node, offset, stat) {
-    if (stat.done) return stat;
-    let currentNode = null;
-    if (parent.childNodes.length == 0) {
-        stat.pos += parent.textContent.length;
-    } else {
-        for (let i = 0; i < parent.childNodes.length && !stat.done; i++) {
-            currentNode = parent.childNodes[i];
-            if (currentNode === node) {
-                stat.pos += offset;
-                stat.done = true;
-                return stat;
-            } else getCursorOld(currentNode, node, offset, stat);
-        }
-    }
-    return stat;
-}
-*/
 
 function getCursorNode(parent, node, stat) {
     if (stat.done || parent.childNodes.length == 0) return stat;
@@ -187,22 +145,6 @@ function getCursorNode(parent, node, stat) {
     return stat;
 }
 
-/*
-function getCursorXXX(el, sel) {
-    const node = sel.focusNode;
-    const div = node.tagName == "DIV";
-    let currentNode = null;
-    for (let i = 0; i < el.childNodes.length; i++) {
-        currentNode = el.childNodes[i];
-        if (currentNode === node) {
-            return {typ: currentNode.tagName, pos: i, offset: sel.focusOffset }
-        } else {
-
-        }
-    }
-}
-*/
-
 function setCursorNode(parent, pos) {
     let currentNode = parent;
     for (let i = 0; i < pos.length; i++) {
@@ -210,26 +152,6 @@ function setCursorNode(parent, pos) {
     }
     return currentNode;
 }
-
-/*
-function setCursorOld (parent, range, stat) {
-    if (stat.done) return range;
-    if (parent.childNodes.length == 0) {
-        if (parent.textContent.length >= stat.pos) {
-            range.setStart(parent, stat.pos);
-            stat.done = true;
-        } else {
-            stat.pos = stat.pos - parent.textContent.length;
-        }
-    } else {
-        for (let i = 0; i < parent.childNodes.length && !stat.done; i++) {
-            currentNode = parent.childNodes[i];
-            setCursorOld(currentNode, range, stat);
-        }
-    }
-    return range;
-}
-*/
 
 document.addEventListener('alpine:init', () => {
     Alpine.bind('listable', () => ({

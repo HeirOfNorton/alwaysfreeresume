@@ -123,25 +123,6 @@
                     </div>
                 </div>
             </div>
-    {% comment %}
-            <template x-for="(subitem, subindex) in item.subitems" :key="subitem.key">
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <input
-                            class="input"
-                            type="text"
-                            x-model="subitem.contents"
-                        >
-                    </div>
-                    <div class="control">
-                        <button class="button is-primary" @click="addSubItem(self, itemidx, subindex+1)">Add</button>
-                    </div>
-                    <div class="control" :class="item.subitems.length > 1 || 'is-invisible'">
-                        <button class="button is-danger" @click="delSubItem(self, itemidx, subindex)">Delete</button>
-                    </div>
-                </div>
-            </template>
-    {% endcomment %}
         </div>
         {% endif %}
 
