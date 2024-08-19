@@ -144,7 +144,7 @@ function nodesToList(elems) {
 }
 
 function listToNodes(list) {
-    return list.map(a => '<div>' + a + '</div>').reduce((old, new) => old + new, '');
+    return list.map(a => '<div>' + a + '</div>').reduce((old, i) => old + i, '');
 }
 
 document.addEventListener('alpine:init', () => {
