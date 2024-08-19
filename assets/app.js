@@ -135,7 +135,7 @@ function blankForm(title, preskip, subtitle='') {
 }
 
 function nodesToList(elems) {
-    var t = Array.from(elems).filter(a => a.tagName == "DIV").map(a => a.textContent);
+    var t = elems.filter(a => a.tagName == "DIV").map(a => a.textContent);
     if (t.length > 0) {
         return t;
     } else {
@@ -147,14 +147,62 @@ function listToNodes(list) {
     return list.map(a => '<div>' + a + '</div>').reduce((old, i) => old + i, '');
 }
 
+// Saving and resetting cursor position, found on StackOverflow:
+// https://stackoverflow.com/a/70800591
+
+function getCursor (parent, node, offset, stat) {
+    if (stat.done) return stat;
+    let currentNode = null;
+    if (parent.childNodes.length == 0) {
+        stat.pos += parent.textContent.length;
+    } else {
+        for (let i = 0; i < parent.childNodes.length && !stat.done; i++) {
+            currentNode = parent.childNodes[i];
+            if (currentNode === node) {
+                stat.pos += offset;
+                stat.done = true;
+                return stat;
+            } else getCursor(currentNode, node, offset, stat);
+        }
+    }
+    return stat;
+}
+
+function setCursor (parent, range, stat) {
+    if (stat.done) return range;
+    if (parent.childNodes.length == 0) {
+        if (parent.textContent.length >= stat.pos) {
+            range.setStart(parent, stat.pos);
+            stat.done = true;
+        } else {
+            stat.pos = stat.pos - parent.textContent.length;
+        }
+    } else {
+        for (let i = 0; i < parent.childNodes.length && !stat.done; i++) {
+            currentNode = parent.childNodes[i];
+            setCursor(currentNode, range, stat);
+        }
+    }
+    return range;
+}
+
 document.addEventListener('alpine:init', () => {
     Alpine.bind('listable', () => ({
         'contenteditable': true,
-        '@input': '$el._x_model.set(nodesToList($el.children))',
+        '@input': '$el._x_model.set(nodesToList($el.childNodes))',
         'x-init': `$nextTick(() => {
             $el.innerHTML = listToNodes($el._x_model.get())
             $watch($el.attributes["x-model"].nodeValue, (v) => {
-                $el.innerHTML = listToNodes(v)    
+                const sel = window.getSelection()
+                const node = sel.focusNode;
+                const offset = sel.focusOffset;
+                const pos = getCursor($el, node, offset, {pos: 0, done: false})
+                if (offset===0) pos.pos += 0.5;
+                $el.innerHTML = listToNodes(v);
+                sel.removeAllRanges();
+                const range = setCursor($el, document.createRange(), {pos: pos.pos, done: false});
+                range.collapse(true);
+                sel.addRange(range);
             })
 }       )`,
     }));
