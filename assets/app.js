@@ -50,9 +50,9 @@ function blankList(title, preskip) {
     var lst = {
         skipped: preskip,
         title: title,
-        items: [],
+        items: [''],
     };
-    addListItem(lst, 0);
+//    addListItem(lst, 0);
     return lst;
 }
 
@@ -134,8 +134,28 @@ function blankForm(title, preskip, subtitle='') {
     }
 }
 
+function nodesToList(elems) {
+    var t = Array.from(elems).filter(a => a.tagName == "DIV").map(a => a.textContent);
+    if (t.length > 0) {
+        return t;
+    } else {
+        return [''];
+    }
+}
+
+function listToNodes(list) {
+    return list.map(a => '<div>' + a + '</div>').reduce((old, new) => old + new, '');
+}
+
 document.addEventListener('alpine:init', () => {
-    //Alpine.store('mylocalkey', {
-    //    txt: Alpine.$persist({inner: 'Blank'}).as('mylocalkey'),
-    //})
+    Alpine.bind('listable', () => ({
+        'contenteditable': true,
+        '@input': '$el._x_model.set(nodesToList($el.children))',
+        'x-init': `$nextTick(
+            $el.innerHTML = listToNodes($el._x_model.get())
+            $watch($el.attributes["x-model"].nodeValue, (v) => {
+                $el.innerHTML = listToNodes(v)    
+            })
+        )`,
+    }));
 });

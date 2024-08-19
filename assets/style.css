@@ -8,6 +8,13 @@ html, body {
     width: fit-content;
 }
 
+.bulletbox > div {
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: 1em;
+}
+
 [x-cloak] {
     display: none !important;
 }

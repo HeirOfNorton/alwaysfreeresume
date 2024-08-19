@@ -33,15 +33,10 @@
     <div class="field">
         <div class="control">
             <div
-                class="textarea"
-                contenteditable="true"
+                class="textarea bulletbox"
+                x-bind="listable"
                 x-model="self.items"
-                @input="$el._x_model.set(Array.from($el.children).map(a => a.textContent))"
-
             >
-                <template x-for="item in self.items">
-                    <div x-text="item" style="display: list-item; list-style-type: disc; list-style-position: outside; margin-left: 1em;"></div>
-                </template>
             </div>
         </div>
     </div>
