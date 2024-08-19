@@ -151,11 +151,11 @@ document.addEventListener('alpine:init', () => {
     Alpine.bind('listable', () => ({
         'contenteditable': true,
         '@input': '$el._x_model.set(nodesToList($el.children))',
-        'x-init': `$nextTick(
+        'x-init': `$nextTick(() => {
             $el.innerHTML = listToNodes($el._x_model.get())
             $watch($el.attributes["x-model"].nodeValue, (v) => {
                 $el.innerHTML = listToNodes(v)    
             })
-        )`,
+}       )`,
     }));
 });
