@@ -172,7 +172,7 @@ function getCursorOld (parent, node, offset, stat) {
 function getCursorNode(parent, node, stat) {
     if (stat.done || parent.childNodes.length == 0) return stat;
     let currentNode = null;
-    for (let i = 0; 1 < parent.childNodes.length && !stat.done; i++) {
+    for (let i = 0; i < parent.childNodes.length && !stat.done; i++) {
         currentNode = parent.childNodes[i];
         if (currentNode === node) {
             stat.pos.push(i);
