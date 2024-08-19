@@ -149,8 +149,8 @@ function listToNodes(list) {
 
 // Saving and resetting cursor position, found on StackOverflow:
 // https://stackoverflow.com/a/70800591
-
-function getCursor (parent, node, offset, stat) {
+/*
+function getCursorOld (parent, node, offset, stat) {
     if (stat.done) return stat;
     let currentNode = null;
     if (parent.childNodes.length == 0) {
@@ -162,13 +162,53 @@ function getCursor (parent, node, offset, stat) {
                 stat.pos += offset;
                 stat.done = true;
                 return stat;
-            } else getCursor(currentNode, node, offset, stat);
+            } else getCursorOld(currentNode, node, offset, stat);
         }
     }
     return stat;
 }
+*/
 
-function setCursor (parent, range, stat) {
+function getCursorNode(parent, node, stat) {
+    if (stat.done || parent.childNodes.length == 0) return stat;
+    let currentNode = null;
+    for (let i = 0; 1 < parent.childNodes.length && !stat.done; i++) {
+        currentNode = parent.childNodes[i];
+        if (currentNode === node) {
+            stat.pos.push(i);
+            stat.done = true;
+            return stat;
+        } else getCursorNode(currentNode, node, stat);
+    }
+    return stat;
+}
+
+/*
+function getCursorXXX(el, sel) {
+    const node = sel.focusNode;
+    const div = node.tagName == "DIV";
+    let currentNode = null;
+    for (let i = 0; i < el.childNodes.length; i++) {
+        currentNode = el.childNodes[i];
+        if (currentNode === node) {
+            return {typ: currentNode.tagName, pos: i, offset: sel.focusOffset }
+        } else {
+
+        }
+    }
+}
+*/
+
+function setCursorNode(parent, pos) {
+    let currentNode = parent;
+    for (let i = 0; i < pos.length; i++) {
+        currentNode = currentNode.childNodes[pos[i]]
+    }
+    return currentNode;
+}
+
+/*
+function setCursorOld (parent, range, stat) {
     if (stat.done) return range;
     if (parent.childNodes.length == 0) {
         if (parent.textContent.length >= stat.pos) {
@@ -180,11 +220,12 @@ function setCursor (parent, range, stat) {
     } else {
         for (let i = 0; i < parent.childNodes.length && !stat.done; i++) {
             currentNode = parent.childNodes[i];
-            setCursor(currentNode, range, stat);
+            setCursorOld(currentNode, range, stat);
         }
     }
     return range;
 }
+*/
 
 document.addEventListener('alpine:init', () => {
     Alpine.bind('listable', () => ({
@@ -196,11 +237,13 @@ document.addEventListener('alpine:init', () => {
                 const sel = window.getSelection()
                 const node = sel.focusNode;
                 const offset = sel.focusOffset;
-                const pos = getCursor($el, node, offset, {pos: 0, done: false})
-                if (offset===0) pos.pos += 0.5;
+                const stat = getCursorNode($el, node, {pos: [], done: false})
+
                 $el.innerHTML = listToNodes(v);
+
                 sel.removeAllRanges();
-                const range = setCursor($el, document.createRange(), {pos: pos.pos, done: false});
+                const range = document.createRange();
+                range.setStart(setCursorNode($el, stat.pos), offset);
                 range.collapse(true);
                 sel.addRange(range);
             })
