@@ -174,11 +174,18 @@ function getCursorNode(parent, node, stat) {
     let currentNode = null;
     for (let i = 0; i < parent.childNodes.length && !stat.done; i++) {
         currentNode = parent.childNodes[i];
+        stat.pos.push(i);
         if (currentNode === node) {
-            stat.pos.push(i);
             stat.done = true;
+        } else {
+            getCursorNode(currentNode, node, stat);
+        }
+        if (stat.done) {
             return stat;
-        } else getCursorNode(currentNode, node, stat);
+        } else {
+            stat.pos.pop();
+        }
+
     }
     return stat;
 }
