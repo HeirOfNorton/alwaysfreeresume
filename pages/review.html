@@ -10,7 +10,25 @@ navbar: 9
 
 Put the review of all sections here.
 
-<article class="card" x-data="{ contact: $persist(blankForm('Contact', false)).as('contact') }">
+<div x-data="{
+    contact:        $persist(blankForm('Contact', false)).as('contact'),
+    photo:          $persist(blankForm('Photo', false)).as('photo'),
+    summary:        $persist(blankForm('Summary', false)).as('summary'),
+    experience:     $persist(blankForm('Experience', false)).as('experience'),
+    education:      $persist(blankForm('Education', false)).as('education'),
+    projects:       $persist(blankForm('Projects', false)).as('projects'),
+    activities:     $persist(blankForm('Activities', false)).as('activities'),
+    skills:         $persist(blankForm('Skills', false)).as('skills'),
+    proskills:      $persist(blankForm('Professional Skills', false)).as('proskills'),
+    certifications: $persist(blankForm('Certifications', false)).as('certifications'),
+    awards:         $persist(blankForm('Awards', false)).as('awards'),
+    languages:      $persist(blankForm('Languages', false)).as('languages'),
+
+    reviewing:      $persist(true).as('reviewing'),
+    review-section: $persist('/review/').as('review-section'),
+}">
+
+<article class="card">
     <div class="card-content">
         <div class="content is-medium">
             <h3 x-show="contact.fullname" x-text="contact.fullname"></h3>
@@ -312,3 +330,5 @@ Put the review of all sections here.
 </article>
 
 <a href="{{ '/print/' | relative_url }}">Print and Export</a>
+
+</div>
