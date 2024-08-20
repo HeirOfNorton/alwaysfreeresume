@@ -91,7 +91,8 @@
                                     :disabled="item.dates.current"
                                 >
                             </div>
-                            {% if include.vars.dates.current %}
+                {% endif %}
+                {% if include.vars.dates.current %}
                             <label class="checkbox is-small">
                                 <input
                                     type="checkbox"
@@ -100,7 +101,8 @@
                                 >
                                 {{ include.vars.dates.current }}
                             </label>
-                            {% endif %}
+                {% endif %}
+                {% if include.dates.end %}
                         </div>
                     </div>
                 {% endif %}
