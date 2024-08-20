@@ -88,7 +88,7 @@
                                     type="month"
                                     name="{{ include.vars.dates.end }}"
                                     x-model="item.dates.end"
-                                    {% if include.bars.dates.current-blocks %}:disabled="item.dates.current"{% endif %}
+                                    {% if include.vars.dates.current-blocks %}:disabled="item.dates.current"{% endif %}
                                 >
                             </div>
                             {% if include.vars.dates.current %}
