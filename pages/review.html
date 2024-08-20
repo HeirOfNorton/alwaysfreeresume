@@ -123,7 +123,7 @@ Put the review of all sections here.
                 <template x-for="(item, index) in {{ section.name }}.items">
                     <div class="block">
                         <hr x-show="index > 0">
-                        <h3 xtext="item.title"></h3>
+                        <h3 x-text="item.title"></h3>
                         <p x-show="item.org">
                             <em>
                                 <span x-text="item.org"></span>
@@ -142,8 +142,8 @@ Put the review of all sections here.
                                 <span x-text="dateString(item.dates.end)"></span>
                             </strong>
                         </p>
-                        <div x-show="item.subtitle">
-                            <h4 x-text="item.subtitle"></h4>
+                        <div x-show="{{ section.name }}.subtitle">
+                            <h4 x-text="{{ section.name }}.subtitle"></h4>
                             <ul>
                                 <template x-for="subitem in item.subitems">
                                     <li>
