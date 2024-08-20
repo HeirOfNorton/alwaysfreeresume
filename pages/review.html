@@ -6,24 +6,48 @@ permalink: /review/
 navbar: 9
 ---
 
+<h1 class="title is-1">Review</h1>
+
 Put the review of all sections here.
 
-<article>
-    <header>
-        <h2>
-            Contact
-        </h2>
-        <div>
-            <a href="{{ '/contact/' | relative_url }}">Edit</a>
-            <button>X</button>
+<article class="card" x-data="{ contact: $persist(blankForm('Contact', false)).as('contact') }">
+    <div class="card-content">
+        <div class="content is-medium">
+            <h3 x-show="contact.fullname" x-text="contact.fullname"></h3>
+            <p>
+                <span x-show="contact.address.line1">
+                    <strong>Address:</strong><br>
+                    <span x-text="contact.address.line1"></span>
+                </span>
+                <span x-show="contact.address.line2">
+                    <br><span x-text="contact.address.line2"></span>
+                </span>
+                <span x-show="contact.address.city">
+                    <br><span x-text="contact.address.city"></span>
+                    <span x-show="contact.address.state">
+                        <span>, </span>
+                        <span x-text="contact.address.state"></span>
+                    </span>
+                    <span x-show="contact.address.zip">
+                        <span>  </span>
+                        <span x-text="contact.address.zip"></span>
+                    </span>
+                </span>
+            </p>
+            <p x-show="contact.phone">
+                <strong>Tel: </strong><span x-text="contact.phone"></span>
+            </p>
+            <p x-show="contact.email">
+                <strong>Email: </strong><span x-text="contact.email"></span>
+            </p>
+            <p x-show="contact.website">
+                <strong>Website: </strong><span x-text="contact.website"></span>
+            </p>
         </div>
-    </header>
-
-    <h3>Jason M. Seeley</h3>
-    <p>
-
-    </p>
-
+    </div>
+    <div class="card-footer">
+        <a href="{{ '/contact/' | relative_url }}" class="card-footer-item">Edit</a>
+    </div>
 </article>
 
 <article>
