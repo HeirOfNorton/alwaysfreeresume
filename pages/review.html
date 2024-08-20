@@ -4,6 +4,43 @@ title: Review
 previous: /extras/
 permalink: /review/
 navbar: 9
+sections:
+    -   name: contact
+        type: contact
+        link: '/contact/'
+    -   name: photo
+        type: photo
+        link: '/photo/'
+    -   name: summary
+        type: summary
+        link: '/summary/'
+    -   name: experience
+        type: items
+        link: '/experience/'
+    -   name: education
+        type: items
+        link: '/education/'
+    -   name: projects
+        type: items
+        link: '/projects/#projects'
+    -   name: activities
+        type: items
+        link: '/projects/#activities'
+    -   name: skills
+        type: list
+        link: '/skills/#skills'
+    -   name: proskills
+        type: items
+        link: '/skills/#proskills'
+    -   name: certifications
+        type: items
+        link: '/extras/#certifications'
+    -   name: awards
+        type: items
+        link: '/extras/#awards'
+    -   name: languages
+        type: list
+        link: '/extras/#languages'
 ---
 
 <h1 class="title is-1">Review</h1>
@@ -26,7 +63,130 @@ Put the review of all sections here.
 
     reviewing:      $persist(true).as('reviewing'),
     review-section: $persist('/review/').as('review-section'),
+    skipping:       false,
 }">
+
+{% for section in page.sections %}
+
+<article class="card block" x-show="!{{ section.name }}.skipped" x-init="skipping ||= {{ section.name }}.skipped" x-cloak>
+    <header class="card-header">
+        <h2 class="card-header-title title is-2" x-text="{{ section.name }}.title"></h2>
+    </header>
+    <div class="card-content">
+        <div class="content is-medium">
+        {% case section.type %}
+            {% when 'contact' %}
+                <h3 x-show="{{ section.name }}.fullname" x-text="{{ section.name }}.fullname"></h3>
+                <p>
+                    <span x-show="{{ section.name }}.address.line1">
+                        <strong>Address:</strong><br>
+                        <span x-text="{{ section.name }}.address.line1"></span>
+                    </span>
+                    <span x-show="{{ section.name }}.address.line2">
+                        <br><span x-text="{{ section.name }}.address.line2"></span>
+                    </span>
+                    <span x-show="{{ section.name }}.address.city">
+                        <br><span x-text="{{ section.name }}.address.city"></span>
+                        <span x-show="{{ section.name }}.address.state">
+                            <span>, </span>
+                            <span x-text="{{ section.name }}.address.state"></span>
+                        </span>
+                        <span x-show="{{ section.name }}.address.zip">
+                            <span>  </span>
+                            <span x-text="{{ section.name }}.address.zip"></span>
+                        </span>
+                    </span>
+                </p>
+                <p x-show="{{ section.name }}.phone">
+                    <strong>Tel: </strong><span x-text="{{ section.name }}.phone"></span>
+                </p>
+                <p x-show="{{ section.name }}.email">
+                    <strong>Email: </strong><span x-text="{{ section.name }}.email"></span>
+                </p>
+                <p x-show="{{ section.name }}.website">
+                    <strong>Website: </strong><span x-text="{{ section.name }}.website"></span>
+                </p>
+
+            {% when 'photo' %}
+                <p>placeholder</p>
+            {% when 'summary' %}
+                <p x-text="{{ section.name }}.contents"></p> 
+            {% when 'list' %}
+                <ul>
+                    <template x-for="item in {{ section.name }}.items">
+                        <li>
+                            <p x-text="item"></p>
+                        </li>
+                    </template>
+                </ul>
+            {% when items %}
+                <template x-for="(item, index) in {{ section.name }}.items">
+                    <div class="block">
+                        <hr x-show="index > 0">
+                        <h3 xtext="item.title"></h3>
+                        <p x-show="item.org">
+                            <em>
+                                <span x-text="item.org"></span>
+                                <span x-show="item.loc" x-text="', ' + item.loc"></span>
+                            </em>
+                        </p>
+                        <p x-show="item.dates.start">
+                            <strong>
+                                <span x-text="dateString(item.dates.start) + ' – '"></span>
+                                <span x-text="item.dates.current ? 'Current' : dateString(item.dates.end) "></span>
+                            </strong>
+                        </p>
+                        <p x-show="item.dates.end && !item.dates.start">
+                            <strong>
+                                <span x-show="item.dates.current">Anticipated </span>
+                                <span x-text="dateString(item.dates.end)"></span>
+                            </strong>
+                        </p>
+                        <div x-show="item.subtitle">
+                            <h4 x-text="item.subtitle"></h4>
+                            <ul>
+                                <template x-for="subitem in item.subitems">
+                                    <li>
+                                        <span x-text="subitem"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </template>
+        {% end case %}
+        </div>
+    </div>
+    <div class="card-footer">
+        <a href="{{ section.link | relative_url }}" class="card-footer-item">Edit</a>
+    </div>
+</article>
+
+{% endfor %}
+
+<article class="card block" x-show="skipping" x-cloak>
+    <header class="card-header">
+        <h2 class="card-header-title title is-3">Skipped Sections</h2>
+    </header>
+    <div class="card-content">
+        {% for section in page.sections %}
+            <div class="block" x-show="{{ section.name }}.skipped" x-cloak>
+                <a href="{{ section.link | relative_url }}">
+                    <h4 class="title is-4">
+                        <span x-text="{{ section.name }}.title"></span>
+                        <button class="button">Edit</button>
+                    </h4>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</article>
+
+<a href="{{ '/print/' | relative_url }}">Print and Export</a>
+
+</div>
+
+{% comment %}
 
 <article class="card">
     <div class="card-content">
@@ -329,6 +489,4 @@ Put the review of all sections here.
 
 </article>
 
-<a href="{{ '/print/' | relative_url }}">Print and Export</a>
-
-</div>
+{% endcomment %}
