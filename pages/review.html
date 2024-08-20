@@ -119,7 +119,7 @@ Put the review of all sections here.
                         </li>
                     </template>
                 </ul>
-            {% when items %}
+            {% when 'items' %}
                 <template x-for="(item, index) in {{ section.name }}.items">
                     <div class="block">
                         <hr x-show="index > 0">
