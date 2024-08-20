@@ -76,6 +76,20 @@
                         </div>
                     </div>
                 {% endif %}
+                {% if include.vars.dates.current %}
+                    <div class="column is-narrow">
+                        <div class="field">
+                            <label class="checkbox is-small">
+                                <input
+                                    type="checkbox"
+                                    name="current"
+                                    x-model="item.dates.current"
+                                >
+                                {{ include.vars.dates.current }}
+                            </label>
+                        </div>
+                    </div>
+                {% endif %}
                 {% if include.vars.dates.end %}
                     <div class="column">
                         <div class="field">
@@ -91,18 +105,6 @@
                                     :disabled="item.dates.current"
                                 >
                             </div>
-                {% endif %}
-                {% if include.vars.dates.current %}
-                            <label class="checkbox is-small">
-                                <input
-                                    type="checkbox"
-                                    name="current"
-                                    x-model="item.dates.current"
-                                >
-                                {{ include.vars.dates.current }}
-                            </label>
-                {% endif %}
-                {% if include.dates.end %}
                         </div>
                     </div>
                 {% endif %}
