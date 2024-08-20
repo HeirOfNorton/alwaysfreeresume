@@ -168,8 +168,8 @@ const months = {
     '12': 'December'
 }
 
-function dateString(in) {
-    const parts = in.split('-');
+function dateString(instring) {
+    const parts = instring.split('-');
     return months[parts[1]] + ', ' + parts[0];
 }
 
