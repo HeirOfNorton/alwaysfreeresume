@@ -6,33 +6,34 @@
     loadinput: () => {},
     loaddrop: () => {},
 }">
-    <div class="card" x-show="self.data">
-        <div class="card-image">
-            <figure class="image">
-                <img x-bind:src="self.data" alt="Photo of self">
-            </figure>
+    <div class="notification is-info is-light dropper">
+        <div class="card block my-3" x-show="self.data">
+            <div class="card-image">
+                <figure class="image">
+                    <img x-bind:src="self.data" alt="Photo of self">
+                </figure>
+            </div>
+            <div class="card-footer">
+                <button class="button card-footer-item is-medium" @click="cropopen=true">Edit Crop</button>
+            </div>
         </div>
-        <div class="card-footer">
-            <button class="button card-footer-item is-medium" @click="cropopen=true">Edit</button>
-            <button class="button card-footer-item is-medium is-danger is-light" @click="self.data=''">Delete</button>
-        </div>
-    </div>
-    <div class="notification is-info is-light dropper" x-show="!self.data">
-        <p class="block is-size-3 has-text-centered my-3">
-            Drag and drop image or...
-        </p>
-        <div class="file is-large is-centered is-boxed is-info">
-            <label class="file-label">
-                <input type="file" name="image" accept="image/*" class="file-input">
-                <span class="file-cta">
-                    <span class="file-icon">
-                        {% include icon.html i='upload'%}
+        <div class="block is-flex" :class="self.data ? 'is-flex-direction-row' : 'is-flex-direction-column'">
+            <p class="block has-text-centered my-3" :class="self.data ? 'is-size-4' : 'is-size-3">
+                Drag and drop<span x-show="self.data"> a different</span> image or...
+            </p>
+            <div class="file is-centered is-boxed is-info" :class="self.data ? 'is-medium' : 'is-large'">
+                <label class="file-label">
+                    <input type="file" name="image" accept="image/*" class="file-input">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            {% include icon.html i='upload'%}
+                        </span>
+                        <span class="file-label">
+                            Click to select image
+                        </span>
                     </span>
-                    <span class="file-label">
-                        Click to select image
-                    </span>
-                </span>
-            </label>
+                </label>
+            </div>
         </div>
     </div>
     <div class="modal" :class="cropopen && 'is-active'">
