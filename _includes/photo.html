@@ -7,9 +7,17 @@
     loaddrop: () => {},
 }">
     <div class="card" x-show="self.data">
-        <img x-bind:src="self.data" alt="Photo of self">
+        <div class="card-image">
+            <figure class="image">
+                <img x-bind:src="self.data" alt="Photo of self">
+            </figure>
+        </div>
+        <div class="card-footer">
+            <button class="button card-footer-item is-medium">Edit</button>
+            <button class="button card-footer-item is-medium is-danger is-light">Delete</button>
+        </div>
     </div>
-    <div class="notification is-info is-light dropper">
+    <div class="notification is-info is-light dropper" x-show="!self.data">
         <p class="block is-size-3 has-text-centered my-3">
             Drag and drop image or...
         </p>
@@ -28,7 +36,11 @@
         </div>
     </div>
     <div class="modal">
-        <img x-bind:src="fullimg">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <img x-bind:src="fullimg">
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
 </div>
