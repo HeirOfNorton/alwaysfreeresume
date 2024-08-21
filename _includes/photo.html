@@ -35,9 +35,9 @@
             </label>
         </div>
     </div>
-    <div class="modal">
+    <div class="modal" :class="cropopen && 'is-active'">
         <div class="modal-background" @click="cropopen=false"></div>
-        <div class="modal-content" :class="cropopen && 'is-active'">
+        <div class="modal-content">
             <img x-bind:src="fullimg">
         </div>
         <button class="modal-close is-large" aria-label="close" @click="cropopen=false"></button>
