@@ -13,8 +13,8 @@
             </figure>
         </div>
         <div class="card-footer">
-            <button class="button card-footer-item is-medium">Edit</button>
-            <button class="button card-footer-item is-medium is-danger is-light">Delete</button>
+            <button class="button card-footer-item is-medium" @click="cropopen=true">Edit</button>
+            <button class="button card-footer-item is-medium is-danger is-light" @click="self.data=''">Delete</button>
         </div>
     </div>
     <div class="notification is-info is-light dropper" x-show="!self.data">
@@ -36,11 +36,11 @@
         </div>
     </div>
     <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
+        <div class="modal-background" @click="cropopen=false"></div>
+        <div class="modal-content" :class="cropopen && 'is-active'">
             <img x-bind:src="fullimg">
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button class="modal-close is-large" aria-label="close" @click="cropopen=false"></button>
     </div>
 
 </div>
