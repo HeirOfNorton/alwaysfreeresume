@@ -15,6 +15,11 @@ html, body {
     margin-left: 1em;
 }
 
+.dropper {
+    border-style:dotted;
+    border-color: var(--bulma-info-base);
+}
+
 [x-cloak] {
     display: none !important;
 }
