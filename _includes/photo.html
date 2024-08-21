@@ -1,13 +1,18 @@
-<div class="file is-boxed">
-    <label class="file-label">
-        <input type="file" name="image" accept="image/*" class="file-input">
-        <span class="file-cta">
-            <span class="file-icon">
-                {% include icon.html i='upload'%}
+<div class="notification is-primary is-light">
+    <p class="block is-medium has-text-centered my-3">
+        Drag and drop image or...
+    </p>
+    <div class="file is-large is-centered is-boxed">
+        <label class="file-label">
+            <input type="file" name="image" accept="image/*" class="file-input">
+            <span class="file-cta">
+                <span class="file-icon">
+                    {% include icon.html i='upload'%}
+                </span>
+                <span class="file-label">
+                    Click to select image
+                </span>
             </span>
-            <span class="file-label">
-                Choose an image...
-            </span>
-        </span>
-    </label>
+        </label>
+    </div>
 </div>
