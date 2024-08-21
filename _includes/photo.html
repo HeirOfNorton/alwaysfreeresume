@@ -1,18 +1,34 @@
-<div class="notification is-info is-light dropper">
-    <p class="block is-medium has-text-centered my-3">
-        Drag and drop image or...
-    </p>
-    <div class="file is-large is-centered is-boxed is-info">
-        <label class="file-label">
-            <input type="file" name="image" accept="image/*" class="file-input">
-            <span class="file-cta">
-                <span class="file-icon">
-                    {% include icon.html i='upload'%}
-                </span>
-                <span class="file-label">
-                    Click to select image
-                </span>
-            </span>
-        </label>
+
+<div x-data="{
+    fullimg: '',
+    cropopen: false,
+    loading: false,
+    loadinput: () => {},
+    loaddrop: () => {},
+}">
+    <div class="card" x-show="self.data">
+        <img x-bind:src="self.data" alt="Photo of self">
     </div>
+    <div class="notification is-info is-light dropper">
+        <p class="block is-size-3 has-text-centered my-3">
+            Drag and drop image or...
+        </p>
+        <div class="file is-large is-centered is-boxed is-info">
+            <label class="file-label">
+                <input type="file" name="image" accept="image/*" class="file-input">
+                <span class="file-cta">
+                    <span class="file-icon">
+                        {% include icon.html i='upload'%}
+                    </span>
+                    <span class="file-label">
+                        Click to select image
+                    </span>
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="modal">
+        <img x-bind:src="fullimg">
+    </div>
+
 </div>
