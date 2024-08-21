@@ -79,6 +79,7 @@ function blankPhoto(title, preskip) {
     return {
         skipped: preskip,
         title: title,
+        data: '',
     };
 }
 
