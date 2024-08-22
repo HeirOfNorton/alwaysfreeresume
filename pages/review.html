@@ -109,7 +109,7 @@ Put the review of all sections here.
 
             {% when 'photo' %}
                 <figure class="image">
-                    <img alt="Photo of self" :src="{{ section-name }}.data">
+                    <img alt="Photo of self" :src="{{ section.name }}.data">
                 </figure>
             {% when 'summary' %}
                 <p x-text="{{ section.name }}.contents"></p> 
