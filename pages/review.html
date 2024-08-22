@@ -108,7 +108,9 @@ Put the review of all sections here.
                 </p>
 
             {% when 'photo' %}
-                <p>placeholder</p>
+                <figure class="image">
+                    <img alt="Photo of self" :src="{{ section-name }}.data">
+                </figure>
             {% when 'summary' %}
                 <p x-text="{{ section.name }}.contents"></p> 
             {% when 'list' %}
