@@ -3,8 +3,21 @@
     fullimg: '',
     cropopen: false,
     loading: false,
-    loadinput: () => {},
-    loaddrop: () => {},
+    loaddata: (imgfile) => {
+        if (imgfile.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                this.fullimg = e.target.result;
+                this.cropopen = true;
+            };
+            reader.readAsDataURL(imgfile);
+        }
+    },
+    loadinput: (e) => {
+        const imgfile = e.target.files[0];
+        this.loaddata(imgfile);
+    },
+    loaddrop: (e) => {},
 }">
     <div class="notification is-info is-light dropper">
         <div class="card block my-3" x-show="self.data">
@@ -24,7 +37,7 @@
             </p>
             <div class="file is-centered is-boxed is-info" :class="self.data ? 'is-normal' : 'is-large'">
                 <label class="file-label">
-                    <input type="file" name="image" accept="image/*" class="file-input">
+                    <input type="file" name="image" accept="image/*" class="file-input" @change="loadinput">
                     <span class="file-cta">
                         <span class="file-icon">
                             {% include icon.html i='upload'%}
