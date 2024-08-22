@@ -3,7 +3,7 @@
     fullimg: '',
     cropopen: false,
     loading: false,
-    loaddata(imgfile) => {
+    loaddata(imgfile) {
         if (imgfile.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -13,11 +13,11 @@
             reader.readAsDataURL(imgfile);
         }
     },
-    loadinput(e) => {
+    loadinput(e) {
         const imgfile = e.target.files[0];
         this.loaddata(imgfile);
     },
-    loaddrop(e) => {},
+    loaddrop(e) {},
 }">
     <div class="notification is-info is-light dropper">
         <div class="card block my-3" x-show="self.data">
