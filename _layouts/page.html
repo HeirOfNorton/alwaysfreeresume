@@ -1,14 +1,58 @@
 ---
 layout: default
+navpages:
+    -   title: Contact
+        url: '/contact/'
+        index: 1
+    -   title: Photograph
+        url: '/photo/'
+        index: 2
+    -   title: Summary
+        url: '/summary/'
+        index: 3
+    -   title: Experience
+        url: '/experience/'
+        index: 4
+    -   title: Education
+        url: '/education/'
+        index: 5
+    -   title: Projects & Activities
+        url: '/projects/'
+        index: 6
+    -   title: Skills
+        url: '/skills/'
+        index: 7
+    -   title: Extras
+        url: '/extras/'
+        index: 8
+    -   title: Review
+        url: '/review/'
+        index: 9
 ---
 
 <div class="container is-max-widescreen px-4 my-5">
 
 {% if page.navbar %}
-    <div class="is-hidden-mobile">
-        <div class="block my-5 container has-text-centered is-size-4">
-            <p>navbar goes here</p>
-        </div>
+    <div class="is-hidden-mobile bloack my-5 container is-centered">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <ul>
+                {% for nav in layout.navpages %}
+                    {% if nav.index < page.navbar %}
+                        <li>
+                            <a href="{{ nav.url | relative_url }}">
+                                <button class="button is-primary is-rounded">
+                                    <span class="icon"></span>
+                                </button>
+                            </a>
+                        </li>
+                    {% elseif nav.index == page.navbar %}
+
+                    {% else %}
+
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
     </div>
 {% endif %}
 
