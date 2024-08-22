@@ -70,7 +70,7 @@
             </div>
             <footer class="card-footer">
                 <button class="button card-footer-item is-medium is-warning is-light" @click="cropopen=false">Cancel</button>
-                <button class="card-footer-item button is-medium is-link is-light" @click="self.data=cropper.getCroppedCanvas({width: 400, height: 400, imageSmoothingQuality: high}).toDataURL('image/png'); cropopen=false">Crop and Save</button>
+                <button class="card-footer-item button is-medium is-link is-light" @click="self.data=cropper.getCroppedCanvas({width: 400, height: 400, imageSmoothingQuality: 'high'}).toDataURL('image/png'); cropopen=false">Crop and Save</button>
             </footer>
         </div>
         <button class="modal-close is-large" aria-label="close" @click="cropopen=false"></button>
