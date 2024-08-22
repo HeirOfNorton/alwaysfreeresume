@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="modal" :class="cropopen && 'is-active'">
+    <div class="modal m-4" :class="cropopen && 'is-active'">
         <div class="modal-background" @click="cropopen=false"></div>
         <div class="modal-content card">
             <div class="card-image">
@@ -68,6 +68,10 @@
                     <img style="max-width: 100%; max-height: 100%;" x-ref="cropcontainer" x-bind:src="fullimg">
                 </figure>
             </div>
+            <footer class="card-footer">
+                <button class="button card-footer-item is-medium is-warning is-light" @click="cropopen=false">Cancel</button>
+                <button class="card-footer-item button is-medium is-link is-light" @click="self.data=cropper.getCroppedCanvas({width: 400, height: 400, imageSmoothingQuality: high}).toDataURL('image/png'); cropopen=false">Crop and Save</button>
+            </footer>
         </div>
         <button class="modal-close is-large" aria-label="close" @click="cropopen=false"></button>
     </div>
