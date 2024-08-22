@@ -1,24 +1,34 @@
 
 <div x-data="{
-    fullimg: '',
-    cropopen: false,
-    loading: false,
-    loaddata(imgfile) {
-        if (imgfile.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                this.fullimg = e.target.result;
-                this.cropopen = true;
-            };
-            reader.readAsDataURL(imgfile);
+        fullimg: '',
+        cropopen: false,
+        cropper: null,
+        loading: false,
+        loaddata(imgfile) {
+            if (imgfile.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.fullimg = e.target.result;
+                    this.cropopen = true;
+                };
+                reader.readAsDataURL(imgfile);
+            }
+        },
+        loadinput(e) {
+            const imgfile = e.target.files[0];
+            this.loaddata(imgfile);
+        },
+        loaddrop(e) {},
+    }"
+    x-init="$watch('cropopen', (value) => {
+        if (value) {
+            cropper = new Cropper($refs.cropcontainer, {aspectRatio: 1});
+        } else {
+            cropper.destroy();
         }
-    },
-    loadinput(e) {
-        const imgfile = e.target.files[0];
-        this.loaddata(imgfile);
-    },
-    loaddrop(e) {},
-}">
+    } )"
+
+>
     <div class="notification is-info is-light dropper">
         <div class="card block my-3" x-show="self.data">
             <div class="card-image">
@@ -52,8 +62,12 @@
     </div>
     <div class="modal" :class="cropopen && 'is-active'">
         <div class="modal-background" @click="cropopen=false"></div>
-        <div class="modal-content">
-            <img x-bind:src="fullimg">
+        <div class="modal-content card">
+            <div class="card-image">
+                <figure class="image">
+                    <img style="max-width: 100%; max-height: 100%;" x-ref="cropcontainer" x-bind:src="fullimg">
+                </figure>
+            </div>
         </div>
         <button class="modal-close is-large" aria-label="close" @click="cropopen=false"></button>
     </div>
