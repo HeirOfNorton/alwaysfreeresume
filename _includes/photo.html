@@ -18,9 +18,9 @@
                 <button class="button card-footer-item is-medium is-danger is-light" @click="self.data=''">Delete</button>
             </div>
         </div>
-        <div class="block is-flex is-align-items-center" :class="self.data ? 'is-flex-direction-row is-flex-justify-content-space-evenly' : 'is-flex-direction-column'">
+        <div class="block is-flex is-align-items-center is-flex-direction-column">
             <p class="block has-text-centered my-3" :class="self.data ? 'is-size-4' : 'is-size-3'">
-                Drag and drop<span x-show="self.data"> another</span> image or...
+                Drag and drop<span x-show="self.data"> a different</span> image or...
             </p>
             <div class="file is-centered is-boxed is-info" :class="self.data ? 'is-normal' : 'is-large'">
                 <label class="file-label">
@@ -30,7 +30,7 @@
                             {% include icon.html i='upload'%}
                         </span>
                         <span class="file-label">
-                            Click to select<span x-show="self.data"> a different</span> image
+                            Click to choose image
                         </span>
                     </span>
                 </label>

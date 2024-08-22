@@ -23,3 +23,7 @@ html, body {
 [x-cloak] {
     display: none !important;
 }
+
+.file-cta, file-label {
+    white-space: normal;
+}
