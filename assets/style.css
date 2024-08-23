@@ -35,28 +35,27 @@ html, body {
 }
 
 .page-box.letter {
-    aspect-ratio: 22 / 17;
+    //aspect-ratio: 22 / 17;
 }
 
 .page-box.a4 {
-    aspect-ratio: 297 / 210;
+    // aspect-ratio: 297 / 210;
 }
 
 .page {
     box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
+    // position: absolute;
+    transform-origin: top left;
 }
 
 .letter .page {
-    width: 8.5in;
-    padding: .75in;
+//    width: 8.5in;
+//    padding: .75in;
 }
 
 .a4 .page {
-    width: 210mm;
-    padding: 20mm;
+//    width: 210mm;
+//    padding: 20mm;
 }
 
 @media screen and (max-width: 768px) {
