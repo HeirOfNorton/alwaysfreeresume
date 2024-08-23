@@ -33,6 +33,26 @@ navpages:
 <div class="container is-max-widescreen px-4 my-5">
 
 {% if page.navbar %}
+    <div class="block my-5 container">
+        <ul class="steps is-horizontal is-narrow is-centered has-content-centered">
+            {% for nav in layout.navpages %}
+                <li{% if nav.index == page.navbar %} class="is-active"{% endif %}>
+                    <a href="{{ nav.url | relative_url }}">
+                        <span class="steps-marker{% if nav.index == page.navbar %} is-hollow"{% endif %}>
+                            {% if nav.index < page.navbar %}
+                                <span class="icon">{% include icon.html i='check' %}</span>
+                            {% endif %}
+                        </span>
+                        <div class="steps-content">{{ nav.title }}</div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% comment %}
+{% if page.navbar %}
     <div class="is-hidden-mobile block my-5 container">
         <nav class="breadcrumb is-centered is-small has-line-separator" aria-label="breadcrumb">
             <ul>
@@ -66,6 +86,7 @@ navpages:
         </nav>
     </div>
 {% endif %}
+{% endcomment %}
 
 {% if page.previous %}
     <div class="block is-size-5 my-3">
