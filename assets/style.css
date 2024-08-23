@@ -28,9 +28,53 @@ html, body {
     white-space: normal;
 }
 
-.has-line-separator li+li::before {
-    content: "";
-    width: 1rem;
-    border-top: .3rem solid;
-    border-color: var(--bulma-primary-base);
+.page-box {
+    --bulma-box-radius: 0;
+    --bulma-box-padding: 0;
+    overflow-y: hidden;
+}
+
+.page-box.letter {
+    aspect-ratio: 22 / 17;
+}
+
+.page-box.a4 {
+    aspect-ratio: 297 / 210;
+}
+
+.page {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.letter .page {
+    width: 8.5in;
+    padding: .75in;
+}
+
+.a4 .page {
+    width: 210mm;
+    padding: 20mm;
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (min-width: 769px) {
+
+}
+
+@media screen and (min-width: 1024px) {
+
+}
+
+@media screen and (min-width: 1216px) {
+
+}
+
+@media screen and (min-width: 1408px) {
+
 }
