@@ -7,9 +7,29 @@ permalink: /print/
 
 Print and export stuff will go here. It will be complicated.
 
-<div x-data="
+<div x-data="{
+    contact:        $persist(blankForm('Contact', false)).as('contact'),
+    photo:          $persist(blankForm('Photograph', false)).as('photo'),
+    summary:        $persist(blankForm('Summary', false)).as('summary'),
+    experience:     $persist(blankForm('Experience', false)).as('experience'),
+    education:      $persist(blankForm('Education', false)).as('education'),
+    projects:       $persist(blankForm('Projects', false)).as('projects'),
+    activities:     $persist(blankForm('Activities', false)).as('activities'),
+    skills:         $persist(blankForm('Skills', false)).as('skills'),
+    proskills:      $persist(blankForm('Professional Skills', false)).as('proskills'),
+    certifications: $persist(blankForm('Certifications', false)).as('certifications'),
+    awards:         $persist(blankForm('Awards', false)).as('awards'),
+    languages:      $persist(blankForm('Languages', false)).as('languages'),
 
-">
+    primary:    'experience',
+    template:   'standard',
+    mainfont:   '',
+    headfont:   '',
+    color:      'black',
+    pagesize:   'letter',
+    reskipped:  [],
+
+}">
 
 <div class="columns">
 
