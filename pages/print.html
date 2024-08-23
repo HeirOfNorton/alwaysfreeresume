@@ -34,12 +34,18 @@ Print and export stuff will go here. It will be complicated.
 <div class="columns">
 
     <div class="column">
+        <div class="block my-4 mx-auto">
+            <div class="buttons is-centered">
+                <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'letter' || 'is-light'" @click="pagesize='letter'" >US Letter</button>
+                <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'a4' || 'is-light'" @click="pagesize='a4'" >A4</button>
+            </div>
+        </div>
 
     </div>
 
     <div class="column">
-        <div class="box page-box m-4" x-data="{ pgtype: 'letter', boxwidth: 0 }" x-resize="boxwidth = $width" :class="pgtype == 'letter' ? 'letter' : 'a4'" :style="pgtype == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}">
-            <div class="page" :style="pgtype == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
+        <div class="box page-box m-4" x-data="{ boxwidth: 0 }" x-resize="boxwidth = $width" :class="pagesize == 'letter' ? 'letter' : 'a4'" :style="pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}">
+            <div class="page" :style="pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
                 <h1>Blah blah blah</h1>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
