@@ -35,7 +35,7 @@ navpages:
 {% if page.navbar %}
 <div class="columns">
     <div class="block mx-5 column is-narrow is-hidden-mobile">
-        <ul class="steps is-vertical">
+        <ul class="steps is-vertical is-short">
             {% for nav in layout.navpages %}
                 <li class="steps-segment{% if nav.index == page.navbar %} is-active"{% endif %}">
                     <a href="{{ nav.url | relative_url }}" class="steps-marker{% if nav.index == page.navbar %} is-hollow{% endif %}">
@@ -44,7 +44,7 @@ navpages:
                         {% endif %}
                     </a>
                     <div class="steps-content">
-                        <a href="{{ nav.url | relative_url }}" class="is-4">{{ nav.title }}</a>
+                        <a href="{{ nav.url | relative_url }}">{{ nav.title }}</a>
                         </div>
                 </li>
             {% endfor %}
