@@ -34,13 +34,13 @@ navpages:
 
 {% if page.navbar %}
     <div class="is-hidden-mobile block my-5 container">
-        <nav class="breadcrumb is-centered is-small has-succeeds-separator" aria-label="breadcrumb">
+        <nav class="breadcrumb is-centered is-small has-line-separator" aria-label="breadcrumb">
             <ul>
                 {% for nav in layout.navpages %}
                     {% if nav.index < page.navbar %}
                         <li>
                             <a href="{{ nav.url | relative_url }}">
-                                <button class="button is-primary is-rounded">
+                                <button class="button is-primary is-small is-rounded">
                                     <span class="icon">{% include icon.html i='check' %}</span>
                                     <span>{{ nav.title }}</span>
                                 </button>
@@ -55,7 +55,7 @@ navpages:
                     {% else %}
                         <li>
                             <a href="{{ nav.url | relative_url }}">
-                                <button class="button is-link is-light is-rounded">
+                                <button class="button is-link is-light is-small is-rounded">
                                     <span>{{ nav.title }}</span>
                                 </button>
                             </a>

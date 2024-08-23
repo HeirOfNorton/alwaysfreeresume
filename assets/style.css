@@ -27,3 +27,10 @@ html, body {
 .file-cta, file-label {
     white-space: normal;
 }
+
+.has-line-separator li+li::before {
+    content: "";
+    width: 1rem;
+    border-top: .3rem solid;
+    border-color: var(--bulma-primary-base);
+}
