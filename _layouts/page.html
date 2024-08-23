@@ -33,22 +33,33 @@ navpages:
 <div class="container is-max-widescreen px-4 my-5">
 
 {% if page.navbar %}
-    <div class="is-hidden-mobile bloack my-5 container is-centered">
-        <nav class="breadcrumb" aria-label="breadcrumb">
+    <div class="is-hidden-mobile block my-5 container">
+        <nav class="breadcrumb is-centered" aria-label="breadcrumb">
             <ul>
                 {% for nav in layout.navpages %}
                     {% if nav.index < page.navbar %}
                         <li>
                             <a href="{{ nav.url | relative_url }}">
                                 <button class="button is-primary is-rounded">
-                                    <span class="icon"></span>
+                                    <span class="icon">{% include icon.html i='check' %}</span>
+                                    <span>{{ nav.title }}</span>
                                 </button>
                             </a>
                         </li>
-                    {% elseif nav.index == page.navbar %}
-
+                    {% elsif nav.index == page.navbar %}
+                        <li class="is-active">
+                            <button class="button is-rounded is-white is-medium is-outlined">
+                                {{ nav.title }}
+                            </button>
+                        </li>
                     {% else %}
-
+                        <li>
+                            <a href="{{ nav.url | relative_url }}">
+                                <button class="button is-link is-light is-rounded">
+                                    <span>{{ nav.title }}</span>
+                                </button>
+                            </a>
+                        </li>
                     {% endif %}
                 {% endfor %}
             </ul>
