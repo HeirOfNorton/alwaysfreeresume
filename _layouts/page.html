@@ -34,7 +34,7 @@ navpages:
 
 {% if page.navbar %}
     <div class="is-hidden-mobile block my-5 container">
-        <nav class="breadcrumb is-centered" aria-label="breadcrumb">
+        <nav class="breadcrumb is-centered is-small has-succeeds-separator" aria-label="breadcrumb">
             <ul>
                 {% for nav in layout.navpages %}
                     {% if nav.index < page.navbar %}
@@ -48,7 +48,7 @@ navpages:
                         </li>
                     {% elsif nav.index == page.navbar %}
                         <li class="is-active">
-                            <button class="button is-rounded is-white is-medium is-outlined">
+                            <button class="button is-rounded is-black is-outlined">
                                 {{ nav.title }}
                             </button>
                         </li>
