@@ -33,35 +33,46 @@ Print and export stuff will go here. It will be complicated.
 
 <div class="columns">
 
-    <div class="column">
-        <div class="block my-4 mx-auto">
-            <div class="buttons is-centered">
-                <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'letter' || 'is-outlined'" @click="pagesize='letter'" >US Letter</button>
-                <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'a4' || 'is-outlined'" @click="pagesize='a4'" >A4</button>
-            </div>
-        </div>
-        <div class="block my-4 mx-auto">
-            <div class="buttons is-centered">
-                <button class="button is-primary is-large" :class="template == 'standard' || 'is-outlined'" @click="template='standard'">Standard Resume</button>
-                <button class="button is-primary is-large" :class="template == '2column' || 'is-outlined'" @click="template='2column'">Two-Column Resume</button>
-            </div>
-        </div>
-        <div class="block my-4 mx-auto">
-            <p>Dynamically make a suggestion about what to feature first.</p>
-            <div class="buttons is-centered">
-                <button class="button is-primary is-large" :class="primary == 'experience' || 'is-outlined'" @click="primary='experience'">Experience (Chronological Resume)</button>
-                <button class="button is-primary is-large" :class="primary == 'skills' || 'is-outlined'" @click="primary='skills'">Skills (Functional Resume)</button>
-                <button class="button is-primary is-large" :class="primary == 'education' || 'is-outlined'" @click="primary='education'">Education (Student Resume)</button>
-            </div>
-        </div>
-        <div class="block my-4 mx-auto">
-            <p>Select fonts and colors</p>
-        </div>
-        <div class="block my-4 mx-auto">
-            <p>Select sections to include or skip</p>
-        </div>
+    <div class="column" x-data="opentab: 'page'">
         <div class="block my-4 mx-auto">
             <p>Print & export buttons (might move these up)</p>
+        </div>
+        <div class="tabs is-boxed is-centered">
+            <ul>
+                <li class="" @click="opentab = 'page'" :class="opentab == 'page' && is-active">Page</li>
+                <li class="" @click="opentab = 'contents'" :class="opentab == 'contents' && is-active">Contents</li>
+                <li class="" @click="opentab = 'fonts'" :class="opentab == 'fonts' && is-active">Fonts</li>
+                <li class="" @click="opentab = 'headings'" :class="opentab == 'headings' && is-active">Headings</li>
+            </ul>
+        </div>
+        <div class="box">
+            <div x-show="opentab == 'page'">
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'letter' || 'is-outlined'" @click="pagesize='letter'" >US Letter</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'a4' || 'is-outlined'" @click="pagesize='a4'" >A4</button>
+                </div>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large" :class="template == 'standard' || 'is-outlined'" @click="template='standard'">Standard Resume</button>
+                    <button class="button is-primary is-large" :class="template == '2column' || 'is-outlined'" @click="template='2column'">Two-Column Resume</button>
+                </div>
+            </div>
+            <div x-show="opentab == 'contents'">
+                <p>Dynamically make a suggestion about what to feature first.</p>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large" :class="primary == 'experience' || 'is-outlined'" @click="primary='experience'">Experience (Chronological Resume)</button>
+                    <button class="button is-primary is-large" :class="primary == 'skills' || 'is-outlined'" @click="primary='skills'">Skills (Functional Resume)</button>
+                    <button class="button is-primary is-large" :class="primary == 'education' || 'is-outlined'" @click="primary='education'">Education (Student Resume)</button>
+                </div>
+                <div>
+                    <p>Select sections to include or skip</p>
+                </div>
+            </div>
+            <div x-show="opentab == 'fonts'">
+                <p>Select fonts and colors</p>
+            </div>
+            <div x-show="opentab == 'headings'">
+                <p>Select styles for headings and Contact Info block.</p>
+            </div>
         </div>
     </div>
 
