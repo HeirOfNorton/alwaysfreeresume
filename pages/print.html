@@ -33,16 +33,16 @@ Print and export stuff will go here. It will be complicated.
 
 <div class="columns">
 
-    <div class="column" x-data="opentab: 'page'">
+    <div class="column" x-data="{opentab: 'page'}">
         <div class="block my-4 mx-auto">
             <p>Print & export buttons (might move these up)</p>
         </div>
         <div class="tabs is-boxed is-centered">
             <ul>
-                <li class="" @click="opentab = 'page'" :class="opentab == 'page' && is-active">Page</li>
-                <li class="" @click="opentab = 'contents'" :class="opentab == 'contents' && is-active">Contents</li>
-                <li class="" @click="opentab = 'fonts'" :class="opentab == 'fonts' && is-active">Fonts</li>
-                <li class="" @click="opentab = 'headings'" :class="opentab == 'headings' && is-active">Headings</li>
+                <li class="" :class="opentab == 'page' && is-active"><a @click="opentab = 'page'">Page</a></li>
+                <li class="" :class="opentab == 'contents' && is-active"><a @click="opentab = 'contents'">Contents</a></li>
+                <li class="" :class="opentab == 'fonts' && is-active"><a @click="opentab = 'fonts'">Fonts</a></li>
+                <li class="" :class="opentab == 'headings' && is-active"><a @click="opentab = 'headings'">Headings</a></li>
             </ul>
         </div>
         <div class="box">
