@@ -89,8 +89,6 @@ layout: page
                     {% include list.html vars=form %}
                 {% when 'Items' %}
                     {% include items.html vars=form %}
-                {% when 'Photograph' %}
-                    {% include photo.html %}
             {% endcase %}
             </div>
             {% if form.skippable %}

@@ -3,14 +3,11 @@ layout: page
 title: Review
 previous: /extras/
 permalink: /review/
-navbar: 9
+navbar: 8
 sections:
     -   name: contact
         type: contact
         link: '/contact/'
-    -   name: photo
-        type: photo
-        link: '/photo/'
     -   name: summary
         type: summary
         link: '/summary/'
@@ -49,7 +46,6 @@ Put the review of all sections here.
 
 <div x-data="{
     contact:        $persist(blankForm('Contact', false)).as('contact'),
-    photo:          $persist(blankForm('Photograph', false)).as('photo'),
     summary:        $persist(blankForm('Summary', false)).as('summary'),
     experience:     $persist(blankForm('Experience', false)).as('experience'),
     education:      $persist(blankForm('Education', false)).as('education'),
@@ -107,10 +103,6 @@ Put the review of all sections here.
                     <strong>Website: </strong><span x-text="{{ section.name }}.website"></span>
                 </p>
 
-            {% when 'photo' %}
-                <figure class="image">
-                    <img alt="Photo of self" :src="{{ section.name }}.data">
-                </figure>
             {% when 'summary' %}
                 <p x-text="{{ section.name }}.contents"></p> 
             {% when 'list' %}
