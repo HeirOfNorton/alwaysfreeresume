@@ -11,6 +11,7 @@ function createRandomString(length) {
 
 function blankContact(title, preskip) {
     return {
+        type: 'contact',
         skipped: preskip,
         title: title,
         fullname: '',
@@ -29,6 +30,7 @@ function blankContact(title, preskip) {
 
 function blankSummary(title, preskip) {
     return {
+        type: 'summary',
         skipped: preskip,
         title: title,
         contents: ''
@@ -41,6 +43,7 @@ function delItem(list, idx) {
 
 function blankList(title, preskip) {
     var lst = {
+        type: 'list',
         skipped: preskip,
         title: title,
         items: [''],
@@ -66,6 +69,7 @@ function addFullItem(list) {
 
 function blankItems(title, preskip, subtitle) {
     var itemlist = {
+        type: 'items',
         skipped: preskip,
         title: title,
         subtitle: subtitle,

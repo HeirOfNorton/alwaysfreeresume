@@ -78,7 +78,47 @@ Print and export stuff will go here. It will be complicated.
             <div class="page" :style="style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
                 <template x-for="section in order">
                     <section x-data="{current: sections[section]}" x-show="!current.skipped">
-                        <div x-text="current.title"></div>
+                        <template x-if="current.type === 'contact'">
+                            <div class="contact">
+                                <h1 x-text="current.fullname"></h1>
+                                <p class="address">
+                                    <span class="addressline" x-show="current.address.line1" x-text="current.address.line1"></span>
+                                    <span class="addressline" x-show="current.address.line1" x-text="current.address.line1"></span>
+                                    <span class="addressline" x-show="current.address.city || current.address.state || current.address.zip">
+                                        <span class="city" x-show="current.address.city" x-text="current.address.city"></span>
+                                        <span class="state" x-show="current.address.state" x-text="current.address.state"></span>
+                                        <span class="zip" x-show="current.address.zip" x-text="current.address.zip"></span>
+                                    </span>
+                                </p>
+                                <p class="address">
+                                    <span class="phone" x-show="current.phone" x-text="current.phone"></span>
+                                    <span class="email" x-show="current.email" x-text="current.email"></span>
+                                    <span class="website" x-show="current.website" x-text="current.website"></span>
+                                </p>
+                            </div>
+                        </template>
+                        <template x-if="current.type === 'summary'">
+                            <div class="summary">
+                                <h2 x-text="current.title"></h2>
+                                <p x-text="current.contents"></p>
+                            </div>
+                        </template>
+                        <template x-if="current.type === 'list'">
+                            <div class="list">
+                                <h2 x-text="current.title"></h2>
+                                <ul>
+                                    <template x-for="item in current.items">
+                                        <li x-text="item"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                        <template x-if="current.type === 'items'">
+                            <div class="items">
+                                <h2 x-text="current.title"></h2>
+
+                            </div>
+                        </template>
                     </section>
                 </template>
             </div>
