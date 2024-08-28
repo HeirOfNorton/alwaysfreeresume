@@ -8,26 +8,33 @@ permalink: /print/
 Print and export stuff will go here. It will be complicated.
 
 <div x-data="{
-    contact:        $persist(blankForm('Contact', false)).as('contact'),
-    summary:        $persist(blankForm('Summary', false)).as('summary'),
-    experience:     $persist(blankForm('Experience', false)).as('experience'),
-    education:      $persist(blankForm('Education', false)).as('education'),
-    projects:       $persist(blankForm('Projects', false)).as('projects'),
-    activities:     $persist(blankForm('Activities', false)).as('activities'),
-    skills:         $persist(blankForm('Skills', false)).as('skills'),
-    proskills:      $persist(blankForm('Professional Skills', false)).as('proskills'),
-    certifications: $persist(blankForm('Certifications', false)).as('certifications'),
-    awards:         $persist(blankForm('Awards', false)).as('awards'),
-    languages:      $persist(blankForm('Languages', false)).as('languages'),
+    sections:       {
+        contact:        $persist(blankForm('Contact', false)).as('contact'),
+        summary:        $persist(blankForm('Summary', false)).as('summary'),
+        experience:     $persist(blankForm('Experience', false)).as('experience'),
+        education:      $persist(blankForm('Education', false)).as('education'),
+        projects:       $persist(blankForm('Projects', false)).as('projects'),
+        activities:     $persist(blankForm('Activities', false)).as('activities'),
+        skills:         $persist(blankForm('Skills', false)).as('skills'),
+        proskills:      $persist(blankForm('Professional Skills', false)).as('proskills'),
+        certifications: $persist(blankForm('Certifications', false)).as('certifications'),
+        awards:         $persist(blankForm('Awards', false)).as('awards'),
+        languages:      $persist(blankForm('Languages', false)).as('languages'),
+    },
 
-    primary:    'experience',
-    template:   'standard',
-    mainfont:   '',
-    headfont:   '',
-    color:      'black',
-    pagesize:   'letter',
-    reskipped:  [],
+    style: {
+        mainfont:   '',
+        headfont:   '',
+        topfont:    '',
+        topstyle:   '',
+        headstyle:  '',
+        itemstyle:  '',
+        liststyle:  '',
+        color:      'black',
+        pagesize:   'letter',
+    },
 
+    order:          $persist(resetOrder('standard')).as('order'),
 }">
 
 <div class="columns">
@@ -78,10 +85,11 @@ Print and export stuff will go here. It will be complicated.
     <div class="column">
         <div class="box page-box m-4" x-data="{ boxwidth: 0 }" x-resize="boxwidth = $width" :class="pagesize == 'letter' ? 'letter' : 'a4'" :style="pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}">
             <div class="page" :style="pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
-                <h1>Blah blah blah</h1>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <template x-for="section in order">
+                    <section x-data="{current: sections[section]}" x-show="!current.skipped">
+                        <div x-text="current.title"></div>
+                    </section>
+                </template>
             </div>
         </div>
     </div>

@@ -174,6 +174,52 @@ function dateString(instring) {
     return months[parts[1]] + ', ' + parts[0];
 }
 
+function resetOrder(order) {
+    if (order === 'education') {
+        return [
+            'contact',
+            'summary',
+            'education',
+            'projects',
+            'activities',
+            'experience',
+            'certifications',
+            'skills',
+            'proskills',
+            'awards',
+            'languages'
+        ];
+    } else if (order === 'functional') {
+        return [
+            'contact',
+            'summary',
+            'skills',
+            'proskills',
+            'experience',
+            'certifications',
+            'education',
+            'projects',
+            'activities',
+            'awards',
+            'languages'
+        ];
+    } else {
+        return [
+            'contact',
+            'summary',
+            'experience',
+            'certifications',
+            'education',
+            'projects',
+            'activities',
+            'skills',
+            'proskills',
+            'awards',
+            'languages'
+        ];
+    }
+}
+
 document.addEventListener('alpine:init', () => {
     Alpine.bind('listable', () => ({
         'contenteditable': true,
