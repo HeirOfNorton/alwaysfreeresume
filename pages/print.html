@@ -161,9 +161,9 @@ Print and export stuff will go here. It will be complicated.
                                                 </p>
                                             </template>
                                         </div>
-                                        <template x-if="item.subtitle && (item.subitems[0]!='' || item.subitems.length > 1)">
+                                        <template x-if="current.subtitle && (item.subitems[0]!='' || item.subitems.length > 1)">
                                             <div>
-                                                <h4 x-text="item.subtitle"></h4>
+                                                <h4 x-text="current.subtitle"></h4>
                                                 <ul>
                                                     <template x-for="subitem in item.subitems">
                                                         <li x-text="subitem"></li>
