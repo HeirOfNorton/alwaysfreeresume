@@ -54,21 +54,12 @@ Print and export stuff will go here. It will be complicated.
         <div class="box">
             <div x-show="opentab == 'page'">
                 <div class="buttons is-centered">
-                    <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'letter' || 'is-outlined'" @click="pagesize='letter'" >US Letter</button>
-                    <button class="button is-primary is-large has-text-weight-bold" :class="pagesize == 'a4' || 'is-outlined'" @click="pagesize='a4'" >A4</button>
-                </div>
-                <div class="buttons is-centered">
-                    <button class="button is-primary is-large" :class="template == 'standard' || 'is-outlined'" @click="template='standard'">Standard Resume</button>
-                    <button class="button is-primary is-large" :class="template == '2column' || 'is-outlined'" @click="template='2column'">Two-Column Resume</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'letter' || 'is-outlined'" @click="style.pagesize='letter'" >US Letter</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'a4' || 'is-outlined'" @click="style.pagesize='a4'" >A4</button>
                 </div>
             </div>
             <div x-show="opentab == 'contents'">
                 <p>Dynamically make a suggestion about what to feature first.</p>
-                <div class="buttons is-centered">
-                    <button class="button is-primary is-large" :class="primary == 'experience' || 'is-outlined'" @click="primary='experience'">Experience (Chronological Resume)</button>
-                    <button class="button is-primary is-large" :class="primary == 'skills' || 'is-outlined'" @click="primary='skills'">Skills (Functional Resume)</button>
-                    <button class="button is-primary is-large" :class="primary == 'education' || 'is-outlined'" @click="primary='education'">Education (Student Resume)</button>
-                </div>
                 <div>
                     <p>Select sections to include or skip</p>
                 </div>
@@ -83,8 +74,8 @@ Print and export stuff will go here. It will be complicated.
     </div>
 
     <div class="column">
-        <div class="box page-box m-4" x-data="{ boxwidth: 0 }" x-resize="boxwidth = $width" :class="pagesize == 'letter' ? 'letter' : 'a4'" :style="pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}">
-            <div class="page" :style="pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
+        <div class="box page-box m-4" x-data="{ boxwidth: 0 }" x-resize="boxwidth = $width" :class="style.pagesize == 'letter' ? 'letter' : 'a4'" :style="style.pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}">
+            <div class="page" :style="style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
                 <template x-for="section in order">
                     <section x-data="{current: sections[section]}" x-show="!current.skipped">
                         <div x-text="current.title"></div>
