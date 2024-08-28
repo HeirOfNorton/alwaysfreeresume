@@ -116,7 +116,34 @@ Print and export stuff will go here. It will be complicated.
                         <template x-if="current.type === 'items'">
                             <div class="items">
                                 <h2 x-text="current.title"></h2>
-
+                                <template x-for="item in current.items">
+                                    <div>
+                                        <div>
+                                            <h3 x-text="item.title"></h3>
+                                            <p class="org" x-show="item.org" x-text="item.org"></p>
+                                            <p class="loc" x-show="item.loc" x-text="item.loc"></p>
+                                            <p class="dates" x-show="item.dates.end || item.dates.current || item.dates.start">
+                                                <template x-if="item.dates.start && item.dates.current">
+                                                    <span x-text="item.dates.start + ' – Current' "></span>
+                                                </template>
+                                                <template x-if="item.dates.current && item.dates.end && !item.dates.start">
+                                                    <span x-text="'Anticipated ' + item.dates.end"></span>
+                                                </template>
+                                                <template x-if="item.dates.start && item.dates.end && !item.dates.current">
+                                                    <span x-text="item.dates.start + ' – ' + item.dates.end"></span>
+                                                </template>
+                                                <template x-if="item.dates.end && !item.dates.current && !item.dates.start">
+                                                    <span x-text="item.dates.end"></span>
+                                                </template>
+                                            </p>
+                                        </div>
+                                        <template x-if="item.subtitle && (item.subitems[0]!='' || item.subitems.length > 1)">
+                                            <div>
+                                                <h4 x-text=""></h4>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
                             </div>
                         </template>
                     </section>
