@@ -1,10 +1,35 @@
+
+.page-box {
+    --bulma-box-radius: 0;
+    --bulma-box-padding: 0;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.page {
+    box-sizing: border-box;
+    position: absolute;
+    transform-origin: top left;
+}
+
+.letter .page {
+    width: 8.5in;
+    padding: .75in;
+}
+
+.a4 .page {
+    width: 210mm;
+    padding: 20mm;
+}
+
+
 @media print {
     header, footer, .noprint {
         display: none !important;
     }
 
     main, .printcontainer {
-        all: revert;
+        all: revert !important;
     }
 
     .letter {
@@ -22,8 +47,10 @@
 
 @page letterpage {
     size: letter portrait;
+    margin: 0;
 }
 
 @page a4page {
     size A4 portrait;
+    margin: 0;
 }
