@@ -6,8 +6,6 @@ permalink: /print/
 extracss: print.css
 ---
 
-Print and export stuff will go here. It will be complicated.
-
 <div x-data="{
     sections:       {
         contact:        $persist(blankForm('Contact', false)).as('contact'),
@@ -81,9 +79,9 @@ Print and export stuff will go here. It will be complicated.
             @beforeprint.window="printing = true"
             @afterprint.window="printing = false"
             :class="style.pagesize == 'letter' ? 'letter' : 'a4'"
-            :style="printing ? {height: '100%'} : (style.pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
+            :style="printing || (style.pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
         >
-            <div class="page" :style="style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
+            <div class="page" :style="printing || (style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})">
                 <template x-for="section in order">
                     <section x-data="{current: sections[section]}" x-show="!current.skipped">
                         <template x-if="current.type === 'contact'">
