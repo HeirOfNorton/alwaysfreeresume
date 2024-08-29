@@ -1,8 +1,7 @@
 
 // default css for the whole resume
-.page {
-    all: initial;
-    line-height: normal;
+.page * {
+    line-height: normal !important;
 }
 
 .page h2 {
@@ -49,20 +48,20 @@
 }
 
 // Metadata font family
-.toparialblack .contact {
+.toparialblack .contact * {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
 // Metadata style
-.topcenter .contact {
+.topcenter .contact * {
     text-align: center;
 }
 
 .topcenter .contact h1 {
-    margin-block-end: 1em;
+    margin-block-end: .75em;
 }
 
-.topcenter .contact .address span+span::after {
+.topcenter .contact .address span+span:after {
     content:', ';
 }
 
