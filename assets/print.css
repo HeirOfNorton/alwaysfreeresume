@@ -46,12 +46,12 @@
     }
 }
 
-@page {
+@page letterpage {
     size: letter portrait;
-    margin: 1in;
+    margin: .75in;
 }
 
 @page a4page {
     size A4 portrait;
-    margin: 24mm;
+    margin: 20mm;
 }
