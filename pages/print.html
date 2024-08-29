@@ -54,9 +54,16 @@ extracss: print.css
         </div>
         <div class="box">
             <div x-show="opentab == 'page'">
+                <h2 class="title is-3">Page Size</h2>
                 <div class="buttons is-centered">
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'pageletter' || 'is-outlined'" @click="style.pagesize='pageletter'" >US Letter</button>
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'pagea4' || 'is-outlined'" @click="style.pagesize='pagea4'" >A4</button>
+                </div>
+                <h2 class="title is-3">Page Margins</h2>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgmedium' || 'is-outlined'" @click="style.margin='mgmedium'" >Medium</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgnarrow' || 'is-outlined'" @click="style.margin='mgnarrow'" >Medium</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgwide' || 'is-outlined'" @click="style.margin='mgwide'" >Medium</button>
                 </div>
             </div>
             <div x-show="opentab == 'contents'">
