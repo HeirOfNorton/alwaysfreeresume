@@ -80,7 +80,7 @@ extracss: print.css
             x-resize="boxwidth = $width"
             @beforeprint.window="printing = true"
             @afterprint.window="printing = false"
-            :style="printing || (style.pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
+            :style="printing || (style.pagesize == 'pageletter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
         >
             <div class="page" :style="printing || (style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"
                 :class="Object.values(style)"
