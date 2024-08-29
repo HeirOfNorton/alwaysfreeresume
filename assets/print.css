@@ -46,7 +46,7 @@
     }
 }
 
-@page letterpage {
+@page {
     size: letter portrait;
     margin: 1in;
 }
