@@ -74,7 +74,14 @@ Print and export stuff will go here. It will be complicated.
     </div>
 
     <div class="column">
-        <div class="box page-box m-4" x-data="{ boxwidth: 0 }" x-resize="boxwidth = $width" :class="style.pagesize == 'letter' ? 'letter' : 'a4'" :style="style.pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}">
+        <div class="box page-box m-4"
+            x-data="{ boxwidth: 0, printing: false }"
+            x-resize="boxwidth = $width"
+            @beforeprint.window="printing = true"
+            @afterprint.window="printing = false"
+            :class="style.pagesize == 'letter' ? 'letter' : 'a4'"
+            :style="printing ? {height: '100%'} : (style.pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
+        >
             <div class="page" :style="style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}">
                 <template x-for="section in order">
                     <section x-data="{current: sections[section]}" x-show="!current.skipped">
