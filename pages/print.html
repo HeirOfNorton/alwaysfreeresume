@@ -3,6 +3,7 @@ layout: page
 title: Print and Export
 previous: /review/
 permalink: /print/
+extracss: print.css
 ---
 
 Print and export stuff will go here. It will be complicated.
@@ -35,11 +36,11 @@ Print and export stuff will go here. It will be complicated.
     },
 
     order:          $persist(resetOrder('standard')).as('order'),
-}">
+}" class="printcontainer">
 
-<div class="columns">
+<div class="columns printcontainer">
 
-    <div class="column" x-data="{opentab: 'page'}">
+    <div class="column noprint printcontainer" x-data="{opentab: 'page'}">
         <div class="block my-4 mx-auto">
             <p>Print & export buttons (might move these up)</p>
         </div>
@@ -74,7 +75,7 @@ Print and export stuff will go here. It will be complicated.
     </div>
 
     <div class="column">
-        <div class="box page-box m-4"
+        <div class="box page-box m-4 printcontainer"
             x-data="{ boxwidth: 0, printing: false }"
             x-resize="boxwidth = $width"
             @beforeprint.window="printing = true"

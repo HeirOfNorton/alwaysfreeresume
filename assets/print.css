@@ -1,0 +1,25 @@
+@media print {
+    header, footer, .noprint {
+        display: none !important;
+    }
+
+    main, .printcontainer {
+        all: revert;
+    }
+
+    .letter {
+        page: letterpage;
+    }
+
+    .a4 {
+        page: a4page;
+    }
+}
+
+@page letterpage {
+    size: letter portrait;
+}
+
+@page a4page {
+    size A4 portrait;
+}

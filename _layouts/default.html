@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ '/assets/bulma-steps.min.css' | absolute_url }}">
     <link rel="stylesheet" href="{{ '/assets/style.css' | absolute_url }}">
     {% if page.extracss %}<link rel="stylesheet" href="{{ page.extracss | prepend: '/assets/' | absolute_url }}">{% endif %}
-    {% if page.printcss %}<link rel="stylesheet" media="print" href="{{ page.printcss | prepend '/assets/' | absolute_url }}">{% endif %}
     {% for js in page.extrajs %}<script defer src="{{ js | prepend: '/assets/' | absolute_url }}"></script>{% endfor %}
     <script defer src="{{ '/assets/alpine-plugins.min.js' | absolute_url }}"></script>
     <script defer src="{{ '/assets/app.js' | absolute_url }}"></script>

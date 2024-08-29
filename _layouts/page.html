@@ -27,10 +27,10 @@ navpages:
         index: 8
 ---
 
-<div class="container is-max-widescreen px-4 my-5">
+<div class="container is-max-widescreen px-4 my-5 printcontainer">
 
 {% if page.navbar %}
-<div class="columns">
+<div class="columns noprint">
     <div class="block mx-5 column is-narrow is-hidden-mobile">
         <ul class="steps is-vertical is-short">
             {% for nav in layout.navpages %}
@@ -88,7 +88,7 @@ navpages:
 {% endcomment %}
 
 {% if page.previous %}
-    <div class="block is-size-5 my-3">
+    <div class="block is-size-5 my-3 noprint">
     <a href="{{ page.previous | relative_url }}">
         <span class="icon-text">
             <span class="icon">{% include icon.html i='left-long' %}</span>
