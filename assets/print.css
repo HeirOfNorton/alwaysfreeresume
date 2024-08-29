@@ -1,27 +1,28 @@
 
-.page-box {
-    --bulma-box-radius: 0;
-    --bulma-box-padding: 0;
-    overflow-y: hidden;
-    position: relative;
-}
+@media screen {
+    .page-box {
+        --bulma-box-radius: 0;
+        --bulma-box-padding: 0;
+        overflow-y: hidden;
+        position: relative;
+    }
 
-.page {
-    box-sizing: border-box;
-    position: absolute;
-    transform-origin: top left;
-}
+    .page {
+        box-sizing: border-box;
+        position: absolute;
+        transform-origin: top left;
+    }
 
-.letter .page {
-    width: 8.5in;
-    padding: .75in;
-}
+    .letter .page {
+        width: 8.5in;
+        padding: .75in;
+    }
 
-.a4 .page {
-    width: 210mm;
-    padding: 20mm;
+    .a4 .page {
+        width: 210mm;
+        padding: 20mm;
+    }
 }
-
 
 @media print {
     header, footer, .noprint {
@@ -47,10 +48,10 @@
 
 @page letterpage {
     size: letter portrait;
-    margin: 0;
+    margin: .75in;
 }
 
 @page a4page {
     size A4 portrait;
-    margin: 0;
+    margin: 20mm;
 }
