@@ -15,12 +15,34 @@
 
     .pageletter {
         width: 8.5in;
+    }
+
+    .pageletter.mgmedium {
         padding: .75in;
+    }
+
+    .pageletter.mgnarrow {
+        padding: .5in;
+    }
+
+    .pageletter.mgwide {
+        padding: 1in;
     }
 
     .pagea4 {
         width: 210mm;
+    }
+
+    .pagea4.mgmedium {
         padding: 20mm;
+    }
+
+    .pagea4.mgnarrow {
+        padding: 14mm;
+    }
+
+    .pagea4.mgwide {
+        padding: 24mm;
     }
 }
 
@@ -33,12 +55,28 @@
         all: revert !important;
     }
 
-    .pageletter {
+    .pageletter.mgmedium {
         page: letterpage;
     }
 
-    .pagea4 {
+    .pageletter.mgnarrow {
+        page: letterpagenarrow;
+    }
+
+    .pageletter.mgwide {
+        page: letterpagewide;
+    }
+
+    .pagea4.mgmedium {
         page: a4page;
+    }
+
+    .pagea4.mgnarrow {
+        page: a4pagenarrow;
+    }
+
+    .pagea4.mgwide {
+        page: a4pagewide;
     }
 
     .page {
@@ -51,7 +89,27 @@
     margin: .75in;
 }
 
+@page letterpagenarrow {
+    size: letter portrait;
+    margin: .5in;
+}
+
+@page letterpagewide {
+    size: letter portrait;
+    margin: 1in;
+}
+
 @page a4page {
     size A4 portrait;
     margin: 20mm;
+}
+
+@page a4pagenarrow {
+    size A4 portrait;
+    margin: 14mm;
+}
+
+@page a4pagewide {
+    size A4 portrait;
+    margin: 24mm;
 }

@@ -82,7 +82,7 @@ extracss: print.css
             @afterprint.window="printing = false"
             :style="printing || (style.pagesize == 'pageletter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
         >
-            <div class="page" :style="printing || (style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"
+            <div class="page" :style="printing || (style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"
                 :class="Object.values(style)"
             >
                 <template x-for="section in order">
