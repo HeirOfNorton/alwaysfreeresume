@@ -1,6 +1,7 @@
 
 // default css for the whole resume
 .page {
+    all: initial;
     line-height: normal;
 }
 
