@@ -44,14 +44,15 @@
     .page {
         scale: inherit;
     }
-}
 
-@page letterpage {
-    size: letter portrait;
-    margin: 1in;
-}
+    @page letterpage {
+        size: letter portrait;
+        margin: 1in;
+    }
 
-@page a4page {
-    size A4 portrait;
-    margin: 24mm;
+    @page a4page {
+        size A4 portrait;
+        margin: 24mm;
+    }
+
 }
