@@ -22,15 +22,17 @@ extracss: print.css
     },
 
     style: {
-        mainfont:   '',
-        headfont:   '',
-        topfont:    '',
-        topstyle:   '',
-        headstyle:  '',
-        itemstyle:  '',
-        liststyle:  '',
-        color:      'black',
-        pagesize:   'letter',
+        mainfont:   'maingeorgia',
+        fontsize:   'fontmedium',
+        headfont:   'headarial',
+        topfont:    'toparialblack',
+        topstyle:   'topcenter',
+        headstyle:  'headunderline',
+        itemstyle:  'itemstandard',
+        liststyle:  'listcolumns',
+        color:      'hlblack',
+        pagesize:   'pageletter',
+        margin:     'mgmedium',
     },
 
     order:          $persist(resetOrder('standard')).as('order'),
@@ -53,8 +55,8 @@ extracss: print.css
         <div class="box">
             <div x-show="opentab == 'page'">
                 <div class="buttons is-centered">
-                    <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'letter' || 'is-outlined'" @click="style.pagesize='letter'" >US Letter</button>
-                    <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'a4' || 'is-outlined'" @click="style.pagesize='a4'" >A4</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'pageletter' || 'is-outlined'" @click="style.pagesize='pageletter'" >US Letter</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.pagesize == 'pagea4' || 'is-outlined'" @click="style.pagesize='pagea4'" >A4</button>
                 </div>
             </div>
             <div x-show="opentab == 'contents'">
@@ -78,10 +80,11 @@ extracss: print.css
             x-resize="boxwidth = $width"
             @beforeprint.window="printing = true"
             @afterprint.window="printing = false"
-            :class="style.pagesize == 'letter' ? 'letter' : 'a4'"
             :style="printing || (style.pagesize == 'letter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
         >
-            <div class="page" :style="printing || (style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})">
+            <div class="page" :style="printing || (style.pagesize == 'letter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"
+                :class="Object.values(style)"
+            >
                 <template x-for="section in order">
                     <section x-data="{current: sections[section]}" x-show="!current.skipped">
                         <template x-if="current.type === 'contact'">

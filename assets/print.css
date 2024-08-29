@@ -13,12 +13,12 @@
         transform-origin: top left;
     }
 
-    .letter .page {
+    .pageletter {
         width: 8.5in;
         padding: .75in;
     }
 
-    .a4 .page {
+    .pagea4 {
         width: 210mm;
         padding: 20mm;
     }
@@ -33,11 +33,11 @@
         all: revert !important;
     }
 
-    .letter .page {
+    .pageletter {
         page: letterpage;
     }
 
-    .a4 .page {
+    .pagea4 {
         page: a4page;
     }
 
