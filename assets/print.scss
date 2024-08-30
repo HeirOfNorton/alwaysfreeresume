@@ -1,113 +1,121 @@
+---
+---
 
-/* default css for the whole resume */
-.page * {
-    line-height: normal !important;
+// default styles for the whole resume
+.page {
+    * {
+        line-height: normal !important;
+    }
+
+    h2 {
+        margin-block-start: 1.5em;
+    }
+
+    h3 {
+        margin-block-start: 1em;
+    }
+
+    h4 {
+        margin-block-start: .75em;
+    }
+
+    h1, h2, h3, h4, ul, .items .item {
+        break-after: avoid-page;
+        page-break-after: avoid;
+    }
 }
 
-.page h2 {
-    margin-block-start: 1.5em;
-}
+$Georgia: Georgia, 'Times New Roman', Times, serif;
+$Arial: Arial, Helvetica, sans-serif;
+$ArialBlack: Arial Black, Arial Bold, Gadget, sans-serif;
 
-.page h3 {
-    margin-block-start: 1em;
-}
-
-.page h4 {
-    margin-block-start: .75em;
-}
-
-.page h1, .page h2, .page h3, .page h4 {
-    break-after: avoid-page;
-    page-break-after: avoid;
-}
-
-.page ul, .page .items .item {
-    break-inside: avoid-page;
-    page-break-inside: avoid;
-}
-
-/* main font family */
+// main font family
 .maingeorgia {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: $Georgia;
 }
 
-/* font sizes */
+// font sizes
 .fontmedium {
     font-size: 12pt;
+
+    h1 {
+        font-size: 20pt;
+    }
+
+    h2 {
+        font-size: 16pt;
+    }
 }
 
-.fontmedium h1 {
-    font-size: 20pt;
+// Header font fomily
+
+.headarial {
+    h2, h3, h4 {
+        font-family: $Arial;
+    }
+
+    h2, h3 {
+        font-weight: bold;
+    }
+
+    h4 {
+        font-style: italic;
+    }
 }
 
-.fontmedium h2 {
-    font-size: 16pt;
+// Metadata font family
+
+.toparialblack {
+    .address, .communication, .contact h1 {
+        font-family: $ArialBlack;
+    }
 }
 
-/* Header font fomily */
-.headarial h2, .headarial h3, .headarial h4 {
-    font-family: Arial, Helvetica, sans-serif;
+// Metadata style
+
+.topcenter {
+    .address, .communication, .contact h1 {
+        text-align: center;
+    }
+
+    .contact h1 {
+        margin-block-end: .5em;
+    }
+
+    .contact .address span:not(:last-of-type):after {
+        content: ", ";
+    }
+
+    .contact .communication span:not(:last-of-type):after {
+        content: " | ";
+    }
 }
 
-.headarial h2, .headarial h3 {
-    font-weight: bold;
-}
-
-.headarial h4 {
-    font-style: italic;
-}
-
-/* Metadata font family */
-
-.toparialblack .address, .toparialblack .communication {
-    font-family: Arial Black,Arial Bold,Gadget,sans-serif;
-}
-
-.toparialblack .contact h1 {
-    font-family: Arial Black,Arial Bold,Gadget,sans-serif;
-}
-
-/* Metadata style */
-.topcenter .address, .topcenter .communication {
-    text-align: center;
-}
-
-.topcenter .contact h1 {
-    text-align: center;
-    margin-block-end: .75em;
-}
-
-.topcenter .contact .address span:not(:last-child):after {
-    content:', ';
-}
-
-.topcenter .contact .communication span:not(:last-child):after {
-    content: ' | ';
-}
-
-/* Heading style */
+// Heading style
 .headunderline h2 {
     text-decoration: underline;
 }
 
-/* Item style */
+// Item style
 .itemstandard {
 
 }
 
-/* Short list style */
+// Short list style
 .listcolumns .list ul {
     list-style-type: disc;
     list-style-position: inside;
     columns: 3;
 }
 
-/* Highlight (if any) color */
+// Highlight (if any) color
 .hlblack {
 
 }
 
 
+
+// Resets, page sizes and margins for the resume as a whole
 
 @media screen {
     .page-box {
