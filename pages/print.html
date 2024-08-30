@@ -41,8 +41,10 @@ extracss: print.css
 <div class="columns printcontainer">
 
     <div class="column noprint" x-data="{opentab: 'page'}">
-        <div class="block my-4 mx-auto">
-            <p>Print & export buttons (might move these up)</p>
+        <div class="block my-4 mx-auto buttons is-centered">
+            <button class="button is-primary is-large" @click="window.print()">Print</button>
+            <button class="button is-primary is-large is-disabled">Download Word Document</button>
+            <button class="button is-primary is-large is-disabled">Download PDF</button>
         </div>
         <div class="tabs is-boxed is-centered">
             <ul>
