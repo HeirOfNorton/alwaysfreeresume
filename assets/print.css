@@ -49,7 +49,7 @@
 
 /* Metadata font family */
 
-.toparialblack .address {
+.toparialblack .address, .toparialblack .communication {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
@@ -58,7 +58,7 @@
 }
 
 /* Metadata style */
-.topcenter .address {
+.topcenter .address, .topcenter .communication {
     text-align: center;
 }
 
