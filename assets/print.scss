@@ -118,8 +118,8 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
             float: left;
         }
 
-        .org + .loc {
-            &::after {
+        .org ~ .loc {
+            &::before {
                 content: ", ";
             }
         }
