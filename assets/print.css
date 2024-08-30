@@ -48,11 +48,11 @@
 }
 
 // Metadata font family
-.toparialblack .fullname {
+.toparialblack .address {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
-.toparialblack .addressline {
+.toparialblack .fullname {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
