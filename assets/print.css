@@ -67,11 +67,11 @@
     margin-block-end: .75em;
 }
 
-.topcenter .contact .addressline:not(:last-child):after {
+.topcenter .contact .address span:not(:last-child):after {
     content:', ';
 }
 
-.topcenter .contact .communication > span:not(:last-child):after {
+.topcenter .contact .communication span:not(:last-child):after {
     content: ' | ';
 }
 
