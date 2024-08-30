@@ -1,5 +1,5 @@
 
-// default css for the whole resume
+/* default css for the whole resume */
 .page * {
     line-height: normal !important;
 }
@@ -16,12 +16,12 @@
     margin-block-start: .75em;
 }
 
-// main font family
+/* main font family */
 .maingeorgia {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-// font sizes
+/* font sizes */
 .fontmedium {
     font-size: 12pt;
 }
@@ -34,7 +34,7 @@
     font-size: 16pt;
 }
 
-// Header font fomily
+/* Header font fomily */
 .headarial h2, .headarial h3, .headarial h4 {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -47,7 +47,7 @@
     font-style: italic;
 }
 
-// Metadata font family
+/* Metadata font family */
 
 .toparialblack .address {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
@@ -57,7 +57,7 @@
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
-// Metadata style
+/* Metadata style */
 .topcenter .addressline {
     text-align: center;
 }
@@ -71,24 +71,24 @@
     content:', ';
 }
 
-// Heading style
+/* Heading style */
 .headunderline h2 {
     text-decoration: underline;
 }
 
-// Item style
+/* Item style */
 .itemstandard {
 
 }
 
-// Short list style
+/* Short list style */
 .listcolumns .list ul {
     list-style-type; disc;
     list-style-position: inside;
     columns: 3;
 }
 
-// Highlight (if any) color
+/* Highlight (if any) color */
 .hlblack {
 
 }
