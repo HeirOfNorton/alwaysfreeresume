@@ -169,16 +169,16 @@ extracss: print.css
                                             <template x-if="item.dates.end || item.dates.current || item.dates.start">
                                                 <p class="dates">
                                                     <template x-if="item.dates.start && item.dates.current">
-                                                        <span x-text="item.dates.start + ' – Current' "></span>
+                                                        <span x-text="dateString(item.dates.start) + ' – Current' "></span>
                                                     </template>
                                                     <template x-if="item.dates.current && item.dates.end && !item.dates.start">
-                                                        <span x-text="'Anticipated ' + item.dates.end"></span>
+                                                        <span x-text="'Anticipated ' + dateString(item.dates.end)"></span>
                                                     </template>
                                                     <template x-if="item.dates.start && item.dates.end && !item.dates.current">
-                                                        <span x-text="item.dates.start + ' – ' + item.dates.end"></span>
+                                                        <span x-text="dateString(item.dates.start) + ' – ' + dateString(item.dates.end)"></span>
                                                     </template>
                                                     <template x-if="item.dates.end && !item.dates.current && !item.dates.start">
-                                                        <span x-text="item.dates.end"></span>
+                                                        <span x-text="dateString(item.dates.end)"></span>
                                                     </template>
                                                 </p>
                                             </template>
