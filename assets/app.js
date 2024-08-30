@@ -225,7 +225,7 @@ function resetOrder(order) {
 }
 
 function showprint() {
-    window.print()l
+    window.print();
 }
 
 document.addEventListener('alpine:init', () => {
