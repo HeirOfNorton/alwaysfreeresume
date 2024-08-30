@@ -112,20 +112,55 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
             display: table;
         }
 
-        margin-block-end: .25em;
+        margin-block-end: .5em;
 
-        .subitems ul {
-            list-style-type: disc;
-            list-style-position: inside;
+        .org + .loc ::after {
+            content: ", ";
+        }
+
+        .org, .loc {
+            font-style: italic;
+        }
+
+        .loc {
+            display: inline;
+        }
+
+        .dates {
+            font-weight: bold;
+            float: right;
+        }
+
+        .subitems {
+            ul {
+                list-style-type: disc;
+                list-style-position: outside;
+            }
+
+            li {
+                margin-left: 2em;
+            }
+
+            h4 {
+                display: none;
+            }
         }
     }
 }
 
 // Short list style
-.listcolumns .list ul {
-    list-style-type: disc;
-    list-style-position: inside;
-    columns: 3;
+.listcolumns {
+    .list { 
+        ul {
+            list-style-type: disc;
+            list-style-position: outside;
+            columns: 3;
+        }
+
+        li {
+            margin-left: 1.5em;
+        }
+    }
 }
 
 // Highlight (if any) color
