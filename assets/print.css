@@ -16,6 +16,16 @@
     margin-block-start: .75em;
 }
 
+.page h1, .page h2, .page h3, .page h4 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+}
+
+.page ul {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+}
+
 /* main font family */
 .maingeorgia {
     font-family: Georgia, 'Times New Roman', Times, serif;
