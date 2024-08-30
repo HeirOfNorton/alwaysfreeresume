@@ -53,16 +53,16 @@
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
-.toparialblack .fullname {
+.toparialblack .contact h1 {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
 /* Metadata style */
-.topcenter .addressline {
+.topcenter .address {
     text-align: center;
 }
 
-.topcenter .fullname {
+.topcenter .contact h1 {
     text-align: center;
     margin-block-end: .75em;
 }
@@ -83,7 +83,7 @@
 
 /* Short list style */
 .listcolumns .list ul {
-    list-style-type; disc;
+    list-style-type: disc;
     list-style-position: inside;
     columns: 3;
 }
