@@ -8,16 +8,17 @@
     }
 
     h2 {
-        margin-block-start: 1.5em;
-    }
-
-    h3 {
         margin-block-start: 1em;
+        margin-block-end: .5em;
     }
 
-    h4 {
-        margin-block-start: .75em;
-    }
+//    h3 {
+//        margin-block-start: 1em;
+//    }
+
+//    h4 {
+//        margin-block-start: .75em;
+//    }
 
     h1, h2, h3, h4, ul, .items .item {
         break-after: avoid-page;
@@ -27,7 +28,7 @@
 
 $Georgia: Georgia, 'Times New Roman', Times, serif;
 $Arial: Arial, Helvetica, sans-serif;
-$ArialBlack: Arial Black, Arial Bold, Gadget, sans-serif;
+$ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
 
 // main font family
 .maingeorgia {
