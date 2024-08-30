@@ -106,7 +106,7 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
 .itemstandard {
     .item {
         //clearfix
-        ::after {
+        &::after {
             clear: both;
             content: "";
             display: table;
@@ -114,15 +114,16 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
 
         margin-block-end: .5em;
 
-        .org + .loc ::after {
+        .item-description {
+            float: left;
+        }
+
+        .org + .loc::after {
             content: ", ";
         }
 
         .org, .loc {
             font-style: italic;
-        }
-
-        .loc {
             display: inline;
         }
 
