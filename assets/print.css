@@ -71,7 +71,7 @@
     content:', ';
 }
 
-.topcent .contact .communication > span:not(:last-child):after {
+.topcenter .contact .communication > span:not(:last-child):after {
     content: ' | ';
 }
 
