@@ -91,125 +91,125 @@ extracss: print.css
             @afterprint.window="printing = false"
             :style="printing || (style.pagesize == 'pageletter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
         >
-            <div id="pagebox" :style="printing || (style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"></div>
+            <div class="page" :style="printing || (style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"
+                :class="Object.values(style)"
+            >
+                <template x-for="section in order">
+                    <section x-data="{current: sections[section]}" x-show="!current.skipped">
+                        <template x-if="current.type === 'contact'">
+                            <div class="contact">
+                                <h1 class="fullname" x-text="current.fullname"></h1>
+                                <p class="address">
+                                    <template x-if="current.address.line1">
+                                        <span class="addressline" x-text="current.address.line1"></span>
+                                    </template>
+                                    <template x-if="current.address.line2">
+                                        <span class="addressline" x-text="current.address.line2"></span>
+                                    </template>
+                                    <template x-if="current.address.city || current.address.state || current.address.zip">
+                                        <span class="addressline">
+                                            <template x-if="current.address.city">
+                                                <span class="city" x-text="current.address.city"></span>
+                                            </template>
+                                            <template x-if="current.address.state">
+                                                <span class="state" x-text="current.address.state"></span>
+                                            </template>
+                                            <template x-if="current.address.zip">
+                                                <span class="zip" x-text="current.address.zip"></span>
+                                            </template>
+                                        </span>
+                                    </template>
+                                </p>
+                                <p class="communication">
+                                    <template x-if="current.phone">
+                                        <span class="phone" x-text="current.phone"></span>
+                                    </template>
+                                    <template x-if="current.email">
+                                        <span class="email" x-text="current.email"></span>
+                                    </template>
+                                    <template x-if="current.website">
+                                        <span class="website" x-text="current.website"></span>
+                                    </template>
+                                </p>
+                            </div>
+                        </template>
+                        <template x-if="current.type === 'summary'">
+                            <div class="summary">
+                                <h2 x-text="current.title"></h2>
+                                <p x-text="current.contents"></p>
+                            </div>
+                        </template>
+                        <template x-if="current.type === 'list'">
+                            <div class="list">
+                                <h2 x-text="current.title"></h2>
+                                <ul>
+                                    <template x-for="item in current.items">
+                                        <li x-text="item"></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                        <template x-if="current.type === 'items'">
+                            <div class="items">
+                                <h2 x-text="current.title"></h2>
+                                <template x-for="item in current.items">
+                                    <div class="item">
+                                        <div class="item-block">
+                                            <div class="item-description">
+                                                <h3 x-text="item.title"></h3>
+                                                <template x-if="item.org || item.loc">
+                                                    <div class="item-org">
+                                                        <template x-if="item.org">
+                                                            <p class="org" x-text="item.org"></p>
+                                                        </template>
+                                                        <template x-if="item.loc">
+                                                            <p class="loc" x-text="item.loc"></p>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                            <template x-if="item.dates.end || item.dates.current || item.dates.start">
+                                                <p class="dates">
+                                                    <template x-if="item.dates.start && item.dates.current">
+                                                        <span x-text="dateString(item.dates.start) + ' – Current' "></span>
+                                                    </template>
+                                                    <template x-if="item.dates.current && item.dates.end && !item.dates.start">
+                                                        <span x-text="'Anticipated ' + dateString(item.dates.end)"></span>
+                                                    </template>
+                                                    <template x-if="item.dates.start && item.dates.end && !item.dates.current">
+                                                        <span x-text="dateString(item.dates.start) + ' – ' + dateString(item.dates.end)"></span>
+                                                    </template>
+                                                    <template x-if="item.dates.end && !item.dates.current && !item.dates.start">
+                                                        <span x-text="dateString(item.dates.end)"></span>
+                                                    </template>
+                                                </p>
+                                            </template>
+                                        </div>
+                                        <template x-if="current.subtitle && (item.subitems[0]!='' || item.subitems.length > 1)">
+                                            <div class="subitems">
+                                                <h4 x-text="current.subtitle"></h4>
+                                                <ul>
+                                                    <template x-for="subitem in item.subitems">
+                                                        <li x-text="subitem"></li>
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </section>
+                </template>
+            </div>
         </div>
     </div>
 
 
 </div>
 
-<div id="printpage"></div>
 
-<template x-teleport="#printpage, #pagebox">
-    <div class="page" :class="Object.values(style)">
-        <template x-for="section in order">
-            <section x-data="{current: sections[section]}" x-show="!current.skipped">
-                <template x-if="current.type === 'contact'">
-                    <div class="contact">
-                        <h1 class="fullname" x-text="current.fullname"></h1>
-                        <p class="address">
-                            <template x-if="current.address.line1">
-                                <span class="addressline" x-text="current.address.line1"></span>
-                            </template>
-                            <template x-if="current.address.line2">
-                                <span class="addressline" x-text="current.address.line2"></span>
-                            </template>
-                            <template x-if="current.address.city || current.address.state || current.address.zip">
-                                <span class="addressline">
-                                    <template x-if="current.address.city">
-                                        <span class="city" x-text="current.address.city"></span>
-                                    </template>
-                                    <template x-if="current.address.state">
-                                        <span class="state" x-text="current.address.state"></span>
-                                    </template>
-                                    <template x-if="current.address.zip">
-                                        <span class="zip" x-text="current.address.zip"></span>
-                                    </template>
-                                </span>
-                            </template>
-                        </p>
-                        <p class="communication">
-                            <template x-if="current.phone">
-                                <span class="phone" x-text="current.phone"></span>
-                            </template>
-                            <template x-if="current.email">
-                                <span class="email" x-text="current.email"></span>
-                            </template>
-                            <template x-if="current.website">
-                                <span class="website" x-text="current.website"></span>
-                            </template>
-                        </p>
-                    </div>
-                </template>
-                <template x-if="current.type === 'summary'">
-                    <div class="summary">
-                        <h2 x-text="current.title"></h2>
-                        <p x-text="current.contents"></p>
-                    </div>
-                </template>
-                <template x-if="current.type === 'list'">
-                    <div class="list">
-                        <h2 x-text="current.title"></h2>
-                        <ul>
-                            <template x-for="item in current.items">
-                                <li x-text="item"></li>
-                            </template>
-                        </ul>
-                    </div>
-                </template>
-                <template x-if="current.type === 'items'">
-                    <div class="items">
-                        <h2 x-text="current.title"></h2>
-                        <template x-for="item in current.items">
-                            <div class="item">
-                                <div class="item-block">
-                                    <div class="item-description">
-                                        <h3 x-text="item.title"></h3>
-                                        <template x-if="item.org || item.loc">
-                                            <div class="item-org">
-                                                <template x-if="item.org">
-                                                    <p class="org" x-text="item.org"></p>
-                                                </template>
-                                                <template x-if="item.loc">
-                                                    <p class="loc" x-text="item.loc"></p>
-                                                </template>
-                                            </div>
-                                        </template>
-                                    </div>
-                                    <template x-if="item.dates.end || item.dates.current || item.dates.start">
-                                        <p class="dates">
-                                            <template x-if="item.dates.start && item.dates.current">
-                                                <span x-text="dateString(item.dates.start) + ' – Current' "></span>
-                                            </template>
-                                            <template x-if="item.dates.current && item.dates.end && !item.dates.start">
-                                                <span x-text="'Anticipated ' + dateString(item.dates.end)"></span>
-                                            </template>
-                                            <template x-if="item.dates.start && item.dates.end && !item.dates.current">
-                                                <span x-text="dateString(item.dates.start) + ' – ' + dateString(item.dates.end)"></span>
-                                            </template>
-                                            <template x-if="item.dates.end && !item.dates.current && !item.dates.start">
-                                                <span x-text="dateString(item.dates.end)"></span>
-                                            </template>
-                                        </p>
-                                    </template>
-                                </div>
-                                <template x-if="current.subtitle && (item.subitems[0]!='' || item.subitems.length > 1)">
-                                    <div class="subitems">
-                                        <h4 x-text="current.subtitle"></h4>
-                                        <ul>
-                                            <template x-for="subitem in item.subitems">
-                                                <li x-text="subitem"></li>
-                                            </template>
-                                        </ul>
-                                    </div>
-                                </template>
-                            </div>
-                        </template>
-                    </div>
-                </template>
-            </section>
-        </template>
-    </div>
-</template>
+
+
 
 </div>
