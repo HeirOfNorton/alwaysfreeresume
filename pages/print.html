@@ -38,7 +38,7 @@ extracss: print.css
 
         order:          $persist(resetOrder('standard')).as('order'),
 
-        printing; false,
+        printing: false,
     }"
     class="printcontainer"
     @beforeprint.window="printing = true"
