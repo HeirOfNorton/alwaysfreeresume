@@ -21,7 +21,7 @@
     page-break-after: avoid;
 }
 
-.page ul {
+.page ul, .page .items .item {
     break-inside: avoid-page;
     page-break-inside: avoid;
 }
@@ -210,16 +210,16 @@
 }
 
 @page a4page {
-    size A4 portrait;
+    size: A4 portrait;
     margin: 20mm;
 }
 
 @page a4pagenarrow {
-    size A4 portrait;
+    size: A4 portrait;
     margin: 14mm;
 }
 
 @page a4pagewide {
-    size A4 portrait;
+    size: A4 portrait;
     margin: 24mm;
 }
