@@ -224,6 +224,10 @@ function resetOrder(order) {
     }
 }
 
+function showprint() {
+    window.print()l
+}
+
 document.addEventListener('alpine:init', () => {
     Alpine.bind('listable', () => ({
         'contenteditable': true,
