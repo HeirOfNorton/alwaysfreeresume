@@ -20,9 +20,14 @@
 //        margin-block-start: .75em;
 //    }
 
-    h1, h2, h3, h4, ul, .items .item {
+    h1, h2, h3, h4 {
         break-after: avoid-page;
         page-break-after: avoid;
+    }
+
+    ul, .items .item {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
     }
 }
 
@@ -99,7 +104,21 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
 
 // Item style
 .itemstandard {
+    .item {
+        //clearfix
+        ::after {
+            clear: both;
+            content: "";
+            display: table;
+        }
 
+        margin-block-end: .25em;
+
+        .subitems ul {
+            list-style-type: disc;
+            list-style-position: inside;
+        }
+    }
 }
 
 // Short list style

@@ -178,7 +178,7 @@ extracss: print.css
                                             </template>
                                         </div>
                                         <template x-if="current.subtitle && (item.subitems[0]!='' || item.subitems.length > 1)">
-                                            <div>
+                                            <div class="subitems">
                                                 <h4 x-text="current.subtitle"></h4>
                                                 <ul>
                                                     <template x-for="subitem in item.subitems">
