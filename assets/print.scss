@@ -254,7 +254,11 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
     }
 
     .page {
-        scale: inherit;
+        scale: 100% !important;
+    }
+
+    .page-box {
+        height: auto !important;
     }
 }
 
