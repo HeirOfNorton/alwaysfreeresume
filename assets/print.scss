@@ -88,11 +88,11 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
         margin-block-end: .5em;
     }
 
-    .contact .address span:not(:last-of-type):after {
+    .contact .address span:not(:last-of-type)::after {
         content: ", ";
     }
 
-    .contact .communication span:not(:last-of-type):after {
+    .contact .communication span:not(:last-of-type)::after {
         content: " | ";
     }
 }
@@ -118,10 +118,8 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
             float: left;
         }
 
-        .org ~ .loc {
-            &::before {
-                content: ", ";
-            }
+        .item-org p:not(:last-of-type)::after {
+            content: ", ";
         }
 
         .org, .loc {
