@@ -106,7 +106,7 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
 .itemstandard {
     .item {
         //clearfix
-        item-block::after {
+        .item-block::after {
             clear: both;
             content: "";
             display: table;
