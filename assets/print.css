@@ -67,8 +67,12 @@
     margin-block-end: .75em;
 }
 
-.topcenter .contact .address span+span:after {
+.topcenter .contact .addressline:not(:last-child):after {
     content:', ';
+}
+
+.topcent .contact .communication > span:not(:last-child):after {
+    content: ' | ';
 }
 
 /* Heading style */
