@@ -38,11 +38,8 @@ extracss: print.css
 
         order:          $persist(resetOrder('standard')).as('order'),
 
-        printing: false,
     }"
     class="printcontainer"
-    @beforeprint.window="printing = true"
-    @afterprint.window="printing = false"
 >
 
 <div class="columns printcontainer">
@@ -94,9 +91,9 @@ extracss: print.css
         <div class="box page-box m-4 printcontainer"
             x-data="{ boxwidth: 0 }"
             x-resize="boxwidth = $width"
-            :style="printing || (style.pagesize == 'pageletter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
+            :style="style.pagesize == 'pageletter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}"
         >
-            <div class="page" :style="printing || (style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"
+            <div class="page" :style="style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}"
                 :class="Object.values(style)"
             >
                 <template x-for="section in order">
