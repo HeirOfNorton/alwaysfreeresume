@@ -48,21 +48,21 @@
 }
 
 // Metadata font family
-.toparialblack .contact h1 {
+.toparialblack .fullname {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
-.toparialblack .contact .address {
+.toparialblack .addressline {
     font-family: Arial Black,Arial Bold,Gadget,sans-serif;
 }
 
 // Metadata style
-.topcenter .contact .address {
+.topcenter .addressline {
     text-align: center;
 }
 
-.topcenter .contact h1 {
-    text-aling: center;
+.topcenter .fullname {
+    text-align: center;
     margin-block-end: .75em;
 }
 

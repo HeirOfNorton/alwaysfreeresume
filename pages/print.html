@@ -96,7 +96,7 @@ extracss: print.css
                     <section x-data="{current: sections[section]}" x-show="!current.skipped">
                         <template x-if="current.type === 'contact'">
                             <div class="contact">
-                                <h1 x-text="current.fullname"></h1>
+                                <h1 class="fullname" x-text="current.fullname"></h1>
                                 <p class="address">
                                     <template x-if="current.address.line1">
                                         <span class="addressline" x-text="current.address.line1"></span>
