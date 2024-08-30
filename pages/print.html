@@ -6,43 +6,50 @@ permalink: /print/
 extracss: print.css
 ---
 
-<div x-data="{
-    sections:       {
-        contact:        $persist(blankForm('Contact', false)).as('contact'),
-        summary:        $persist(blankForm('Summary', false)).as('summary'),
-        experience:     $persist(blankForm('Experience', false)).as('experience'),
-        education:      $persist(blankForm('Education', false)).as('education'),
-        projects:       $persist(blankForm('Projects', false)).as('projects'),
-        activities:     $persist(blankForm('Activities', false)).as('activities'),
-        skills:         $persist(blankForm('Skills', false)).as('skills'),
-        proskills:      $persist(blankForm('Professional Skills', false)).as('proskills'),
-        certifications: $persist(blankForm('Certifications', false)).as('certifications'),
-        awards:         $persist(blankForm('Awards', false)).as('awards'),
-        languages:      $persist(blankForm('Languages', false)).as('languages'),
-    },
+<div
+    x-data="{
+        sections:       {
+            contact:        $persist(blankForm('Contact', false)).as('contact'),
+            summary:        $persist(blankForm('Summary', false)).as('summary'),
+            experience:     $persist(blankForm('Experience', false)).as('experience'),
+            education:      $persist(blankForm('Education', false)).as('education'),
+            projects:       $persist(blankForm('Projects', false)).as('projects'),
+            activities:     $persist(blankForm('Activities', false)).as('activities'),
+            skills:         $persist(blankForm('Skills', false)).as('skills'),
+            proskills:      $persist(blankForm('Professional Skills', false)).as('proskills'),
+            certifications: $persist(blankForm('Certifications', false)).as('certifications'),
+            awards:         $persist(blankForm('Awards', false)).as('awards'),
+            languages:      $persist(blankForm('Languages', false)).as('languages'),
+        },
 
-    style: {
-        mainfont:   'maingeorgia',
-        fontsize:   'fontmedium',
-        headfont:   'headarial',
-        topfont:    'toparialblack',
-        topstyle:   'topcenter',
-        headstyle:  'headunderline',
-        itemstyle:  'itemstandard',
-        liststyle:  'listcolumns',
-        color:      'hlblack',
-        pagesize:   'pageletter',
-        margin:     'mgmedium',
-    },
+        style: {
+            mainfont:   'maingeorgia',
+            fontsize:   'fontmedium',
+            headfont:   'headarial',
+            topfont:    'toparialblack',
+            topstyle:   'topcenter',
+            headstyle:  'headunderline',
+            itemstyle:  'itemstandard',
+            liststyle:  'listcolumns',
+            color:      'hlblack',
+            pagesize:   'pageletter',
+            margin:     'mgmedium',
+        },
 
-    order:          $persist(resetOrder('standard')).as('order'),
-}" class="printcontainer">
+        order:          $persist(resetOrder('standard')).as('order'),
+
+        printing = false;
+    }"
+    class="printcontainer"
+    @beforeprint.window="printing = true"
+    @afterprint.window="printing = false"
+>
 
 <div class="columns printcontainer">
 
     <div class="column noprint" x-data="{opentab: 'page'}">
         <div class="block my-4 mx-auto buttons is-centered">
-            <button class="button is-primary is-large" @click="window.print()">Print</button>
+            <button class="button is-primary is-large" @click="printing=false; window.print(); printing=true;">Print</button>
             <button class="button is-primary is-large is-disabled">Download Word Document</button>
             <button class="button is-primary is-large is-disabled">Download PDF</button>
         </div>
@@ -85,10 +92,8 @@ extracss: print.css
 
     <div class="column">
         <div class="box page-box m-4 printcontainer"
-            x-data="{ boxwidth: 0, printing: false }"
+            x-data="{ boxwidth: 0 }"
             x-resize="boxwidth = $width"
-            @beforeprint.window="printing = true"
-            @afterprint.window="printing = false"
             :style="printing || (style.pagesize == 'pageletter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'})"
         >
             <div class="page" :style="printing || (style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794})"
