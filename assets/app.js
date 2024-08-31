@@ -273,7 +273,34 @@ function makeDocxStyles (classlist) {
 function makeDocxFlags (classlist) {
     const flags = {};
 
-    return flags
+    if (classlist.contains('pageletter')) {
+        flags.pagesize = {
+            width: 12240,
+            height: 15840,
+        };
+        if (classlist.contains('mgmedium')) {
+            flags.margin = 1080;
+        } else if (classlist.contains('mgnarrow')) {
+            flags.margin = 720;
+        } else if (classlist.contains('mgwide')) {
+            flags.margin = 1440;
+        }
+    }
+    if (classlist.contains('pagea4')) {
+        flags.pagesize = {
+            width: 11906,
+            height: 16838,
+        };
+        if (classlist.contains('mgmedium')) {
+            flags.margin = 1134;
+        } else if (classlist.contains('mgnarrow')) {
+            flags.margin = 794;
+        } else if (classlist.contains('mgwide')) {
+            flags.margin = 1361;
+        }
+    }
+
+    return flags;
 }
 
 function makeDocxStack () {
@@ -287,7 +314,29 @@ function makeDocxStack () {
             }
         ],
         currentsection: 0,
-        
+        add: function (elem) {
+            if (Array.isArray(elem)) {
+                this.sectionstack[this.currentsection].push(...elem);
+            } else {
+                this.sectionstack[this.currentsection].push(elem);
+            }
+        },
+        setPage: function (pgsize, mg) {
+            const page = {
+                size: {
+                    width: pgsize.width,
+                    height: pgsize.height
+                },
+                margin: {
+                    top: mg,
+                    left: mg,
+                    bottom: mg,
+                    right: mg
+                }
+            }
+            this.sectionstack[0].properties.page = page;
+        }
+
 
 
     };
@@ -322,13 +371,12 @@ function saveWordDoc (elem) {
     const properties = {};
     const stack = makeDocxStack();
 
-    stack.setPage(flags.pagesize, flags.margins);
+    stack.setPage(flags.pagesize, flags.margin);
 
     for (const sect of elem.children) {
         if (sect.nodeName === "SECTION" && window.getComputedStyle(elem, null).display != "none" ) {
             for (const inner of sect.children) {
                 if (inner.nodeName === "DIV") {
-                    stack.addSection(inner);
                 }
             }
         }
