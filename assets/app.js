@@ -251,3 +251,51 @@ document.addEventListener('alpine:init', () => {
 }       )`,
     }));
 });
+
+function makeDocxStyles (classlist) {
+
+}
+
+function makeDocxStack (classlist) {
+
+}
+
+function makeDocxContacts (stack, elem) {
+
+}
+
+function makeDocxHeading (elem) {
+
+}
+
+function makeDocxSummary (stack, elem) {
+
+}
+
+function makeDocxList (stack, elem) {
+
+}
+
+function makeDocxItems (stack, elem) {
+
+}
+
+function saveWordDoc (elem) {
+    console.log("Hello from saveWordDoc.");
+
+    // Create the Styles and set flags/variables for anything needed later
+    const styles = makeDocxStyles(elem.classList);
+    const stack = makeDocxStack(elem.classList);
+
+    for (const sect of elem.children) {
+        if (sect.nodeName === "SECTION" && window.getComputedStyle(elem, null).display != "none" ) {
+            for (const inner of sect.children) {
+                if (inner.nodeName === "DIV") {
+                    stack.addSection(inner);
+                }
+            }
+        }
+    }
+
+    // combine the styles, doc metadata, and document stack into a final word doc a download it
+}

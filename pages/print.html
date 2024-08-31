@@ -4,6 +4,7 @@ title: Print and Export
 previous: /review/
 permalink: /print/
 extracss: print.css
+extrajs: ['docx.min.js']
 ---
 
 <div
@@ -47,7 +48,7 @@ extracss: print.css
     <div class="column noprint" x-data="{opentab: 'page'}">
         <div class="block my-4 mx-auto buttons is-centered">
             <button class="button is-primary is-large" @click="showprint()">Print</button>
-            <button class="button is-primary is-large is-light" disabled>Download Word Document (soon)</button>
+            <button class="button is-primary is-large" @click="saveWordDoc($refs.page)">Download Word Document (soon)</button>
         </div>
         <div class="tabs is-boxed is-centered">
             <ul>
@@ -92,7 +93,7 @@ extracss: print.css
             x-resize="boxwidth = $width"
             :style="style.pagesize == 'pageletter' ? {height: boxwidth * (22/17) + 'px'} : {height: boxwidth * (297/210) + 'px'}"
         >
-            <div class="page" :style="style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}"
+            <div class="page" x-ref="page" :style="style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}"
                 :class="Object.values(style)"
             >
                 <template x-for="section in order">
