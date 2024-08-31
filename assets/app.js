@@ -253,11 +253,44 @@ document.addEventListener('alpine:init', () => {
 });
 
 function makeDocxStyles (classlist) {
+    const tempStyles = {};
 
+    const docstyles = {
+        default: [
+
+        ],
+        paragraphStyles: [
+
+        ],
+        characterStyles: [
+
+        ],
+    }
+
+    return docstyles;
 }
 
-function makeDocxStack (classlist) {
+function makeDocxFlags (classlist) {
+    const flags = {};
 
+    return flags
+}
+
+function makeDocxStack () {
+    return {
+        sectionstack: [
+            {
+                properties: {
+                    type: SectionType.CONTINUOUS,
+                },
+                children: []
+            }
+        ],
+        currentsection: 0,
+        
+
+
+    };
 }
 
 function makeDocxContacts (stack, elem) {
@@ -285,7 +318,11 @@ function saveWordDoc (elem) {
 
     // Create the Styles and set flags/variables for anything needed later
     const styles = makeDocxStyles(elem.classList);
-    const stack = makeDocxStack(elem.classList);
+    const flags = makeDocxFlags(elem.classList);
+    const properties = {};
+    const stack = makeDocxStack();
+
+    stack.setPage(flags.pagesize, flags.margins);
 
     for (const sect of elem.children) {
         if (sect.nodeName === "SECTION" && window.getComputedStyle(elem, null).display != "none" ) {
