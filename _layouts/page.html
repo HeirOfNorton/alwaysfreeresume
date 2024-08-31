@@ -50,43 +50,6 @@ navpages:
     <div class="column">
 {% endif %}
 
-{% comment %}
-{% if page.navbar %}
-    <div class="is-hidden-mobile block my-5 container">
-        <nav class="breadcrumb is-centered is-small has-line-separator" aria-label="breadcrumb">
-            <ul>
-                {% for nav in layout.navpages %}
-                    {% if nav.index < page.navbar %}
-                        <li>
-                            <a href="{{ nav.url | relative_url }}">
-                                <button class="button is-primary is-small is-rounded">
-                                    <span class="icon">{% include icon.html i='check' %}</span>
-                                    <span>{{ nav.title }}</span>
-                                </button>
-                            </a>
-                        </li>
-                    {% elsif nav.index == page.navbar %}
-                        <li class="is-active">
-                            <button class="button is-rounded is-black is-outlined">
-                                {{ nav.title }}
-                            </button>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a href="{{ nav.url | relative_url }}">
-                                <button class="button is-link is-light is-small is-rounded">
-                                    <span>{{ nav.title }}</span>
-                                </button>
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </nav>
-    </div>
-{% endif %}
-{% endcomment %}
-
 {% if page.previous %}
     <div class="block is-size-5 my-3 noprint">
     <a href="{{ page.previous | relative_url }}">
