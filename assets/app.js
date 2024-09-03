@@ -388,10 +388,25 @@ function saveWordDoc (elemid) {
 
     stack.setPage(flags.pagesize, flags.margin);
 
+    console.log(stack.sectionstack);
     for (const sect of elem.children) {
         if (sect.nodeName === "SECTION" && window.getComputedStyle(elem, null).display != "none" ) {
             for (const inner of sect.children) {
                 if (inner.nodeName === "DIV") {
+                    switch (inner.className) {
+                        case 'contact':
+                            console.log("Contact Info");
+                            break;
+                        case 'summary':
+                            console.log("Summary Paragraph");
+                            break;
+                        case 'list':
+                            console.log("Short List");
+                            break;
+                        case 'items':
+                            console.log("Detailed Item list");
+                            break;
+                    }
                 }
             }
         }
