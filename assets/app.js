@@ -357,23 +357,23 @@ function makeDocxStack () {
     };
 }
 
-function makeDocxContacts (stack, elem) {
-
+function makeDocxContacts (stack, elem, flags) {
+    return 'Temp Name';
 }
 
 function makeDocxHeading (elem) {
 
 }
 
-function makeDocxSummary (stack, elem) {
+function makeDocxSummary (stack, elem, flags) {
 
 }
 
-function makeDocxList (stack, elem) {
+function makeDocxList (stack, elem, flags) {
 
 }
 
-function makeDocxItems (stack, elem) {
+function makeDocxItems (stack, elem, flags) {
 
 }
 
@@ -388,23 +388,25 @@ function saveWordDoc (elemid) {
 
     stack.setPage(flags.pagesize, flags.margin);
 
-    console.log(stack.sectionstack);
     for (const sect of elem.children) {
         if (sect.nodeName === "SECTION" && window.getComputedStyle(sect, null).display != "none" ) {
             for (const inner of sect.children) {
                 if (inner.nodeName === "DIV") {
                     switch (inner.className) {
                         case 'contact':
-                            console.log("Contact Info");
+                            var name = makeDocxContacts(stack, inner, flags);
+                            properties.creator = name;
+                            properties.title = name + "'s Resume";
+                            console.log(properties);
                             break;
                         case 'summary':
-                            console.log("Summary Paragraph");
+                            makeDocxSummary(stack, inner, flags);
                             break;
                         case 'list':
-                            console.log("Short List");
+                            makeDocxList(stack, inner, flags);
                             break;
                         case 'items':
-                            console.log("Detailed Item list");
+                            makeDocxItems(stack, inner, flags);
                             break;
                     }
                 }
