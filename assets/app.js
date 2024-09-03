@@ -390,7 +390,7 @@ function saveWordDoc (elemid) {
 
     console.log(stack.sectionstack);
     for (const sect of elem.children) {
-        if (sect.nodeName === "SECTION" && window.getComputedStyle(elem, null).display != "none" ) {
+        if (sect.nodeName === "SECTION" && window.getComputedStyle(sect, null).display != "none" ) {
             for (const inner of sect.children) {
                 if (inner.nodeName === "DIV") {
                     switch (inner.className) {
