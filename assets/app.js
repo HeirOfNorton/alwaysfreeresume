@@ -308,7 +308,7 @@ function makeDocxStack () {
         sectionstack: [
             {
                 properties: {
-                    type: SectionType.CONTINUOUS,
+                    type: docx.SectionType.CONTINUOUS,
                 },
                 children: []
             }
@@ -335,7 +335,22 @@ function makeDocxStack () {
                 }
             }
             this.sectionstack[0].properties.page = page;
+        },
+        changeColumns: function (numcols) {
+            this.sectionstack.push({
+                properties: {
+                    type: docx.SectionType.CONTINUOUS,
+                    column: {
+                        count: numcols,
+                        equalWidth: true,
+                        separate: false,
+                        space: numcols > 1 ? 360 : 0,
+                    }
+                }
+            });
+            this.currentsection++;
         }
+
 
 
 
