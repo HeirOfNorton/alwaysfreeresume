@@ -362,8 +362,8 @@ function makeDocxItems (stack, elem) {
 
 }
 
-function saveWordDoc (elem) {
-    console.log("Hello from saveWordDoc.");
+function saveWordDoc (elemid) {
+    const elem = document.getElementById(elemid);
 
     // Create the Styles and set flags/variables for anything needed later
     const styles = makeDocxStyles(elem.classList);
