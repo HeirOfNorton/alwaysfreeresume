@@ -253,12 +253,71 @@ document.addEventListener('alpine:init', () => {
 });
 
 function makeDocxStyles (classlist) {
-    const tempStyles = {};
+    const tempStyles = {
+        title: {
+
+        },
+        address: {
+
+        },
+        header: {
+
+        },
+        summary: {
+
+        },
+        listitem: {
+
+        },
+        item_title: {
+
+        },
+        item_org: {
+
+        },
+        item_date: {
+
+        },
+        item_subtitle: {
+
+        },
+        item_subitems: {
+
+        },
+    };
+
+    if (classlist.contains('maingeorgia')){
+        if (classlist.contains('fontlarge')) {
+
+        } else if (classlist.contains(fontsmall)) {
+
+        } else /* fontmedium */ {
+
+        }
+    }
+
+
+    if (classlist.contains('headarial')){
+        if (classlist.contains('fontlarge')) {
+
+        } else if (classlist.contains(fontsmall)) {
+
+        } else /* fontmedium */ {
+
+        }
+    }
+
+    if (classlist.contains('toparialblack')){
+        if (classlist.contains('fontlarge')) {
+
+        } else if (classlist.contains(fontsmall)) {
+
+        } else /* fontmedium */ {
+
+        }
+    }
 
     const docstyles = {
-        default: [
-
-        ],
         paragraphStyles: [
 
         ],
@@ -298,6 +357,17 @@ function makeDocxFlags (classlist) {
         } else if (classlist.contains('mgwide')) {
             flags.margin = 1361;
         }
+    }
+    if ( classlist.contains('topcenter')) {
+        flags.run_address_together = true;
+    }
+    if (classlist.contains('listcolumns')) {
+        flags.listcolumns = 3;
+    }
+    if (classlist.contains('itemstandard')) {
+        flags.item_org_run_together = true;
+        flags.item_date_tab_right = true;
+        flags.item_skip_subtitle = true;
     }
 
     return flags;
