@@ -146,7 +146,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                 <h2 x-text="current.title"></h2>
                                 <ul>
                                     <template x-for="(item, index) in current.items">
-                                        <li x-text="(style.listsyle === 'listcolumns' && index > 0 ? ', ' : '') + item"></li>
+                                        <li x-text="(style.listsyle === 'inlinecolumns' && index > 0 ? ', ' : '') + item"></li>
                                     </template>
                                 </ul>
                             </div>

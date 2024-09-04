@@ -581,7 +581,7 @@ function makeDocxContacts (stack, elem, flags) {
             fullname = e.innerText;
             stack.add(new docx.Paragraph({
                 text: fullname,
-                style: 'Title',
+                heading: docx.HeadingLevel.TITLE,
             }));
         } else {
             if (flags.run_address_together) {
@@ -604,16 +604,43 @@ function makeDocxContacts (stack, elem, flags) {
     return fullname;
 }
 
-function makeDocxHeading (elem) {
-
-}
-
 function makeDocxSummary (stack, elem, flags) {
-
+    stack.add(new docx.Paragraph({
+        text: elem.children[0].innerText,
+        heading: docx.HeadingLevel.HEADING_1,
+    }));
+    stackk.add)new docx.Paragraph({
+        text: elem.children[1].innerText,
+        style: 'Summary',
+    });
 }
 
 function makeDocxList (stack, elem, flags) {
+    stack.add(new docx.Paragraph({
+        text: elem.children[0].innerText,
+        heading: docx.HeadingLevel.HEADING_1,
+    }));
 
+    if (flags.listcolumns) {
+        stack.changeColumns(flags.listcolumns);
+    }
+
+    for (li of elem.children[1].children) {
+        if (li.nodeName === 'LI') {
+            stack.add(new docx.Paragraph({
+                text: li.innerText,
+                numbering: {
+                    reference: 'list-item',
+                    level: 0,
+                },
+                style: 'ListItem',
+            }));
+        }
+    }
+
+    if (flags.listcolumns) {
+        stack.changeColumns(1);
+    }
 }
 
 function makeDocxItems (stack, elem, flags) {
