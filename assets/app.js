@@ -432,7 +432,7 @@ function makeDocxStyles (classlist) {
         //numbering: {},
         styles: {
             default: defaultstyles,
-        //    paragraphStyles: parastyles,
+            paragraphStyles: parastyles,
         //    characterStyles: runstyles,
         },
     }
