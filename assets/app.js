@@ -253,43 +253,45 @@ document.addEventListener('alpine:init', () => {
 });
 
 function makeDocxStyles (classlist) {
-    const tempStyles = {
-        title: {
+    
+    const body = {
 
-        },
-        address: {
+    };
+    const title = {
 
-        },
-        header: {
+    };
+    const address = {
 
-        },
-        summary: {
+    };
+    const header = {
 
-        },
-        listitem: {
+    };
+    const summary = {
 
-        },
-        item_title: {
+    };
+    const listitem = {
 
-        },
-        item_org: {
+    };
+    const item_title = {
 
-        },
-        item_date: {
+    };
+    const item_org = {
 
-        },
-        item_subtitle: {
+    };
+    const item_date = {
 
-        },
-        item_subitems: {
+    };
+    const item_subtitle = {
 
-        },
+    };
+    const item_subitems = {
+
     };
 
     if (classlist.contains('maingeorgia')){
         if (classlist.contains('fontlarge')) {
 
-        } else if (classlist.contains(fontsmall)) {
+        } else if (classlist.contains('fontsmall')) {
 
         } else /* fontmedium */ {
 
@@ -300,7 +302,7 @@ function makeDocxStyles (classlist) {
     if (classlist.contains('headarial')){
         if (classlist.contains('fontlarge')) {
 
-        } else if (classlist.contains(fontsmall)) {
+        } else if (classlist.contains('fontsmall')) {
 
         } else /* fontmedium */ {
 
@@ -310,7 +312,7 @@ function makeDocxStyles (classlist) {
     if (classlist.contains('toparialblack')){
         if (classlist.contains('fontlarge')) {
 
-        } else if (classlist.contains(fontsmall)) {
+        } else if (classlist.contains('fontsmall')) {
 
         } else /* fontmedium */ {
 
@@ -416,7 +418,8 @@ function makeDocxStack () {
                         separate: false,
                         space: numcols > 1 ? 360 : 0,
                     }
-                }
+                },
+                children: []
             });
             this.currentsection++;
         }
@@ -485,4 +488,5 @@ function saveWordDoc (elemid) {
     }
 
     // combine the styles, doc metadata, and document stack into a final word doc a download it
+    docx.
 }
