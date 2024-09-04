@@ -497,9 +497,9 @@ function makeDocxStack () {
         currentsection: 0,
         add: function (elem) {
             if (Array.isArray(elem)) {
-                this.sectionstack[this.currentsection].push(...elem);
+                this.sectionstack[this.currentsection].children.push(...elem);
             } else {
-                this.sectionstack[this.currentsection].push(elem);
+                this.sectionstack[this.currentsection].children.push(elem);
             }
         },
         setPage: function (pgsize, mg) {
