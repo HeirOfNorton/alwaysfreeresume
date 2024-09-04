@@ -609,10 +609,10 @@ function makeDocxSummary (stack, elem, flags) {
         text: elem.children[0].innerText,
         heading: docx.HeadingLevel.HEADING_1,
     }));
-    stackk.add)new docx.Paragraph({
+    stackk.add(new docx.Paragraph({
         text: elem.children[1].innerText,
         style: 'Summary',
-    });
+    }));
 }
 
 function makeDocxList (stack, elem, flags) {
