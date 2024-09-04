@@ -575,8 +575,33 @@ function makeDocxStack () {
 }
 
 function makeDocxContacts (stack, elem, flags) {
-    stack.add(new docx.Paragraph('This is a test'));
-    return 'Temp Name';
+    var fullname;
+    for (e of elem.children) {
+        if (e.classList.contains('fullname')) {
+            fullname = e.innerText;
+            stack.push(new docx.Paragraph({
+                text: fullname,
+                style: 'Title',
+            }));
+        } else {
+            if (flags.run_address_together) {
+                stack.push(new docx.Paragraph({
+                    text: e.innerText,
+                    style: 'Address',
+                }));
+            } else {
+                for (child of e.children) {
+                    if (child,nodeName === "SPAN") {
+                        stack.push(new docx.Paragraph({
+                            text: child.innerText,
+                            style: 'Address',
+                        }));
+                    }
+                }
+            }
+        }
+    }
+    return fullname;
 }
 
 function makeDocxHeading (elem) {
