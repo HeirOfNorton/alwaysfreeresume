@@ -429,7 +429,7 @@ function makeDocxStyles (classlist) {
     }
 
     const docstyles = {
-        //numbering: {},
+        numbering: {},
         styles: {
             default: defaultstyles,
             paragraphStyles: parastyles,
@@ -602,7 +602,7 @@ function saveWordDoc (elemid) {
     const docfile = new docx.Document({
         ...properties,
         styles: styles.styles,
-        //numbering: styles.numbering,
+        numbering: styles.numbering,
         sections: stack.sectionstack,
     });
     docx.Packer.toBlob(docfile).then((blob) => {
