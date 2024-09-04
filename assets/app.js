@@ -253,79 +253,188 @@ document.addEventListener('alpine:init', () => {
 });
 
 function makeDocxStyles (classlist) {
-    
-    const body = {
+    const defaultstyles = {
+        document: {
+            run: {
 
-    };
-    const title = {
+            },
+            paragraph: {
 
-    };
+            },
+        },
+        title: {
+            run: {
+
+            },
+            paragraph: {
+
+            },
+        },
+        heading1: {
+            run: {
+
+            },
+            paragraph: {
+
+            },
+        },
+        heading2: {
+            run: {
+
+            },
+            paragraph: {
+
+            },
+        },
+        heading3: {
+            run: {
+
+            },
+            paragraph: {
+
+            },
+        },
+        heading4: {
+            run: {
+
+            },
+            paragraph: {
+
+            },
+        },
+        listParagraph: {
+            run: {
+
+            },
+            paragraph: {
+
+            },
+        }
+    }
     const address = {
-
-    };
-    const header = {
-
+        id: 'Address',
+        name: 'Address',
+        basedOn: 'Normal',
+        next: 'Address',
+        quickStyle: true,
+        run: {},
+        paragraph: {},
     };
     const summary = {
+        id: 'Summary',
+        name: 'Summary',
+        basedOn: 'Normal',
+        next: 'Summary',
+        quickStyle: true,
+        run: {},
+        paragraph: {},
 
     };
     const listitem = {
-
-    };
-    const item_title = {
+        id: 'ListItem',
+        name: 'List Item',
+        basedOn: 'ListParagraph',
+        next: 'ListItem',
+        quickStyle: true,
+        run: {},
+        paragraph: {},
 
     };
     const item_org = {
+        id: 'Organization',
+        name: 'Organization',
+        basedOn: 'Normal',
+        next: 'Organization',
+        quickStyle: true,
+        run: {},
+        paragraph: {},
 
     };
     const item_date = {
+        id: 'Date',
+        name: 'Date',
+        basedOn: 'Normal',
+        next: 'Date',
+        quickStyle: true,
+        run: {},
+        paragraph: {},
 
     };
-    const item_subtitle = {
+    const item_subitem = {
+        id: 'SubItems',
+        name: 'Sub Items',
+        basedOn: 'List Paragraph',
+        next: 'SubItems',
+        quickStyle: true,
+        run: {},
+        paragraph: {},
 
     };
-    const item_subitems = {
 
-    };
+    const parastyles = [address, summary, item_org, listitem, item_subitem];
+    const runstyles = [];
 
     if (classlist.contains('maingeorgia')){
-        if (classlist.contains('fontlarge')) {
-
-        } else if (classlist.contains('fontsmall')) {
-
-        } else /* fontmedium */ {
-
-        }
+        defaultstyles.document.run.font = "Georgia";
     }
 
 
     if (classlist.contains('headarial')){
-        if (classlist.contains('fontlarge')) {
-
-        } else if (classlist.contains('fontsmall')) {
-
-        } else /* fontmedium */ {
-
-        }
+        defaultstyles.heading1.run.font = "Arial";
+        defaultstyles.heading2.run.font = "Arial";
+        defaultstyles.heading3.run.font = "Arial";
     }
 
     if (classlist.contains('toparialblack')){
-        if (classlist.contains('fontlarge')) {
+        defaultstyles.title.run.font = "Arial Black";
+        address.run.font = 'Arial Black';
+    }
 
-        } else if (classlist.contains('fontsmall')) {
+    if (classlist.contains('fontlarge')) {
 
-        } else /* fontmedium */ {
+    } else if (classlist.contains('fontsmall')) {
 
-        }
+    } else /* fontmedium */ {
+        defaultstyles.document.run.size = 24;
+        defaultstyles.title.run.size = 40;
+        defaultstyles.heading1.run.size = 32;
+    }
+
+    if (classlist.contains('topcenter')) {
+        defaultstyles.title.paragraph.alignment = 'center';
+        defaultstyles.title.paragraph.spacing = {after: 360};
+        address.paragraph.alignment = 'center';
+
+    } else {
+
+    }
+
+    if (classlist.contains('headunderline')) {
+        defaultstyles.heading1.run.bold = true;
+        defaultstyles.heading1.run.underline = {};
+    } else {
+
+    }
+    
+    if (classlist.contains('listcolumns')) {
+
+    } else {
+
+    }
+
+    if (classlist.contains('itemstandard')) {
+
+    } else {
+
     }
 
     const docstyles = {
-        paragraphStyles: [
-
-        ],
-        characterStyles: [
-
-        ],
+        numbering: {},
+        styles: {
+            default: defaultstyles,
+            paragraphStyles: parastyles,
+            characterStyles: runstyles,
+        },
     }
 
     return docstyles;
@@ -431,6 +540,7 @@ function makeDocxStack () {
 }
 
 function makeDocxContacts (stack, elem, flags) {
+    stack.add(new docx.Paragraph(This is a test));
     return 'Temp Name';
 }
 
@@ -491,7 +601,7 @@ function saveWordDoc (elemid) {
     
     const docfile = new docx.Document({
         ...properties,
-        //styles: styles,
+        ...styles,
         sections: stack.sectionstack,
     });
     docx.Packer.toBlob(docfile).then((blob) => {
