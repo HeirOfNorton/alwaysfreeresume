@@ -103,16 +103,13 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                 <h1 class="fullname" x-text="current.fullname"></h1>
                                 <p class="address">
                                     <template x-if="current.address.line1">
-                                        <span class="addressline" x-text="current.address.line1 + (style.topstyle === 'topcenter' && (current.address.line2 || current.address.city || current.address.state || current.address.zip)) ? ', ' : '' "></span>
+                                        <span class="addressline" x-text="current.address.line1 + (style.topstyle === 'topcenter' && (current.address.line2 || current.address.city || current.address.state || current.address.zip) ? ', ' : '') "></span>
                                     </template>
                                     <template x-if="current.address.line2">
-                                        <span class="addressline" x-text="current.address.line2 + (style.topstyle === 'topcenter' && (current.address.city || current.address.state || current.address.zip)) ? ', ' : ''"></span>
+                                        <span class="addressline" x-text="current.address.line2 + (style.topstyle === 'topcenter' && (current.address.city || current.address.state || current.address.zip) ? ', ' : '')"></span>
                                     </template>
                                     <template x-if="current.address.city || current.address.state || current.address.zip">
                                         <span class="addressline">
-                                            <template x-if="style.topstyle === 'topcenter'">
-                                                <span>, </span>
-                                            </template>
                                             <template x-if="current.address.city">
                                                 <span class="city" x-text="current.address.city + ', '"></span>
                                             </template>
