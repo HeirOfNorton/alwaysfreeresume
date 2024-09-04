@@ -135,14 +135,14 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
         }
 
         .subitems {
-            ul {
-                list-style-type: disc;
-                list-style-position: outside;
-            }
+            //ul {
+            //    list-style-type: disc;
+            //    list-style-position: outside;
+            //}
 
-            li {
-                margin-left: 2em;
-            }
+            //li {
+            //    margin-left: 2em;
+            //}
 
             h4 {
                 display: none;
@@ -151,17 +151,22 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
     }
 }
 
+.listdisc {
+    ul {
+        list-style-type: disc;
+        list-style-position: outside;
+    }
+
+    li {
+        margin-left: .25in;
+    }
+}
+
 // Short list style
 .listcolumns {
     .list { 
         ul {
-            list-style-type: disc;
-            list-style-position: outside;
             columns: 3;
-        }
-
-        li {
-            margin-left: 1.5em;
         }
     }
 }

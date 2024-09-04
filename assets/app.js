@@ -371,6 +371,36 @@ function makeDocxStyles (classlist) {
 
     };
 
+    const list_numbering = {
+        reference: "list-item",
+        levels: [{
+            level: 0,
+            format: LevelFormat.BULLET,
+            text: "-",
+            alignment: AlignmentType.LEFT,
+            style: {
+                paragraph: {
+                    indent: { left: convertInchesToTwip(0.5), hanging: convertInchesToTwip(0.25) },
+                },
+            },
+        }],
+    };
+
+    const subitem_numbering = {
+        reference: 'subitem',
+        levels: [{
+            level: 0,
+            format: LevelFormat.BULLET,
+            text: "-",
+            alignment: AlignmentType.LEFT,
+            style: {
+                paragraph: {
+                    indent: { left: convertInchesToTwip(0.5), hanging: convertInchesToTwip(0.25) },
+                },
+            },
+        }],
+    };
+
     const parastyles = [address, summary, item_org, listitem, item_subitem];
     const runstyles = [];
 
@@ -415,6 +445,11 @@ function makeDocxStyles (classlist) {
     } else {
 
     }
+
+    if (classlist.contains('listdisc')) {
+        list_numbering.levels[0].text = "\u25CF";
+        subitem_numbering.levels[0].text = "\u25CF";
+    }
     
     if (classlist.contains('listcolumns')) {
 
@@ -429,7 +464,7 @@ function makeDocxStyles (classlist) {
     }
 
     const docstyles = {
-        numbering: {},
+        numbering: {config: [list_numbering, subitem_numbering]},
         styles: {
             default: defaultstyles,
             paragraphStyles: parastyles,
