@@ -431,9 +431,9 @@ function makeDocxStyles (classlist) {
     const docstyles = {
         numbering: {},
         styles: {
-            default: defaultstyles,
-            paragraphStyles: parastyles,
-            characterStyles: runstyles,
+        //    default: defaultstyles,
+        //    paragraphStyles: parastyles,
+        //    characterStyles: runstyles,
         },
     }
 
@@ -601,7 +601,7 @@ function saveWordDoc (elemid) {
     
     const docfile = new docx.Document({
         ...properties,
-        //...styles,
+        ...styles,
         sections: stack.sectionstack,
     });
     docx.Packer.toBlob(docfile).then((blob) => {
