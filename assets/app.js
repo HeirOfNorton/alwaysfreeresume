@@ -579,20 +579,20 @@ function makeDocxContacts (stack, elem, flags) {
     for (e of elem.children) {
         if (e.classList.contains('fullname')) {
             fullname = e.innerText;
-            stack.push(new docx.Paragraph({
+            stack.add(new docx.Paragraph({
                 text: fullname,
                 style: 'Title',
             }));
         } else {
             if (flags.run_address_together) {
-                stack.push(new docx.Paragraph({
+                stack.add(new docx.Paragraph({
                     text: e.innerText,
                     style: 'Address',
                 }));
             } else {
                 for (child of e.children) {
                     if (child,nodeName === "SPAN") {
-                        stack.push(new docx.Paragraph({
+                        stack.add(new docx.Paragraph({
                             text: child.innerText,
                             style: 'Address',
                         }));
