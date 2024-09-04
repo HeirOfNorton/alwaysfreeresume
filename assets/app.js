@@ -488,5 +488,13 @@ function saveWordDoc (elemid) {
     }
 
     // combine the styles, doc metadata, and document stack into a final word doc a download it
-    docx.
+    
+    const docfile = new docx.Document({
+        ...properties,
+        //styles: styles,
+        sections: stack.sectionstack,
+    });
+    docx.Packer.toBlob(docfile).then((blob) => {
+        saveAs(blob, "resume.docx");
+    });
 }
