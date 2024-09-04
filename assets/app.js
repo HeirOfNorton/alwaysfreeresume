@@ -540,7 +540,7 @@ function makeDocxStack () {
 }
 
 function makeDocxContacts (stack, elem, flags) {
-    stack.add(new docx.Paragraph(This is a test));
+    stack.add(new docx.Paragraph('This is a test'));
     return 'Temp Name';
 }
 
