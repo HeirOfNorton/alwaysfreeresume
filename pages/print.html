@@ -106,28 +106,31 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                         <span class="addressline" x-text="current.address.line1"></span>
                                     </template>
                                     <template x-if="current.address.line2">
-                                        <span class="addressline" x-text="current.address.line2"></span>
+                                        <span class="addressline" x-text="(style.topstyle === 'topcenter' ? ', ' : '') + current.address.line2"></span>
                                     </template>
                                     <template x-if="current.address.city || current.address.state || current.address.zip">
                                         <span class="addressline">
+                                            <template x-if="style.topstyle === 'topcenter'">
+                                                <span>, </span>
+                                            </template>
                                             <template x-if="current.address.city">
-                                                <span class="city" x-text="current.address.city"></span>
+                                                <span class="city" x-text="current.address.city + ', '"></span>
                                             </template>
                                             <template x-if="current.address.state">
                                                 <span class="state" x-text="current.address.state"></span>
                                             </template>
                                             <template x-if="current.address.zip">
-                                                <span class="zip" x-text="current.address.zip"></span>
+                                                <span class="zip" x-text="' ' + current.address.zip"></span>
                                             </template>
                                         </span>
                                     </template>
                                 </p>
                                 <p class="communication">
                                     <template x-if="current.phone">
-                                        <span class="phone" x-text="current.phone"></span>
+                                        <span class="phone" x-text="current.phone + (style.topstyle === 'topcenter' && (current.email || current.website) ? ' | ' : '')"></span>
                                     </template>
                                     <template x-if="current.email">
-                                        <span class="email" x-text="current.email"></span>
+                                        <span class="email" x-text="current.email + (style.topstyle === 'topcenter' && current.website ? ' | ' : '')"></span>
                                     </template>
                                     <template x-if="current.website">
                                         <span class="website" x-text="current.website"></span>
@@ -145,8 +148,8 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                             <div class="list">
                                 <h2 x-text="current.title"></h2>
                                 <ul>
-                                    <template x-for="item in current.items">
-                                        <li x-text="item"></li>
+                                    <template x-for="(item, index) in current.items">
+                                        <li x-text="(style.listsyle === 'listcolumns' && index > 0 ? ', ' : '') + item"></li>
                                     </template>
                                 </ul>
                             </div>
@@ -162,7 +165,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                                 <template x-if="item.org || item.loc">
                                                     <div class="item-org">
                                                         <template x-if="item.org">
-                                                            <p class="org" x-text="item.org"></p>
+                                                            <p class="org" x-text="item.org + (style.itemstye === 'itemstandard' && item.loc ? ', ' : '')"></p>
                                                         </template>
                                                         <template x-if="item.loc">
                                                             <p class="loc" x-text="item.loc"></p>
