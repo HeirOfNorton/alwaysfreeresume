@@ -601,7 +601,7 @@ function saveWordDoc (elemid) {
     
     const docfile = new docx.Document({
         ...properties,
-        ...styles,
+        //...styles,
         sections: stack.sectionstack,
     });
     docx.Packer.toBlob(docfile).then((blob) => {
