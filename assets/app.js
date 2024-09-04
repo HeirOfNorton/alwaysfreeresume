@@ -375,12 +375,12 @@ function makeDocxStyles (classlist) {
         reference: "list-item",
         levels: [{
             level: 0,
-            format: LevelFormat.BULLET,
+            format: docx.LevelFormat.BULLET,
             text: "-",
-            alignment: AlignmentType.LEFT,
+            alignment: docx.AlignmentType.LEFT,
             style: {
                 paragraph: {
-                    indent: { left: convertInchesToTwip(0.5), hanging: convertInchesToTwip(0.25) },
+                    indent: { left: docx.convertInchesToTwip(0.5), hanging: docx.convertInchesToTwip(0.25) },
                 },
             },
         }],
@@ -390,12 +390,12 @@ function makeDocxStyles (classlist) {
         reference: 'subitem',
         levels: [{
             level: 0,
-            format: LevelFormat.BULLET,
+            format: docx.LevelFormat.BULLET,
             text: "-",
-            alignment: AlignmentType.LEFT,
+            alignment: docx.AlignmentType.LEFT,
             style: {
                 paragraph: {
-                    indent: { left: convertInchesToTwip(0.5), hanging: convertInchesToTwip(0.25) },
+                    indent: { left: docx.convertInchesToTwip(0.5), hanging: docx.convertInchesToTwip(0.25) },
                 },
             },
         }],
