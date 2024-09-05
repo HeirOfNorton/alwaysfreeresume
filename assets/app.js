@@ -259,7 +259,10 @@ function makeDocxStyles (classlist) {
 
             },
             paragraph: {
-
+                spacing: {
+                    line: 288,
+                    lineRule: 'auto',
+                }
             },
         },
         title: {
@@ -275,7 +278,10 @@ function makeDocxStyles (classlist) {
 
             },
             paragraph: {
-
+                spacing: {
+                    before: 240,
+                    after: 120,
+                }
             },
         },
         heading2: {
@@ -432,7 +438,7 @@ function makeDocxStyles (classlist) {
 
     if (classlist.contains('topcenter')) {
         defaultstyles.title.paragraph.alignment = 'center';
-        defaultstyles.title.paragraph.spacing = {after: 360};
+        defaultstyles.title.paragraph.spacing = {after: 120};
         address.paragraph.alignment = 'center';
 
     } else {
