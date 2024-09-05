@@ -361,10 +361,10 @@ function makeDocxStyles (classlist) {
 
     };
     const item_subitem = {
-        id: 'SubItems',
-        name: 'Sub Items',
+        id: 'SubItem',
+        name: 'Sub Item',
         basedOn: 'List Paragraph',
-        next: 'SubItems',
+        next: 'SubItem',
         quickStyle: true,
         run: {},
         paragraph: {},
@@ -637,7 +637,98 @@ function makeDocxList (stack, elem, flags) {
 }
 
 function makeDocxItems (stack, elem, flags) {
+    for (item of elem.children) {
+        if (item.nodeName === 'H2') {
+            stack.add(new docx.Paragraph({
+                text: item.innerText,
+                heading: docx.HeadingLevel.HEADING_1,
+            }));
+        } else if (item.nodeName === 'DIV') {
+            for (block of item.children) {
+                if (block.className === 'item-block') {
+                    var title, org, loc, dates;
+                    for (i of block.children) {
+                        if (i.className === 'item-description') {
+                            for (j of i.children) {
+                                if (j.nodeName === 'H3') {
+                                    title = j.innerText;
+                                } else if (j.className === 'item-org') {
+                                    for (k of j.children) {
+                                        if (k.className === 'org') {
+                                            org = k.innerText;
+                                        } else if (k.className === 'loc') {
+                                            loc = k.innerText;
+                                        }
+                                    }
+                                }
+                            }
+                        } else if (i.className === 'dates') {
+                            dates = i.innerText;
+                        }
+                    }
+                    const titleruns = [new docx.TextRun(title)];
+                    if (flags.item_date_tab_right && dates) {
+                        titleruns.push(new docx.Tab());
+                        titleruns.push(new docx.TextRun({
+                            text: dates,
+                            style: 'Date',
+                        }));
+                    }
+                    stack.add(new docx.Paragraph({
+                        heading: docx.HeadingLevel.HEADING_2,
+                        children: titleruns,
+                    }));
 
+                    if (flags.item_org_run_together && org && loc) {
+                        stack.add(new docx.Paragraph({
+                            text: org + loc,
+                            style: 'Organization',
+                        }));
+                    } else {
+                        if (org) {
+                            stack.add(new docx.Paragraph({
+                                text: org,
+                                style: 'Organization',
+                            }));
+                        }
+                        if (loc) {
+                            stack.add(new docx.Paragraph({
+                                text: loc,
+                                style: 'Organization',
+                            }));
+                        }
+                    }
+
+                    if (!flags.item_date_tab_right && dates) {
+                        stack.add(new docx.Paragraph({
+                            text: dates,
+                            style: 'Date',
+                        }));
+                    }
+
+                } else if (block.className === 'subitems') {
+                    if (!flags.item_skip_subtitle) {
+                        stack.add(new docx.Paragraph({
+                            text: block.children[0].innerText,
+                            heading: docx.HeadingLevel.HEADING_3,
+                        }));
+                    }
+                    for (subitem of block.children[1]) {
+                        if (subitem.nodeName === 'LI') {
+                            stack.add(new docx.Paragraph({
+                                text: subitem.innerText,
+                                numbering: {
+                                    reference: 'subitem',
+                                    level: 0,
+                                },
+                                style: 'SubItem',
+                            }));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 function saveWordDoc (elemid) {
