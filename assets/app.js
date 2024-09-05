@@ -519,16 +519,30 @@ function makeDocxFlags (classlist) {
     return flags;
 }
 
-function makeDocxStack () {
+function makeDocxSection (pgsize, margins) {
     return {
-        sectionstack: [
-            {
-                properties: {
-                    type: docx.SectionType.CONTINUOUS,
+        properties: {
+            type: docx.SectionType.CONTINUOUS,
+            page: {
+                size: {
+                    width: pgsize.width,
+                    height: pgsize.height
                 },
-                children: []
-            }
-        ],
+                margin: {
+                    top: margins,
+                    bottom: margins,
+                    left: margins,
+                    right: margins,
+                },
+            },
+        },
+        children: [],
+    };
+}
+
+function makeDocxStack (pgsize, margins) {
+    return {
+        sectionstack: [ makeDocsSection(pgsize, margins) ],
         currentsection: 0,
         add: function (elem) {
             if (Array.isArray(elem)) {
@@ -537,40 +551,19 @@ function makeDocxStack () {
                 this.sectionstack[this.currentsection].children.push(elem);
             }
         },
-        setPage: function (pgsize, mg) {
-            const page = {
-                size: {
-                    width: pgsize.width,
-                    height: pgsize.height
-                },
-                margin: {
-                    top: mg,
-                    left: mg,
-                    bottom: mg,
-                    right: mg
-                }
-            }
-            this.sectionstack[0].properties.page = page;
-        },
         changeColumns: function (numcols) {
-            this.sectionstack.push({
-                properties: {
-                    type: docx.SectionType.CONTINUOUS,
-                    column: {
-                        count: numcols,
-                        equalWidth: true,
-                        separate: false,
-                        space: numcols > 1 ? 360 : 0,
-                    }
-                },
-                children: []
-            });
+            var sect = makeDocxSection(pgsize, margins);
+            if (numcols > 1) {
+                sect.properties.column = {
+                    count: numcols,
+                    equalWidth: true,
+                    separate: false,
+                    space: 360,
+                };
+            }
+            this.sectionstack.push(sect);
             this.currentsection++;
         }
-
-
-
-
     };
 }
 
@@ -654,9 +647,7 @@ function saveWordDoc (elemid) {
     const styles = makeDocxStyles(elem.classList);
     const flags = makeDocxFlags(elem.classList);
     const properties = {};
-    const stack = makeDocxStack();
-
-    stack.setPage(flags.pagesize, flags.margin);
+    const stack = makeDocxStack(flags.pagesize, flags.margin);
 
     for (const sect of elem.children) {
         if (sect.nodeName === "SECTION" && window.getComputedStyle(sect, null).display != "none" ) {
