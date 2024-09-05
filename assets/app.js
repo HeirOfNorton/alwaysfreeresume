@@ -713,7 +713,7 @@ function makeDocxItems (stack, elem, flags) {
                             heading: docx.HeadingLevel.HEADING_3,
                         }));
                     }
-                    for (subitem of block.children[1]) {
+                    for (subitem of block.children[1].children) {
                         if (subitem.nodeName === 'LI') {
                             stack.add(new docx.Paragraph({
                                 text: subitem.innerText,
