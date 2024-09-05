@@ -458,7 +458,18 @@ function makeDocxStyles (classlist) {
     }
 
     if (classlist.contains('itemstandard')) {
+        item_date.run.bold = true;
+        item_date.run.font = defaultstyles.document.run.font;
+        item_date.paragraph = null;
+        runstyles.push(item_date);
 
+        item_org.run.italic = true;
+
+        heading2.run.bold = true;
+        heading2.tabstops: [{
+            type: docx.TabStopType.RIGHT,
+            position: docx.TabStopPosition.MAX,
+        }];
     } else {
 
     }
@@ -668,7 +679,7 @@ function makeDocxItems (stack, elem, flags) {
                     }
                     const titleruns = [new docx.TextRun(title)];
                     if (flags.item_date_tab_right && dates) {
-                        titleruns.push(new docx.Tab());
+                        titleruns.push(new docx.TextRun({children: [new docx.Tab()]}));
                         titleruns.push(new docx.TextRun({
                             text: dates,
                             style: 'Date',
