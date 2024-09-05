@@ -458,7 +458,6 @@ function makeDocxStyles (classlist) {
     }
 
     if (classlist.contains('itemstandard')) {
-        item_date.run.bold = true;
         item_date.run.font = defaultstyles.document.run.font;
         item_date.paragraph = null;
         runstyles.push(item_date);
@@ -466,7 +465,7 @@ function makeDocxStyles (classlist) {
         item_org.run.italic = true;
 
         defaultstyles.heading2.run.bold = true;
-        defaultstyles.heading2.tabstops = [{
+        defaultstyles.heading2.paragraph.tabstops = [{
             type: docx.TabStopType.RIGHT,
             position: docx.TabStopPosition.MAX,
         }];
