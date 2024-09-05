@@ -9,9 +9,8 @@ title: Always Free Resumé Builder
 description: >-
   blah blah
 
-# this is temporary while I develop on GH-pages. Will move to proper url later)
-baseurl: "/alwaysfreeresume"
-url: "https://heirofnorton.github.io"
+baseurl: ""
+url: "https://alwaysfreeresume.com"
 
 # defaults:
 #  -
