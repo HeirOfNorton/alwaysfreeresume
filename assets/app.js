@@ -542,7 +542,7 @@ function makeDocxSection (pgsize, margins) {
 
 function makeDocxStack (pgsize, margins) {
     return {
-        sectionstack: [ makeDocsSection(pgsize, margins) ],
+        sectionstack: [ makeDocxSection(pgsize, margins) ],
         currentsection: 0,
         add: function (elem) {
             if (Array.isArray(elem)) {
