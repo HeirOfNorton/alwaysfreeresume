@@ -465,8 +465,8 @@ function makeDocxStyles (classlist) {
 
         item_org.run.italic = true;
 
-        heading2.run.bold = true;
-        heading2.tabstops = [{
+        defaultstyles.heading2.run.bold = true;
+        defaultstyles.heading2.tabstops = [{
             type: docx.TabStopType.RIGHT,
             position: docx.TabStopPosition.MAX,
         }];
