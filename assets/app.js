@@ -260,7 +260,7 @@ function makeDocxStyles (classlist) {
             },
             paragraph: {
                 spacing: {
-                    line: 288,
+                    line: 276,
                     lineRule: 'auto',
                 }
             },
@@ -281,7 +281,7 @@ function makeDocxStyles (classlist) {
                 spacing: {
                     before: 240,
                     after: 120,
-                }
+                },
             },
         },
         heading2: {
@@ -297,7 +297,9 @@ function makeDocxStyles (classlist) {
 
             },
             paragraph: {
-
+                spacing: {
+                    before: 120,
+                },
             },
         },
         heading4: {
