@@ -462,10 +462,10 @@ function makeDocxStyles (classlist) {
         item_date.paragraph = null;
         runstyles.push(item_date);
 
-        item_org.run.italic = true;
+        item_org.run.italics = true;
 
         defaultstyles.heading2.run.bold = true;
-        defaultstyles.heading2.paragraph.tabstops = [{
+        defaultstyles.heading2.paragraph.tabStops = [{
             type: docx.TabStopType.RIGHT,
             position: docx.TabStopPosition.MAX,
         }];
