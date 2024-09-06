@@ -33,15 +33,6 @@
     }
 }
 
-$Georgia: Georgia, 'Times New Roman', Times, serif;
-$Arial: Arial, Helvetica, sans-serif;
-$ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
-
-// main font family
-.maingeorgia {
-    font-family: $Georgia;
-}
-
 // font sizes
 .fontmedium {
     font-size: 12pt;
@@ -55,29 +46,77 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
     }
 }
 
-// Header font fomily
+.fontsmall {
+    font-size: 10pt;
 
-.headarial {
+    h1 {
+        font-size: 18pt;
+    }
+
+    h2 {
+        font-size: 14pt;
+    }
+}
+
+.fontlarge {
+    font-size: 14pt;
+
+    h1 {
+        font-size: 22pt;
+    }
+
+    h2 {
+        font-size: 18pt;
+    }
+}
+
+$Georgia: Georgia, 'Times New Roman', Times, serif;
+$Arial: Arial, Helvetica, sans-serif;
+$ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
+$Calibri: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+$Impact: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+$Tahoma: Tahoma, Verdana, Segoe, sans-serif;
+$BookAntiqua: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+$Garamond: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+$Palatino: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+$Times: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+$Copperplate: Copperplate, "Copperplate Gothic Light", fantasy;
+$Papyrus: Papyrus, fantasy;
+$ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
+
+{% assign mainfonts = "Georgia,Arial,Calibri,Tahoma,BookAntiqua,Garamond,Palatino,Times,ComicSans" | split: "," %}
+{% assign headfonts = "Georgia,Arial,ArialBlack,Calibri,Impact,Tahoma,BookAntiqua,Garamond,Palatino,Times,Copperplate,Papyrus,ComicSans" | split: "," %}
+
+// main font family
+
+{% for font in mainfonts %}
+.main{{ font | downcase }} {
+    font-family: ${{ font }};
+}
+{% endfor %}
+
+// Header font fomily and Contact Info font family
+
+{% for font in headfonts %}
+.head{{ font | downcase }} {
     h2, h3, h4 {
-        font-family: $Arial;
-    }
-
-    h2, h3 {
-        font-weight: bold;
-    }
-
-    h4 {
-        font-style: italic;
+        font-family: ${{ font }};
     }
 }
 
-// Metadata font family
-
-.toparialblack {
+.top{{ font | downcase}} {
     .address, .communication, .contact h1 {
-        font-family: $ArialBlack;
+        font-family: ${{ font }};
     }
 }
+
+.topmatchdoc.head{{ font | downcase }} {
+    h1 {
+        font-family: ${{ font }};
+    }
+}
+
+{% endfor %}
 
 // Metadata style
 
@@ -102,6 +141,7 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
 // Heading style
 .headunderline h2 {
     text-decoration: underline;
+    font-weight: bold;
 }
 
 // Item style
@@ -118,6 +158,10 @@ $ArialBlack: "Arial Black", Arial Bold, Gadget, sans-serif;
 
         .item-description {
             float: left;
+        }
+        
+        .h3 {
+            font-weight: bold;
         }
 
         //.item-org p:not(:last-of-type)::after {

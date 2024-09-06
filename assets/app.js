@@ -414,24 +414,167 @@ function makeDocxStyles (classlist) {
 
     if (classlist.contains('maingeorgia')){
         defaultstyles.document.run.font = "Georgia";
+    } else if (classlist.contains('mainarial')){
+        defaultstyles.document.run.font = "Arial";
+    } else if (classlist.contains('maincalibri')){
+        defaultstyles.document.run.font = "Calibri";
+    } else if (classlist.contains('maintahoma')){
+        defaultstyles.document.run.font = "Tahoma";
+    } else if (classlist.contains('mainbookantiqua')){
+        defaultstyles.document.run.font = "Book Antiqua";
+    } else if (classlist.contains('maingaramond')){
+        defaultstyles.document.run.font = "Garamond";
+    } else if (classlist.contains('mainpalatino')){
+        defaultstyles.document.run.font = "Palatino Linotype";
+    } else if (classlist.contains('maincomicsans')){
+        defaultstyles.document.run.font = "Comic Sans MS";
     }
 
 
-    if (classlist.contains('headarial')){
+    if (classlist.contains('headgeorgia')){
+        defaultstyles.heading1.run.font = "Georgia";
+        defaultstyles.heading2.run.font = "Georgia";
+        defaultstyles.heading3.run.font = "Georgia";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Georgia";
+        }
+    } else if (classlist.contains('headarial')){
         defaultstyles.heading1.run.font = "Arial";
         defaultstyles.heading2.run.font = "Arial";
         defaultstyles.heading3.run.font = "Arial";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Arial";
+        }
+    } else if (classlist.contains('headarialblack')){
+        defaultstyles.heading1.run.font = "Arial Black";
+        defaultstyles.heading2.run.font = "Arial Black";
+        defaultstyles.heading3.run.font = "Arial Black";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Arial Black";
+        }
+    } else if (classlist.contains('headcalibri')){
+        defaultstyles.heading1.run.font = "Calibri";
+        defaultstyles.heading2.run.font = "Calibri";
+        defaultstyles.heading3.run.font = "Calibri";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Calibri";
+        }
+    } else if (classlist.contains('headimpact')){
+        defaultstyles.heading1.run.font = "Impact";
+        defaultstyles.heading2.run.font = "Impact";
+        defaultstyles.heading3.run.font = "Impact";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Impact";
+        }
+    } else if (classlist.contains('headtahoma')){
+        defaultstyles.heading1.run.font = "Tahoma";
+        defaultstyles.heading2.run.font = "Tahoma";
+        defaultstyles.heading3.run.font = "Tahoma";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Tahoma";
+        }
+    } else if (classlist.contains('headbookantiqua')){
+        defaultstyles.heading1.run.font = "Book Antiqua";
+        defaultstyles.heading2.run.font = "Book Antiqua";
+        defaultstyles.heading3.run.font = "Book Antiqua";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Book Antiqua";
+        }
+    } else if (classlist.contains('headgaramond')){
+        defaultstyles.heading1.run.font = "Garamond";
+        defaultstyles.heading2.run.font = "Garamond";
+        defaultstyles.heading3.run.font = "Garamond";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Garamond";
+        }
+    } else if (classlist.contains('headpalatino')){
+        defaultstyles.heading1.run.font = "Palatino Linotype";
+        defaultstyles.heading2.run.font = "Palatino Linotype";
+        defaultstyles.heading3.run.font = "Palatino Linotype";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Palatino Linotype";
+        }
+    } else if (classlist.contains('headtimes')){
+        defaultstyles.heading1.run.font = "Times New Roman";
+        defaultstyles.heading2.run.font = "Times New Roman";
+        defaultstyles.heading3.run.font = "Times New Roman";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Times New Roman";
+        }
+    } else if (classlist.contains('headcopperplate')){
+        defaultstyles.heading1.run.font = "Copperplate Gothic Light";
+        defaultstyles.heading2.run.font = "Copperplate Gothic Light";
+        defaultstyles.heading3.run.font = "Copperplate Gothic Light";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Copperplate Gothic Light";
+        }
+    } else if (classlist.contains('headpapyrus')){
+        defaultstyles.heading1.run.font = "Papyrus";
+        defaultstyles.heading2.run.font = "Papyrus";
+        defaultstyles.heading3.run.font = "Papyrus";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Papyrus";
+        }
+    } else if (classlist.contains('headcomicsans')){
+        defaultstyles.heading1.run.font = "Comic Sans MS";
+        defaultstyles.heading2.run.font = "Comic Sans MS";
+        defaultstyles.heading3.run.font = "Comic Sans MS";
+        if (classlist.contains('topmatchdoc')) {
+            defaultstyles.title.run.font = "Comic Sans MS";
+        }
     }
 
-    if (classlist.contains('toparialblack')){
+
+    if (classlist.contains('topgeorgia')) {
+        defaultstyles.title.run.font = "Georgia";
+        address.run.font = "Georgia";
+    } else if (classlist.contains('toparial')) {
+        defaultstyles.title.run.font = "Arial";
+        address.run.font = "Arial";
+    } else if (classlist.contains('toparialblack')) {
         defaultstyles.title.run.font = "Arial Black";
-        address.run.font = 'Arial Black';
+        address.run.font = "Arial Black";
+    } else if (classlist.contains('topcalibri')) {
+        defaultstyles.title.run.font = "Calibri";
+        address.run.font = "Calibri";
+    } else if (classlist.contains('topimpact')) {
+        defaultstyles.title.run.font = "Impact";
+        address.run.font = "Impact";
+    } else if (classlist.contains('toptahoma')) {
+        defaultstyles.title.run.font = "Tahoma";
+        address.run.font = "Tahoma";
+    } else if (classlist.contains('topbookantiqua')) {
+        defaultstyles.title.run.font = "Book Antiqua";
+        address.run.font = "Book Antiqua";
+    } else if (classlist.contains('topgaramond')) {
+        defaultstyles.title.run.font = "Garamond";
+        address.run.font = "Garamond";
+    } else if (classlist.contains('toppalatino')) {
+        defaultstyles.title.run.font = "Palatino Linotype";
+        address.run.font = "Palatino Linotype";
+    } else if (classlist.contains('toptimes')) {
+        defaultstyles.title.run.font = "Times New Roman";
+        address.run.font = "Times New Roman";
+    } else if (classlist.contains('topcopperplate')) {
+        defaultstyles.title.run.font = "Copperplate Gothic Light";
+        address.run.font = "Copperplate Gothic Light";
+    } else if (classlist.contains('toppapyrus')) {
+        defaultstyles.title.run.font = "Papyrus";
+        address.run.font = "Papyrus";
+    } else if (classlist.contains('topcomicsans')) {
+        defaultstyles.title.run.font = "Comic Sans MS";
+        address.run.font = "Comic Sans MS";
     }
+
 
     if (classlist.contains('fontlarge')) {
-
+        defaultstyles.document.run.size = 28;
+        defaultstyles.title.run.size = 44;
+        defaultstyles.heading1.run.size = 36;
     } else if (classlist.contains('fontsmall')) {
-
+        defaultstyles.document.run.size = 20;
+        defaultstyles.title.run.size = 36;
+        defaultstyles.heading1.run.size = 28;
     } else /* fontmedium */ {
         defaultstyles.document.run.size = 24;
         defaultstyles.title.run.size = 40;
