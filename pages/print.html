@@ -24,17 +24,18 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
         },
 
         style: $persist({
-            mainfont:   'maingeorgia',
-            fontsize:   'fontmedium',
-            headfont:   'headarial',
-            topfont:    'topmatchdoc',
-            topstyle:   'topcenter',
-            headstyle:  'headunderline',
-            itemstyle:  'itemstandard',
-            liststyle:  'listcolumns',
-            listbullet: 'listdisc',
-            pagesize:   'pageletter',
-            margin:     'mgmedium',
+            mainfont:     'maingeorgia',
+            fontsize:     'fontmedium',
+            headfont:     'headarial',
+            topfont:      'topmatchdoc',
+            topstyle:     'topcenter',
+            headstyle:    'headunderline',
+            itemstyle:    'itemstandard',
+            subitemstyle: 'subitemstandard',
+            liststyle:    'listcolumns',
+            listbullet:   'listdisc',
+            pagesize:     'pageletter',
+            margin:       'mgmedium',
         }).as('printstyles'),
 
         order:          $persist(resetOrder('standard')).as('order'),
@@ -54,7 +55,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             <p class="block">
                 Style customization will be below. For now, only page size and margins can be changed.
             </p>
-            <p class="block">
+            <p>
                 Due to differences in formatting and rendering, the printed page and exported Word Document may look slightly different from each other and from the preview to the right.
             </p>
         </div>
@@ -62,8 +63,8 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             <ul>
                 <li class="" :class="opentab == 'page' && 'is-active'"><a @click="opentab = 'page'">Page</a></li>
                 <li class="" :class="opentab == 'fonts' && 'is-active'"><a @click="opentab = 'fonts'">Fonts</a></li>
+                <li class="" :class="opentab == 'lists' && 'is-active'"><a @click="opentab = 'lists'">Lists</a></li>
                 {% comment %}
-                <li class="" :class="opentab == 'contents' && 'is-active'"><a @click="opentab = 'contents'">Contents</a></li>
                 <li class="" :class="opentab == 'headings' && 'is-active'"><a @click="opentab = 'headings'">Headings</a></li>
                 {% endcomment %}
             </ul>
@@ -82,14 +83,30 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgwide' || 'is-outlined'" @click="style.margin='mgwide'" >Wide</button>
                 </div>
             </div>
-            {% comment %}
-            <div x-show="opentab == 'contents'">
-                <p>Dynamically make a suggestion about what to feature first.</p>
-                <div>
-                    <p>Select sections to include or skip</p>
+            <div x-show="opentab == 'lists'">
+                <h2 class="title is-3">List Styles</h2>
+                <h3 class="subtitle is-4">Standalone Lists</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.liststyle == 'liststandard' || 'is-outlined'" @click="style.liststyle='liststandard'" >Standard</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.liststyle == 'listcolumns' || 'is-outlined'" @click="style.liststyle='listcolumns'" >Columns</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.liststyle == 'listinline' || 'is-outlined'" @click="style.liststyle='listinline'" >Inline</button>
+                </div>
+                <h3 class="subtitle is-3">Accomplishment Lists</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subitemstyle == 'subitemstandard' || 'is-outlined'" @click="style.subitemstyle='subitemstandard'" >Standard</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subitemstyle == 'subitemcolumns' || 'is-outlined'" @click="style.subitemstyle='subitemcolumns'" >Columns</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subitemstyle == 'subiteminline' || 'is-outlined'" @click="style.subitemstyle='subiteminline'" >Inline</button>
+                </div>
+                <h3 class="subtitle is-3">Bullet Markers</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.listbullet == 'listdisc' || 'is-outlined'" @click="style.listbullet='listdisc'" >( &#9679; ) Filled Circle</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.listbullet == 'listcircle' || 'is-outlined'" @click="style.listbullet='listcircle'" >( &#9675; ) Open Circle</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.listbullet == 'listsquare' || 'is-outlined'" @click="style.listbullet='listsquare'" >( &#9632; ) Square</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.listbullet == 'listtriangle' || 'is-outlined'" @click="style.listbullet='listtriangle'" >( &#8227; ) Triangle</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.listbullet == 'listhyphen' || 'is-outlined'" @click="style.listbullet='listhyphen'" >( &#8259; ) Hyphen</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.listbullet == 'listdash' || 'is-outlined'" @click="style.listbullet='listdash'" >( &#8212; ) Dash</button>
                 </div>
             </div>
-            {% endcomment %}
             <div x-show="opentab == 'fonts'">
                 {% assign mainfonts = "Georgia *,Arial *,Calibri,Tahoma *,Book Antiqua,Garamond,Palatino,Times New Roman *,Comic Sans" | split: "," %}
                 {% assign headfonts = "Georgia *,Arial *,Arial Black *,Calibri,Impact,Tahoma *,Book Antiqua,Garamond,Palatino,Times New Roman *,Copperplate,Papyrus,Comic Sans" | split: "," %}
@@ -210,7 +227,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                 <h2 x-text="current.title"></h2>
                                 <ul>
                                     <template x-for="(item, index) in current.items">
-                                        <li x-text="(style.listsyle === 'inlinecolumns' && index > 0 ? ', ' : '') + item"></li>
+                                        <li x-text="item + (style.liststyle === 'listinline' && index < current.items.length -1 ? ', ' : '')"></li>
                                     </template>
                                 </ul>
                             </div>
@@ -255,8 +272,8 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                             <div class="subitems">
                                                 <h4 x-text="current.subtitle"></h4>
                                                 <ul>
-                                                    <template x-for="subitem in item.subitems">
-                                                        <li x-text="subitem"></li>
+                                                    <template x-for="(subitem, index) in item.subitems">
+                                                        <li x-text="subitem + (style.subitemstyle === 'subiteminline' && index < item.subitems.length -1 ? ', ' : '')"></li>
                                                     </template>
                                                 </ul>
                                             </div>

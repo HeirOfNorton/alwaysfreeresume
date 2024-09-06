@@ -179,15 +179,6 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
         }
 
         .subitems {
-            //ul {
-            //    list-style-type: disc;
-            //    list-style-position: outside;
-            //}
-
-            //li {
-            //    margin-left: 2em;
-            //}
-
             h4 {
                 display: none;
             }
@@ -206,6 +197,61 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
     }
 }
 
+.listcircle {
+    ul {
+        list-style-type: circle;
+        list-style-position: outside;
+    }
+
+    li {
+        margin-left: .25in;
+    }
+}
+
+.listsquare {
+    ul {
+        list-style-type: square;
+        list-style-position: outside;
+    }
+
+    li {
+        margin-left: .25in;
+    }
+}
+
+.listtriangle {
+    ul {
+        list-style-type: "\2023\2002";
+        list-style-position: outside;
+    }
+
+    li {
+        margin-left: .25in;
+    }
+}
+
+.listhyphen {
+    ul {
+        list-style-type: "\2043\2002";
+        list-style-position: outside;
+    }
+
+    li {
+        margin-left: .25in;
+    }
+}
+
+.listdash {
+    ul {
+        list-style-type: "\2014";
+        list-style-position: outside;
+    }
+
+    li {
+        margin-left: .25in;
+    }
+}
+
 // Short list style
 .listcolumns {
     .list { 
@@ -215,6 +261,47 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
     }
 }
 
+.liststandard {
+    .list {
+        ul {
+
+        }
+    }
+}
+
+.listinline {
+    .list {
+        li {
+            display: inline;
+            margin-left: 0;
+        }
+    }
+}
+
+.subitemcolumns {
+    .subitems { 
+        ul {
+            columns: 3;
+        }
+    }
+}
+
+.subitemstandard {
+    .subitems {
+        ul {
+
+        }
+    }
+}
+
+.subiteminline {
+    .subitems {
+        li {
+            display: inline;
+            margin-left: 0;
+        }
+    }
+}
 
 // Resets, page sizes and margins for the resume as a whole
 
