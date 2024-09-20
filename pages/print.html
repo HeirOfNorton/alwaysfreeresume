@@ -29,7 +29,9 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             headfont:     'headarial',
             topfont:      'topmatchdoc',
             topstyle:     'topcenter',
-            headstyle:    'headunderline',
+            headalign:    'headleft',
+            headstyle:    'headbold',
+            headbox:      'headbottom',
             itemstyle:    'itemstandard',
             subitemstyle: 'subitemstandard',
             liststyle:    'listcolumns',
@@ -44,31 +46,30 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
     class="printcontainer"
 >
 
+<div class="block my-4 mx-auto buttons is-centered">
+    <button class="button is-primary is-large" @click="showprint()">Print</button>
+    <button class="button is-primary is-large" @click="saveWordDoc('page')">Download Word Document</button>
+</div>
+<div class="block my-4 mx-auto">
+    <p class="block">
+        You can customize the style of your resume below if you wish, then use the buttons to print your resume or to download in Word Document format.
+    </p>
+    <p>
+        Due to differences in formatting and rendering, the printed page and exported Word Document may look slightly different from each other and from the preview to the right.
+    </p>
+</div>
+
 <div class="columns printcontainer">
 
     <div class="column noprint" x-data="{opentab: 'page'}">
-        <div class="block my-4 mx-auto buttons is-centered">
-            <button class="button is-primary is-large" @click="showprint()">Print</button>
-            <button class="button is-primary is-large" @click="saveWordDoc('page')">Download Word Document</button>
-        </div>
-        <div class="block my-4 mx-auto">
-            <p class="block">
-                Style customization will be below. For now, only page size and margins can be changed.
-            </p>
-            <p>
-                Due to differences in formatting and rendering, the printed page and exported Word Document may look slightly different from each other and from the preview to the right.
-            </p>
-        </div>
-        <div class="tabs is-boxed is-centered">
+        <div><div class="tabs is-boxed is-centered">
             <ul>
                 <li class="" :class="opentab == 'page' && 'is-active'"><a @click="opentab = 'page'">Page</a></li>
                 <li class="" :class="opentab == 'fonts' && 'is-active'"><a @click="opentab = 'fonts'">Fonts</a></li>
                 <li class="" :class="opentab == 'lists' && 'is-active'"><a @click="opentab = 'lists'">Lists</a></li>
-                {% comment %}
                 <li class="" :class="opentab == 'headings' && 'is-active'"><a @click="opentab = 'headings'">Headings</a></li>
-                {% endcomment %}
             </ul>
-        </div>
+        </div></div>
         <div class="box">
             <div x-show="opentab == 'page'">
                 <h2 class="title is-3">Page Size</h2>
@@ -85,7 +86,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             </div>
             <div x-show="opentab == 'lists'">
                 <h2 class="title is-3">List Styles</h2>
-                <h3 class="subtitle is-4">Standalone Lists</h3>
+                <h3 class="subtitle is-3">Standalone Lists</h3>
                 <div class="buttons is-centered">
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.liststyle == 'liststandard' || 'is-outlined'" @click="style.liststyle='liststandard'" >Standard</button>
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.liststyle == 'listcolumns' || 'is-outlined'" @click="style.liststyle='listcolumns'" >Columns</button>
@@ -160,11 +161,38 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                     </div>
                 </div>
             </div>
-            {% comment %}
             <div x-show="opentab == 'headings'">
-                <p>Select styles for headings and Contact Info block.</p>
+                {% assign headstyles = "Normal,Bold,Italic,Bold Italic,Underline,Bold Underline,All Caps,Bold All Caps,Small Caps,Bold Small Caps" | split: "," %}
+                {% assign headaligns = "Left,Indented,Center,Right" | split: "," %}
+                {% assign headboxes = "No Border,Top,Bottom,Top And Bottom,Boxed,Shaded Light,Shaded Dark,Shaded Black" | split: "," %}
+
+                <h2 class="title is-3">Heading Styles</h2>
+                <h3 class="subtitle is-3">Heading Text Style</h3>
+                <div class="fixed-grid">
+                    <div class="grid">
+                        {% for style in headstyles %}
+                            {% assign cls = "head" | append: style | downcase | remove: ' ' %}
+                            <button class="button is-primary is-medium has-text-weight-bold" :class="style.headstyle == '{{ cls }}' || 'is-outlined'" @click="style.headstyle='{{ cls }}'" >{{ style }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h3 class="subtitle is-3">Alignment</h3>
+                <div class="buttons is-centered">
+                    {% for style in headaligns %}
+                        {% assign cls = "head" | append: style | downcase | remove: ' ' %}
+                        <button class="button is-primary is-medium has-text-weight-bold" :class="style.headalign == '{{ cls }}' || 'is-outlined'" @click="style.headalign='{{ cls }}'" >{{ style }}</button>
+                    {% endfor %}
+                </div>
+                <h3 class="subtitle is-3">Border and Shading</h3>
+                <div class="fixed-grid">
+                    <div class="grid">
+                        {% for style in headboxes %}
+                            {% assign cls = "head" | append: style | downcase | remove: ' ' %}
+                            <button class="button is-primary is-medium has-text-weight-bold" :class="style.headbox == '{{ cls }}' || 'is-outlined'" @click="style.headbox='{{ cls }}'" >{{ style }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            {% endcomment %}
         </div>
     </div>
 

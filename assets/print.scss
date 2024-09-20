@@ -139,9 +139,116 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
 }
 
 // Heading style
+
+.headnormal h2 {
+}
+
+.headbold h2 {
+    font-weight: bold;
+}
+
+.headitalic h2 {
+    font-style: italic;
+}
+
+.headbolditalic h2 {
+    font-style: italic;
+    font-weight: bold;
+}
+
 .headunderline h2 {
     text-decoration: underline;
+}
+
+.headboldunderline h2 {
+    text-decoration: underline;
     font-weight: bold;
+}
+
+.headallcaps h2 {
+    text-transform: uppercase;
+}
+
+.headboldallcaps h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.headsmallcaps h2 {
+    font-variant: small-caps;
+}
+
+.headboldsmallcaps h2 {
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.headleft h2 {
+    text-align: left;
+}
+
+.headindented h2 {
+    padding-left: 1.5in;
+}
+
+.headcenter h2 {
+    text-align: center;
+}
+
+.headright h2 {
+    text-align: right;
+}
+
+.headnoborder h2 {
+}
+
+.headtop h2 {
+    border-top-style: solid;
+    border-top-width: 2pt;
+}
+
+.headbottom h2 {
+    border-bottom-style: solid;
+    border-bottom-width: 2pt;
+}
+
+.headtopandbottom h2 {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-width: 2pt;
+    border-bottom-width: 2pt;
+}
+
+.headboxed h2 {
+    border-style: solid;
+}
+
+.headshadedlight h2 {
+    background-color: lightgray;
+}
+
+.headshadeddark h2 {
+    background-color: gray;
+    color: white;
+}
+
+.headshadedblack h2 {
+    background-color: black;
+    color: white;
+}
+
+.headboxed, .headshadedlight, .headshadeddark, .headshadedblack {
+    &.headleft {
+        h2 {
+            padding-left: 3pt;
+        }
+    }
+
+    &.headright {
+        h2 {
+            padding-right: 3pt;
+        }
+    }
 }
 
 // Item style

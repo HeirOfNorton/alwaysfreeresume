@@ -580,11 +580,173 @@ function makeDocxStyles (classlist) {
 
     }
 
-    if (classlist.contains('headunderline')) {
+    if (classlist.contains('headbold')) {
+        defaultstyles.heading1.run.bold = true;
+    } else if (classlist.contains('headitalic')) {
+        defaultstyles.heading1.run.italics = true;
+    } else if (classlist.contains('headbolditalic')) {
+        defaultstyles.heading1.run.bold = true;
+        defaultstyles.heading1.run.italics = true;
+    } else if (classlist.contains('headunderline')) {
+        defaultstyles.heading1.run.underline = {};
+    } else if (classlist.contains('headboldunderline')) {
         defaultstyles.heading1.run.bold = true;
         defaultstyles.heading1.run.underline = {};
-    } else {
+    } else if (classlist.contains('headallcaps')) {
+        defaultstyles.heading1.run.allCaps = true;
+    } else if (classlist.contains('headboldallcaps')) {
+        defaultstyles.heading1.run.bold = true;
+        defaultstyles.heading1.run.allCaps = true;
+    } else if (classlist.contains('headsmallcaps')) {
+        defaultstyles.heading1.run.smallCaps = true;
+    } else if (classlist.contains('headboldsmallcaps')) {
+        defaultstyles.heading1.run.bold = true;
+        defaultstyles.heading1.run.smallCaps = true;
+    } else /* headnormal */ {
+    }
 
+    if (classlist.contains('headleft')) {
+        defaultstyles.heading1.paragraph.alignment = docx.AlignmentType.LEFT;
+    } else if (classlist.contains('headcenter')) {
+        defaultstyles.heading1.paragraph.alignment = docx.AlignmentType.CENTER;
+    } else if (classlist.contains('headright')) {
+        defaultstyles.heading1.paragraph.alignment = docx.AlignmentType.RIGHT;
+    } else if (classlist.contains('headindented')) {
+        defaultstyles.heading1.paragraph.alignment = docx.AlignmentType.LEFT;
+        defaultstyles.heading1.paragraph.indent = {firstLine: '1.5in'};
+    } 
+
+    if (classlist.contains('headtop')) {
+        defaultstyles.heading1.paragraph.border = {
+            top: {
+                color: 'auto',
+                space: 1,
+                style: 'single',
+                size: 16,
+            }
+        };
+    } else if (classlist.contains('headbottom')) {
+        defaultstyles.heading1.paragraph.border = {
+            bottom: {
+                color: 'auto',
+                space: 1,
+                style: 'single',
+                size: 16,
+            }
+        };
+    } else if (classlist.contains('headtopandbottom')) {
+        defaultstyles.heading1.paragraph.border = {
+            top: {
+                color: 'auto',
+                space: 1,
+                style: 'single',
+                size: 16,
+            },
+            bottom: {
+                color: 'auto',
+                space: 1,
+                style: 'single',
+                size: 16,
+            },
+        };
+    } else if (classlist.contains('headboxed')) {
+        defaultstyles.heading1.paragraph.border = {
+            top: {
+                color: 'auto',
+                space: 1,
+                style: 'single',
+                size: 16,
+            },
+            bottom: {
+                color: 'auto',
+                space: 1,
+                style: 'single',
+                size: 16,
+            },
+            left: {
+                color: 'auto',
+                space: 3,
+                style: 'single',
+                size: 16,
+            },
+            right: {
+                color: 'auto',
+                space: 3,
+                style: 'single',
+                size: 16,
+            },
+        };
+    } else if (classlist.contains('headshadedlight')) {
+        defaultstyles.heading1.paragraph.shading = {
+            type: docx.ShadingType.CLEAR,
+            color: 'auto',
+            fill: 'D3D3D3',
+        };
+        if (classlist.contains('headleft') || classlist.contains('headright')) {
+            defaultstyles.heading1.paragraph.border = {
+                left: {
+                    color: 'D3D3D3',
+                    space: 3,
+                    style: 'single',
+                    size: 1,
+                },
+                right: {
+                    color: 'D3D3D3',
+                    space: 3,
+                    style: 'single',
+                    size: 1,
+                }
+            };
+        }
+
+    } else if (classlist.contains('headshadeddark')) {
+        defaultstyles.heading1.paragraph.shading = {
+            type: docx.ShadingType.CLEAR,
+            color: 'auto',
+            fill: '808080',
+        };
+        defaultstyles.heading1.run.color = 'FFFFFF';
+        if (classlist.contains('headleft') || classlist.contains('headright')) {
+            defaultstyles.heading1.paragraph.border = {
+                left: {
+                    color: '808080',
+                    space: 3,
+                    style: 'single',
+                    size: 1,
+                },
+                right: {
+                    color: '808080',
+                    space: 3,
+                    style: 'single',
+                    size: 1,
+                }
+            };
+        }
+
+    } else if (classlist.contains('headshadedblack')) {
+        defaultstyles.heading1.paragraph.shading = {
+            type: docx.ShadingType.CLEAR,
+            color: 'auto',
+            fill: '000000',
+        };
+        defaultstyles.heading1.run.color = 'FFFFFF';
+        if (classlist.contains('headleft') || classlist.contains('headright')) {
+            defaultstyles.heading1.paragraph.border = {
+                left: {
+                    color: '000000',
+                    space: 3,
+                    style: 'single',
+                    size: 1,
+                },
+                right: {
+                    color: '000000',
+                    space: 3,
+                    style: 'single',
+                    size: 1,
+                }
+            };
+        }
+    } else /* headnoborder */ {
     }
 
     if (classlist.contains('listdisc')) {
