@@ -31,6 +31,10 @@
         break-inside: avoid-page;
         page-break-inside: avoid;
     }
+
+    .addressline, .phone, .email, .website {
+        white-space: nowrap;
+    }
 }
 
 // font sizes
@@ -38,7 +42,7 @@
     font-size: 12pt;
 
     h1 {
-        font-size: 20pt;
+        font-size: 34pt;
     }
 
     h2 {
@@ -50,7 +54,7 @@
     font-size: 10pt;
 
     h1 {
-        font-size: 18pt;
+        font-size: 28pt;
     }
 
     h2 {
@@ -62,7 +66,7 @@
     font-size: 14pt;
 
     h1 {
-        font-size: 22pt;
+        font-size: 40pt;
     }
 
     h2 {
@@ -121,22 +125,85 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
 // Metadata style
 
 .topcenter {
-    .address, .communication, .contact h1 {
+    .address-block, .contact h1 {
         text-align: center;
     }
+}
 
-    .contact h1 {
-        margin-block-end: 6pt;
+.topleft {
+    .address-block, .contact h1 {
+        text-align: left;
+    }
+}
+
+.topright {
+    .address-block, .contact h1 {
+        text-align: right;
+    }
+}
+
+.topsplit {
+    .contact {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12pt;
+
+        h1 {
+            text-align: left;
+            width: min-content;
+            min-width: 30%;
+            line-height: 1 !important;
+        }
     }
 
-    //.contact .address span:not(:last-of-type)::after {
-    //    content: ", ";
-    //}
-
-    //.contact .communication span:not(:last-of-type)::after {
-    //    content: " | ";
-    //}
+    .address-block {
+        margin-left: auto;
+        text-align: right;
+    }
 }
+
+.topblock {
+    .addressline, .phone, .email, .website {
+        display: block;
+    }
+}
+
+.toplines {
+
+}
+
+.topinline {
+    .address, .communication {
+        display: inline;
+    }
+
+}
+
+.topcolumns {
+    .address-block {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: top;
+        gap: 16pt;
+    }
+    .address {
+        text-align: left;
+    }
+    .communication {
+        text-align: right;
+    }
+    .addressline, .phone, .email, .website {
+        display: block;
+    }
+}
+
+//    .contact h1 {
+//        margin-block-end: 6pt;
+//    }
+
 
 // Heading style
 

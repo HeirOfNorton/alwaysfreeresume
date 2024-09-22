@@ -28,7 +28,9 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             fontsize:     'fontmedium',
             headfont:     'headarial',
             topfont:      'topmatchdoc',
-            topstyle:     'topcenter',
+            topposition:  'topcenter',
+            topstyle:     'toplines',
+            toplabels:    'topnolabels',
             headalign:    'headleft',
             headstyle:    'headbold',
             headbox:      'headbottom',
@@ -46,11 +48,11 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
     class="printcontainer"
 >
 
-<div class="block my-4 mx-auto buttons is-centered noprint">
+<div class="block my-4 mx-auto buttons is-centered">
     <button class="button is-primary is-large" @click="showprint()">Print</button>
     <button class="button is-primary is-large" @click="saveWordDoc('page')">Download Word Document</button>
 </div>
-<div class="block my-4 mx-auto noprint">
+<div class="block my-4 mx-auto">
     <p class="block">
         You can customize the style of your resume below if you wish, then use the buttons to print your resume or to download in Word Document format.
     </p>
@@ -68,6 +70,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                 <li class="" :class="opentab == 'fonts' && 'is-active'"><a @click="opentab = 'fonts'">Fonts</a></li>
                 <li class="" :class="opentab == 'lists' && 'is-active'"><a @click="opentab = 'lists'">Lists</a></li>
                 <li class="" :class="opentab == 'headings' && 'is-active'"><a @click="opentab = 'headings'">Headings</a></li>
+                <li class="" :class="opentab == 'contact' && 'is-active'"><a @click="opentab = 'contact'">Contact Info</a></li>
             </ul>
         </div></div>
         <div class="box">
@@ -131,6 +134,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                     </label>
                     <div class="select">
                         <select name="headfont" x-model="style.headfont">
+                            <option value="headmatchmain" :class="style.mainfont">Match Main Font</option>
                             {% for font in headfonts %}
                             <option value="head{{ font | downcase | remove: ' ' | remove: '*' | remove: 'newroman' }}" class="main{{ font | downcase | remove: ' ' | remove: '*' | remove: 'newroman' }}">{{ font }}</option>
                             {% endfor %}
@@ -193,6 +197,32 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                     </div>
                 </div>
             </div>
+            <div x-show="opentab == 'contact'">
+                <h2 class="title is-3">Contact Information Styles</h2>
+                <h3 class="subtitle is-4">Positioning</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topposition == 'topcenter' || 'is-outlined'" @click="style.topposition='topcenter'" >Centered</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topposition == 'topleft' || 'is-outlined'" @click="style.topposition='topleft'" >Left</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topposition == 'topright' || 'is-outlined'" @click="style.topposition='topright'" >Right</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topposition == 'topsplit' || 'is-outlined'" @click="style.topposition='topsplit'" >Split</button>
+                </div>
+                <h3 class="subtitle is-4">Address Formatting</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topstyle == 'topblock' || 'is-outlined'" @click="style.topstyle='topblock'" >Block</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topstyle == 'toplines' || 'is-outlined'" @click="style.topstyle='toplines'" >Lines</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topstyle == 'topinline' || 'is-outlined'" @click="style.topstyle='topinline'" >Inline</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.topstyle == 'topcolumns' || 'is-outlined'" @click="style.topstyle='topcolumns'" >Columns</button>
+                </div>
+                {% comment %}
+                <h3 class="subtitle is-4">Labels</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.toplabels == 'topnolabels' || 'is-outlined'" @click="style.toplabels='topnolabels'" >Right</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.toplabels == 'toptext' || 'is-outlined'" @click="style.toplabels='toptext'" >Text Labels</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.toplabels == 'topicons' || 'is-outlined'" @click="style.toplabels='topicons'" >Icons</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.toplabels == 'topboth' || 'is-outlined'" @click="style.toplabels='topboth'" >Text and Icons</button>
+                </div>
+                {% endcomment %}
+            </div>
         </div>
     </div>
 
@@ -210,38 +240,41 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                         <template x-if="current.type === 'contact'">
                             <div class="contact">
                                 <h1 class="fullname" x-text="current.fullname"></h1>
-                                <p class="address">
-                                    <template x-if="current.address.line1">
-                                        <span class="addressline" x-text="current.address.line1 + (style.topstyle === 'topcenter' && (current.address.line2 || current.address.city || current.address.state || current.address.zip) ? ', ' : '') "></span>
-                                    </template>
-                                    <template x-if="current.address.line2">
-                                        <span class="addressline" x-text="current.address.line2 + (style.topstyle === 'topcenter' && (current.address.city || current.address.state || current.address.zip) ? ', ' : '')"></span>
-                                    </template>
-                                    <template x-if="current.address.city || current.address.state || current.address.zip">
-                                        <span class="addressline">
-                                            <template x-if="current.address.city">
-                                                <span class="city" x-text="current.address.city + ', '"></span>
-                                            </template>
-                                            <template x-if="current.address.state">
-                                                <span class="state" x-text="current.address.state"></span>
-                                            </template>
-                                            <template x-if="current.address.zip">
-                                                <span class="zip" x-text="' ' + current.address.zip"></span>
-                                            </template>
-                                        </span>
-                                    </template>
-                                </p>
-                                <p class="communication">
-                                    <template x-if="current.phone">
-                                        <span class="phone" x-text="current.phone + (style.topstyle === 'topcenter' && (current.email || current.website) ? ' | ' : '')"></span>
-                                    </template>
-                                    <template x-if="current.email">
-                                        <span class="email" x-text="current.email + (style.topstyle === 'topcenter' && current.website ? ' | ' : '')"></span>
-                                    </template>
-                                    <template x-if="current.website">
-                                        <span class="website" x-text="current.website"></span>
-                                    </template>
-                                </p>
+                                <div class="address-block">
+                                    <p class="address">
+                                        <template x-if="current.address.line1">
+                                            <span class="addressline" x-text="current.address.line1 + ((style.topstyle === 'toplines' || style.topstyle === 'topinline') && (current.address.line2 || current.address.city || current.address.state || current.address.zip) ? ', ' : '') "></span>
+                                        </template>
+                                        <template x-if="current.address.line2">
+                                            <span class="addressline" x-text="current.address.line2 + ((style.topstyle === 'toplines' || style.topstyle === 'topinline') && (current.address.city || current.address.state || current.address.zip) ? ', ' : '')"></span>
+                                        </template>
+                                        <template x-if="current.address.city || current.address.state || current.address.zip">
+                                            <span class="addressline">
+                                                <template x-if="current.address.city">
+                                                    <span class="city" x-text="current.address.city + ', '"></span>
+                                                </template>
+                                                <template x-if="current.address.state">
+                                                    <span class="state" x-text="current.address.state"></span>
+                                                </template>
+                                                <template x-if="current.address.zip">
+                                                    <span class="zip" x-text="' ' + current.address.zip"></span>
+                                                </template>
+                                            </span>
+                                        </template>
+                                    </p>
+                                    <template x-if="style.topstyle === 'topinline'"><span> | </span></template>
+                                    <p class="communication">
+                                        <template x-if="current.phone">
+                                            <span class="phone" x-text="current.phone + ((style.topstyle === 'toplines' || style.topstyle === 'topinline') && (current.email || current.website) ? ' | ' : '')"></span>
+                                        </template>
+                                        <template x-if="current.email">
+                                            <span class="email" x-text="current.email + ((style.topstyle === 'toplines' || style.topstyle === 'topinline') && current.website ? ' | ' : '')"></span>
+                                        </template>
+                                        <template x-if="current.website">
+                                            <span class="website" x-text="current.website"></span>
+                                        </template>
+                                    </p>
+                                </div>
                             </div>
                         </template>
                         <template x-if="current.type === 'summary'">

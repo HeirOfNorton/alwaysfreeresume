@@ -253,6 +253,27 @@ document.addEventListener('alpine:init', () => {
 });
 
 function makeDocxStyles (classlist) {
+    var pagewidth, pgmargin;
+    if (classlist.contains('pageletter')) {
+        pagewidth = 12240;
+        if (classlist.contains('mgmedium')) {
+            pgmargin = 1080;
+        } else if (classlist.contains('mgnarrow')) {
+            pgmargin = 720;
+        } else /* mgwide */ {
+            pgmargin = 1440;
+        }
+    } else /* pagea4 */ {
+        pagewidth = 11906;
+        if (classlist.contains('mgmedium')) {
+            pgmargin = 1134;
+        } else if (classlist.contains('mgnarrow')) {
+            pgmargin = 794;
+        } else /* mgwide */ {
+            pgmargin = 1361;
+        }
+    }
+
     const defaultstyles = {
         document: {
             run: {
@@ -559,25 +580,44 @@ function makeDocxStyles (classlist) {
 
     if (classlist.contains('fontlarge')) {
         defaultstyles.document.run.size = 28;
-        defaultstyles.title.run.size = 44;
+        defaultstyles.title.run.size = 68;
         defaultstyles.heading1.run.size = 36;
     } else if (classlist.contains('fontsmall')) {
         defaultstyles.document.run.size = 20;
-        defaultstyles.title.run.size = 36;
+        defaultstyles.title.run.size = 56;
         defaultstyles.heading1.run.size = 28;
     } else /* fontmedium */ {
         defaultstyles.document.run.size = 24;
-        defaultstyles.title.run.size = 40;
+        defaultstyles.title.run.size = 80;
         defaultstyles.heading1.run.size = 32;
     }
 
     if (classlist.contains('topcenter')) {
         defaultstyles.title.paragraph.alignment = 'center';
-        defaultstyles.title.paragraph.spacing = {after: 120};
         address.paragraph.alignment = 'center';
+    } else if (classlist.contains('topleft')) {
+        defaultstyles.title.paragraph.alignment = 'left';
+        address.paragraph.alignment = 'left';
+    } else if (classlist.contains('topright')) {
+        defaultstyles.title.paragraph.alignment = 'right';
+        address.paragraph.alignment = 'right';
+    } else /* topsplit */ {
+        defaultstyles.title.paragraph.alignment = 'left';
+        defaultstyles.title.paragraph.spacing = {
+            line: 204,
+            lineRule: 'auto',
+        };
+        if (!classlist.contains('topcolumns')) {
+            address.paragraph.alignment = 'right';
+        }
+    }
 
-    } else {
-
+    if (classlist.contains('topcolumns')) {
+        address.paragraph.alignment = 'left';
+        address.paragraph.tabStops = [{
+            type: docx.TabStopType.RIGHT,
+            position: pagewidth - (2 * pgmargin),
+        }];
     }
 
     if (classlist.contains('headbold')) {
@@ -785,7 +825,7 @@ function makeDocxStyles (classlist) {
         defaultstyles.heading2.run.bold = true;
         defaultstyles.heading2.paragraph.tabStops = [{
             type: docx.TabStopType.RIGHT,
-            position: docx.TabStopPosition.MAX,
+            position: pagewidth - (2 * pgmargin),
         }];
     } else {
 
@@ -832,9 +872,19 @@ function makeDocxFlags (classlist) {
             flags.margin = 1361;
         }
     }
-    if ( classlist.contains('topcenter')) {
+    if ( classlist.contains('toplines')) {
+        flags.run_address_lines_together = true;
+    }
+    if (classlist.contains('topinline')) {
         flags.run_address_together = true;
     }
+    if (classlist.contains('topcolumns')) {
+        flags.address_columns = true;
+    }
+    if (classlist.contains('topsplit')) {
+        flags.contact_columns = true;
+    }
+
     if (classlist.contains('listcolumns')) {
         flags.listcolumns = 3;
     } else if (classlist.contains('listinline')) {
@@ -904,30 +954,105 @@ function makeDocxStack (pgsize, margins) {
 
 function makeDocxContacts (stack, elem, flags) {
     var fullname;
+    var namepar;
+    var lefttxt = [];
+    var righttxt = [];
     for (e of elem.children) {
         if (e.classList.contains('fullname')) {
             fullname = e.innerText;
-            stack.add(new docx.Paragraph({
+            namepar = new docx.Paragraph({
                 text: fullname,
                 heading: docx.HeadingLevel.TITLE,
-            }));
-        } else {
+            });
+        } else /* address-block */ {
             if (flags.run_address_together) {
-                stack.add(new docx.Paragraph({
-                    text: e.innerText,
-                    style: 'Address',
-                }));
+                lefttxt.push(e.innerText);
             } else {
-                for (child of e.children) {
-                    if (child,nodeName === "SPAN") {
-                        stack.add(new docx.Paragraph({
-                            text: child.innerText,
-                            style: 'Address',
-                        }));
+                for (par of e.children) {
+                    if (flags.run_address_lines_together) {
+                        lefttxt.push(par.innerText);
+                    } else {
+                        for (child of par.children) {
+                            if (child.nodeName === "SPAN") {
+                                var inner = child.innerText;
+                                if (flags.address_columns && par.classList.contains('communication')) {
+                                    righttxt.push(inner);
+                                } else {
+                                    lefttxt.push(inner);
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
+    }
+
+    const leftpars = lefttxt.map((txt) => {
+        return new docx.Paragraph({
+            text: txt,
+            style: 'Address',
+        });
+    });
+    const rightpars = righttxt.map((txt) => {
+        return new docx.Paragraph({
+            text: txt,
+            style: 'Address',
+            alignment: docx.AlignmentType.RIGHT,
+        });
+    });
+    const combopars = [];
+    for (var i = 0; i < Math.max(lefttxt.length, righttxt.length); i++) {
+        var txt = "";
+        if (i in lefttxt) {
+            txt = lefttxt[i];
+
+        }
+        if (i in righttxt) {
+            txt = txt + "\t" + righttxt[i];
+        }
+        if (txt != "") {
+            combopars.push(new docx.Paragraph({
+                text: txt,
+                style: 'Address',
+            }));
+        }
+    }
+    
+    if (flags.contact_columns) {
+        const kids = [];
+        kids.push(new docx.TableCell({
+        //    width: {},
+            verticalAlign: docx.VerticalAlign.CENTER,
+            children: [namepar],
+        }));
+        kids.push(new docx.TableCell({
+        //    width: {},
+            verticalAlign: docx.VerticalAlign.CENTER,
+            children: leftpars,
+        }));
+        if (flags.address_columns) {
+            kids.push(new docx.TableCell({
+            //    width: {},
+                verticalAlign: docx.VerticalAlign.CENTER,
+                children: rightpars,
+            }));
+        }
+        stack.add(new docx.Table({
+            width: {
+                type: docx.WidthType.DXA,
+                size: flags.pagesize.width - (2 * flags.margin),
+            },
+            borders: docx.TableBorders.NONE,
+            rows: [
+                new docx.TableRow({
+                    children: kids,
+                }),
+            ]
+        }));
+    } else {
+        stack.add(namepar);
+        stack.add(combopars);
     }
     return fullname;
 }
