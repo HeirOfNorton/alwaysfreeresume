@@ -24,22 +24,28 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
         },
 
         style: $persist({
-            mainfont:     'maingeorgia',
-            fontsize:     'fontmedium',
-            headfont:     'headarial',
-            topfont:      'topmatchdoc',
-            topposition:  'topcenter',
-            topstyle:     'toplines',
-            toplabels:    'topnolabels',
-            headalign:    'headleft',
-            headstyle:    'headbold',
-            headbox:      'headbottom',
-            itemstyle:    'itemstandard',
-            subitemstyle: 'subitemstandard',
-            liststyle:    'listcolumns',
-            listbullet:   'listdisc',
-            pagesize:     'pageletter',
-            margin:       'mgmedium',
+            mainfont:       'maingeorgia',
+            fontsize:       'fontmedium',
+            headfont:       'headarial',
+            topfont:        'topmatchdoc',
+            topposition:    'topcenter',
+            topstyle:       'toplines',
+            toplabels:      'topnolabels',
+            headalign:      'headleft',
+            headstyle:      'headbold',
+            headbox:        'headbottom',
+            itemlayout:     'itemstandard',
+            itemhead:       'itemheadmatch',
+            itemstyle:      'itemplain',
+            itemfocus:      'itemjobprimary',
+            itemdateformat: 'itemdatelong',
+            itemdatestyle:  'itemdatebold',
+            subtitle:       'subtitlebold',
+            subitemstyle:   'subitemstandard',
+            liststyle:      'listcolumns',
+            listbullet:     'listdisc',
+            pagesize:       'pageletter',
+            margin:         'mgmedium',
         }).as('printstyles'),
 
         order:          $persist(resetOrder('standard')).as('order'),
@@ -68,6 +74,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             <ul>
                 <li class="" :class="opentab == 'page' && 'is-active'"><a @click="opentab = 'page'">Page</a></li>
                 <li class="" :class="opentab == 'fonts' && 'is-active'"><a @click="opentab = 'fonts'">Fonts</a></li>
+                <li class="" :class="opentab == 'items' && 'is-active'"><a @click="opentab = 'items'">Items</a></li>
                 <li class="" :class="opentab == 'lists' && 'is-active'"><a @click="opentab = 'lists'">Lists</a></li>
                 <li class="" :class="opentab == 'headings' && 'is-active'"><a @click="opentab = 'headings'">Headings</a></li>
                 <li class="" :class="opentab == 'contact' && 'is-active'"><a @click="opentab = 'contact'">Contact Info</a></li>
@@ -85,6 +92,57 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgnarrow' || 'is-outlined'" @click="style.margin='mgnarrow'" >Narrow</button>
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgmedium' || 'is-outlined'" @click="style.margin='mgmedium'" >Medium</button>
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgwide' || 'is-outlined'" @click="style.margin='mgwide'" >Wide</button>
+                </div>
+            </div>
+            {% comment %}
+            <div x-show="opentab == 'items'">
+                <h2 class="title is-3">Item Styles</h2>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemstandard' || 'is-outlined'" @click="style.itemstyle='itemstandard'" >Standard Style</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemblock' || 'is-outlined'" @click="style.itemstyle='itemblock'" >Block Style</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemcompact' || 'is-outlined'" @click="style.itemstyle='itemcompact'" >Compact Style</button>
+                </div>
+            </div>
+            {% endcomment %}
+            <div x-show="opentab == 'items'">
+                <h2 class="title is-3">Experience Item Styles</h2>
+                <h3 class="subtitle is-3">Item Layout</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemlayout == 'itemstandard' || 'is-outlined'" @click="style.itemlayout='itemstandard'" >Standard Style</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemlayout == 'itemblock' || 'is-outlined'" @click="style.itemlayout='itemblock'" >Block Style</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemlayout == 'itemcompact' || 'is-outlined'" @click="style.itemlayout='itemcompact'" >Compact Style</button>
+                </div>
+                <h3 class="subtitle is-3">Item Title Style</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemhead == 'itemheadmatch' || 'is-outlined'" @click="style.itemhead='itemheadmatch'" >Match Headings</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemhead == 'itemheadbold' || 'is-outlined'" @click="style.itemhead='itemheadbold'" >Bold</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemhead == 'itemheaditalic' || 'is-outlined'" @click="style.itemhead='itemheaditalic'" >Italic</button>
+                </div>
+                <h3 class="subtitle is-3">Item Text Style</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemplain' || 'is-outlined'" @click="style.itemstyle='itemplain'" >Plain</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itembold' || 'is-outlined'" @click="style.itemstyle='itembold'" >Bold</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemitalic' || 'is-outlined'" @click="style.itemstyle='itemitalic'" >Italic</button>
+                </div>
+                <h3 class="subtitle is-3">Date Format</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemdateformat == 'itemdateshort' || 'is-outlined'" @click="style.itemdateformat='itemdateshort'" >Short Date</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemdateformat == 'itemdatelong' || 'is-outlined'" @click="style.itemdateformat='itemdatelong'" >Long Date</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemdateformat == 'itemdatenum' || 'is-outlined'" @click="style.itemdateformat='itemdatenum'" >Numeric Date</button>
+                </div>
+                <h3 class="subtitle is-3">Date Text Style</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemdatestyle == 'itemdateplain' || 'is-outlined'" @click="style.itemdatestyle='itemdateplain'" >Plain</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemdatestyle == 'itemdatebold' || 'is-outlined'" @click="style.itemdatestyle='itemdatebold'" >Bold</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemdatestyle == 'itemdateitalic' || 'is-outlined'" @click="style.itemdatestyle='itemdateitalic'" >Italic</button>
+                </div>
+                <h3 class="subtitle is-3">List Title Style</h3>
+                <div class="buttons is-centered">
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subtitle == 'subtitlematch' || 'is-outlined'" @click="style.subtitle='subtitlematch'" >Match Heading Style</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subtitle == 'subtitleplain' || 'is-outlined'" @click="style.subtitle='subtitleplain'" >Plain</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subtitle == 'subtitlebold' || 'is-outlined'" @click="style.subtitle='subtitlebold'" >Bold</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subtitle == 'subtitleitalic' || 'is-outlined'" @click="style.subtitle='subtitleitalic'" >Italic</button>
+                    <button class="button is-primary is-large has-text-weight-bold" :class="style.subtitle == 'subtitlehide' || 'is-outlined'" @click="style.subtitle='subtitlehide'" >Hidden</button>
                 </div>
             </div>
             <div x-show="opentab == 'lists'">
@@ -288,7 +346,7 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                 <h2 x-text="current.title"></h2>
                                 <ul>
                                     <template x-for="(item, index) in current.items">
-                                        <li x-text="item + (style.liststyle === 'listinline' && index < current.items.length -1 ? ', ' : '')"></li>
+                                        <li x-text="item + (style.liststyle === 'listinline' && index < current.items.length -1 ? '; ' : '')"></li>
                                     </template>
                                 </ul>
                             </div>
@@ -300,14 +358,14 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                     <div class="item">
                                         <div class="item-block">
                                             <div class="item-description">
-                                                <h3 x-text="item.title"></h3>
+                                                <h3 x-text="item.title + (style.itemlayout === 'itemcompact' && (item.org || item.loc) ? ' | ' : '')"></h3>
                                                 <template x-if="item.org || item.loc">
                                                     <div class="item-org">
                                                         <template x-if="item.org">
-                                                            <p class="org" x-text="item.org + (style.itemstyle === 'itemstandard' && item.loc ? ', ' : '')"></p>
+                                                            <span class="org" x-text="item.org + (item.loc ? ', ' : '')"></span>
                                                         </template>
                                                         <template x-if="item.loc">
-                                                            <p class="loc" x-text="item.loc"></p>
+                                                            <span class="loc" x-text="item.loc"></span>
                                                         </template>
                                                     </div>
                                                 </template>
@@ -315,26 +373,26 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                                             <template x-if="item.dates.end || item.dates.current || item.dates.start">
                                                 <p class="dates">
                                                     <template x-if="item.dates.start && item.dates.current">
-                                                        <span x-text="dateString(item.dates.start) + ' – Current' "></span>
+                                                        <span x-text="dateString(item.dates.start, style.itemdateformat) + ' – Current' "></span>
                                                     </template>
                                                     <template x-if="item.dates.current && item.dates.end && !item.dates.start">
-                                                        <span x-text="'Anticipated ' + dateString(item.dates.end)"></span>
+                                                        <span x-text="'Anticipated ' + dateString(item.dates.end, style.itemdateformat)"></span>
                                                     </template>
                                                     <template x-if="item.dates.start && item.dates.end && !item.dates.current">
-                                                        <span x-text="dateString(item.dates.start) + ' – ' + dateString(item.dates.end)"></span>
+                                                        <span x-text="dateString(item.dates.start, style.itemdateformat) + ' – ' + dateString(item.dates.end, style.itemdateformat)"></span>
                                                     </template>
                                                     <template x-if="item.dates.end && !item.dates.current && !item.dates.start">
-                                                        <span x-text="dateString(item.dates.end)"></span>
+                                                        <span x-text="dateString(item.dates.end, style.itemdateformat)"></span>
                                                     </template>
                                                 </p>
                                             </template>
                                         </div>
                                         <template x-if="current.subtitle && (item.subitems[0]!='' || item.subitems.length > 1)">
                                             <div class="subitems">
-                                                <h4 x-text="current.subtitle"></h4>
+                                                <h4 x-text="current.subtitle + (style.subitemstyle === 'subiteminline' ? ': ' : '')"></h4>
                                                 <ul>
                                                     <template x-for="(subitem, index) in item.subitems">
-                                                        <li x-text="subitem + (style.subitemstyle === 'subiteminline' && index < item.subitems.length -1 ? ', ' : '')"></li>
+                                                        <li x-text="subitem + (style.subitemstyle === 'subiteminline' && index < item.subitems.length -1 ? '; ' : '')"></li>
                                                     </template>
                                                 </ul>
                                             </div>

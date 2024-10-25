@@ -7,6 +7,8 @@
         line-height: normal !important;
         color: black;
         background-color: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     h2 {
@@ -48,6 +50,10 @@
     h2 {
         font-size: 16pt;
     }
+
+    h3 {
+        font-size: 14pt;
+    }
 }
 
 .fontsmall {
@@ -60,6 +66,10 @@
     h2 {
         font-size: 14pt;
     }
+
+    h3 {
+        font-size: 12pt;
+    }
 }
 
 .fontlarge {
@@ -71,6 +81,10 @@
 
     h2 {
         font-size: 18pt;
+    }
+
+    h3 {
+        font-size: 16pt;
     }
 }
 
@@ -103,7 +117,7 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
 
 {% for font in headfonts %}
 .head{{ font | downcase }} {
-    h2, h3, h4 {
+    h2, h3 {
         font-family: ${{ font }};
     }
 }
@@ -334,31 +348,188 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
             float: left;
         }
         
-        .h3 {
-            font-weight: bold;
-        }
-
-        //.item-org p:not(:last-of-type)::after {
-        //    content: ", ";
-        //}
-
         .org, .loc {
-            font-style: italic;
             display: inline;
         }
 
         .dates {
-            font-weight: bold;
             float: right;
-        }
-
-        .subitems {
-            h4 {
-                display: none;
-            }
         }
     }
 }
+
+.itemblock {
+    .item {
+        margin-block-end: .5em;
+    }
+}
+
+.itemcompact {
+    .item {
+        //clearfix
+        .item-block::after {
+            clear: both;
+            content: "";
+            display: table;
+        }
+
+        margin-block-end: .5em;
+
+        .item-description {
+            display: inline;
+        }
+        
+        h3 {
+            display: inline;
+        }
+
+        .item-org, .org, .loc {
+            display: inline;
+        }
+
+        .dates {
+            display: inline;
+            float: right;
+        }
+    }
+}
+
+.itemheadbold h3 {
+    font-weight: bold;
+}
+
+.itemheaditalic h3 {
+    font-style: italic;
+}
+
+.itemheadmatch {
+    &.headbold h3 {
+        font-weight: bold;
+    }
+
+    &.headitalic h3 {
+        font-style: italic;
+    }
+
+    &.headbolditalic h3 {
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    &.headunderline h3 {
+        text-decoration: underline;
+    }
+
+    &.headboldunderline h3 {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    &.headallcaps h3 {
+        text-transform: uppercase;
+    }
+
+    &.headboldallcaps h3 {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    &.headsmallcaps h3 {
+        font-variant: small-caps;
+    }
+
+    &.headboldsmallcaps h3 {
+        font-variant: small-caps;
+        font-weight: bold;
+    }
+}
+
+.itemplain {
+
+}
+
+.itembold {
+    .item-org, .org, .loc {
+        font-weight: bold;
+    }
+}
+
+.itemitalic {
+    .item-org, .org, .loc {
+        font-style: italic;
+    }
+}
+
+.itemdateplain {
+
+}
+
+.itemdatebold {
+    .dates {
+        font-weight: bold;
+    }
+}
+
+.itemdateitalic {
+    .dates {
+        font-style: italic;
+    }
+}
+
+.subtitlebold h4 {
+    font-weight: bold;
+}
+
+.subtitleitalic h4 {
+    font-style: italic;
+}
+
+.subtitlehide .items .subitems h4 {
+    display: none;
+}
+
+.subtitlematch {
+    &.headbold h4 {
+        font-weight: bold;
+    }
+
+    &.headitalic h4 {
+        font-style: italic;
+    }
+
+    &.headbolditalic h4 {
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    &.headunderline h4 {
+        text-decoration: underline;
+    }
+
+    &.headboldunderline h4 {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    &.headallcaps h4 {
+        text-transform: uppercase;
+    }
+
+    &.headboldallcaps h4 {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    &.headsmallcaps h4 {
+        font-variant: small-caps;
+    }
+
+    &.headboldsmallcaps h4 {
+        font-variant: small-caps;
+        font-weight: bold;
+    }
+}
+
 
 .listdisc {
     ul {
@@ -470,6 +641,10 @@ $ComicSans: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive, sans-serif;
 
 .subiteminline {
     .subitems {
+        h4, ul {
+            display: inline;
+        }
+        
         li {
             display: inline;
             margin-left: 0;

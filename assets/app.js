@@ -173,9 +173,30 @@ const months = {
     '12': 'December'
 }
 
-function dateString(instring) {
+const shortmonths = {
+    '01': 'Jan',
+    '02': 'Feb',
+    '03': 'Mar',
+    '04': 'Apr',
+    '05': 'May',
+    '06': 'Jun',
+    '07': 'Jul',
+    '08': 'Aug',
+    '09': 'Sep',
+    '10': 'Oct',
+    '11': 'Nov',
+    '12': 'Dec'
+}
+
+function dateString(instring, format = 'itemdatelong') {
     const parts = instring.split('-');
-    return months[parts[1]] + ', ' + parts[0];
+    if (format === 'itemdatelong') {
+        return months[parts[1]] + ', ' + parts[0];
+    } else if (format === 'itemdateshort') {
+        return shortmonths[parts[1]] + ' ' + parts[0];
+    } else /* format === 'itemdatenum' */ {
+        return parts[1] + '/' + parts[0];
+    } 
 }
 
 function resetOrder(order) {
@@ -310,7 +331,9 @@ function makeDocxStyles (classlist) {
 
             },
             paragraph: {
-
+                spacing: {
+                    before: 120,
+                },
             },
         },
         heading3: {
@@ -318,9 +341,6 @@ function makeDocxStyles (classlist) {
 
             },
             paragraph: {
-                spacing: {
-                    before: 120,
-                },
             },
         },
         heading4: {
@@ -359,6 +379,14 @@ function makeDocxStyles (classlist) {
         paragraph: {},
 
     };
+    const item_head = {
+        id: 'ItemHeading',
+        name: 'Item Heading',
+        basedOn: 'Normal',
+        next: 'Organization',
+        quickStyle: false,
+        run: {},
+    }
     const item_org = {
         id: 'Organization',
         name: 'Organization',
@@ -389,6 +417,14 @@ function makeDocxStyles (classlist) {
         paragraph: { },
 
     };
+    const listheading = {
+        id: 'ListHeading',
+        name: 'List Heading',
+        basedOn: 'Normal',
+        next:   'Normal',
+        quickStyle: false,
+        run: { },
+    }
 
     const list_numbering = {
         reference: "list-item",
@@ -421,7 +457,7 @@ function makeDocxStyles (classlist) {
     };
 
     const parastyles = [address, summary, item_org, inlinelist];
-    const runstyles = [];
+    const runstyles = [item_head, listheading];
 
     if (classlist.contains('maingeorgia')){
         defaultstyles.document.run.font = "Georgia";
@@ -809,26 +845,105 @@ function makeDocxStyles (classlist) {
         subitem_numbering.levels[0].text = "\u2014";
     }
     
-    if (classlist.contains('listinline')) {
-
-    } else {
-
-    }
-
     if (classlist.contains('itemstandard')) {
         item_date.run.font = defaultstyles.document.run.font;
         item_date.paragraph = null;
         runstyles.push(item_date);
 
-        item_org.run.italics = true;
-
-        defaultstyles.heading2.run.bold = true;
         defaultstyles.heading2.paragraph.tabStops = [{
             type: docx.TabStopType.RIGHT,
             position: pagewidth - (2 * pgmargin),
         }];
-    } else {
+    } else if (classlist.contains('itemcompact')) {
+        item_org.run.font = defaultstyles.document.run.font;
+        item_org.paragraph = null;
+        runstyles.push(item_org);
+        item_date.run.font = defaultstyles.document.run.font;
+        item_date.paragraph = null;
+        runstyles.push(item_date);
 
+        defaultstyles.heading2.paragraph.tabStops = [{
+            type: docx.TabStopType.RIGHT,
+            position: pagewidth - (2 * pgmargin),
+        }];
+    } else if (classlist.contains('itemblock')) {
+
+    }
+
+    if (classlist.contains('itembold')) {
+        item_org.run.bold = true;
+    } else if (classlist.contains('itemitalic')) {
+        item_org.run.italics = true;
+    }
+
+    if (classlist.contains('itemdatebold')) {
+        item_date.run.bold = true;
+    } else if (classlist.contains('itemdateitalic')) {
+        item_date.run.italics = true;
+    }
+
+    if (classlist.contains('itemheadbold')) {
+        item_head.run.bold = true;
+    } else if (classlist.contains('itemheaditalic')) {
+        item_head.run.italics = true;
+    } else if (classlist.contains('itemheadmatch')) {
+        if (classlist.contains('headbold')) {
+            item_head.run.bold = true;
+        } else if (classlist.contains('headitalic')) {
+            item_head.run.italics = true;
+        } else if (classlist.contains('headbolditalic')) {
+            item_head.run.bold = true;
+            item_head.run.italics = true;
+        } else if (classlist.contains('headunderline')) {
+            item_head.run.underline = {};
+        } else if (classlist.contains('headboldunderline')) {
+            item_head.run.bold = true;
+            item_head.run.underline = {};
+        } else if (classlist.contains('headallcaps')) {
+            item_head.run.allCaps = true;
+        } else if (classlist.contains('headboldallcaps')) {
+            item_head.run.bold = true;
+            item_head.run.allCaps = true;
+        } else if (classlist.contains('headsmallcaps')) {
+            item_head.run.smallCaps = true;
+        } else if (classlist.contains('headboldsmallcaps')) {
+            item_head.run.bold = true;
+            item_head.run.smallCaps = true;
+        }
+    }
+
+    if (classlist.contains('subtitlebold')) {
+        defaultstyles.heading3.run.bold = true;
+    } else if (classlist.contains('subtitleitalic')) {
+        defaultstyles.heading3.run.italics = true;
+    } else if (classlist.contains('subtitlematch')) {
+        if (classlist.contains('headbold')) {
+            defaultstyles.heading3.run.bold = true;
+        } else if (classlist.contains('headitalic')) {
+            defaultstyles.heading3.run.italics = true;
+        } else if (classlist.contains('headbolditalic')) {
+            defaultstyles.heading3.run.bold = true;
+            defaultstyles.heading3.run.italics = true;
+        } else if (classlist.contains('headunderline')) {
+            defaultstyles.heading3.run.underline = {};
+        } else if (classlist.contains('headboldunderline')) {
+            defaultstyles.heading3.run.bold = true;
+            defaultstyles.heading3.run.underline = {};
+        } else if (classlist.contains('headallcaps')) {
+            defaultstyles.heading3.run.allCaps = true;
+        } else if (classlist.contains('headboldallcaps')) {
+            defaultstyles.heading3.run.bold = true;
+            defaultstyles.heading3.run.allCaps = true;
+        } else if (classlist.contains('headsmallcaps')) {
+            defaultstyles.heading3.run.smallCaps = true;
+        } else if (classlist.contains('headboldsmallcaps')) {
+            defaultstyles.heading3.run.bold = true;
+            defaultstyles.heading3.run.smallCaps = true;
+        } 
+    }
+
+    if (classlist.contains('subiteminline')) {
+        listheading.run = defaultstyles.heading3.run;
     }
 
     const docstyles = {
@@ -891,8 +1006,12 @@ function makeDocxFlags (classlist) {
         flags.listinline = true;
     }
     if (classlist.contains('itemstandard')) {
+        flags.item_date_tab_right = true;
+    } else if (classlist.contains('itemcompact')) {
         flags.item_org_run_together = true;
         flags.item_date_tab_right = true;
+    }
+    if (classlist.contains('subtitlehide')) {
         flags.item_skip_subtitle = true;
     }
     if (classlist.contains('subitemcolumns')) {
@@ -1113,27 +1232,31 @@ function makeDocxItems (stack, elem, flags) {
         } else if (item.nodeName === 'DIV') {
             for (block of item.children) {
                 if (block.className === 'item-block') {
-                    var title, org, loc, dates;
+                    var title, org, dates;
                     for (i of block.children) {
                         if (i.className === 'item-description') {
                             for (j of i.children) {
                                 if (j.nodeName === 'H3') {
                                     title = j.innerText;
                                 } else if (j.className === 'item-org') {
-                                    for (k of j.children) {
-                                        if (k.className === 'org') {
-                                            org = k.innerText;
-                                        } else if (k.className === 'loc') {
-                                            loc = k.innerText;
-                                        }
-                                    }
+                                    org = j.innerText;
                                 }
                             }
                         } else if (i.className === 'dates') {
                             dates = i.innerText;
                         }
                     }
-                    const titleruns = [new docx.TextRun(title)];
+                    const titleruns = [];
+                    titleruns.push(new docx.TextRun({
+                        text: title,
+                        style: 'ItemHeading',
+                    }));
+                    if (flags.item_org_run_together && org) {
+                        titleruns.push(new docx.TextRun({
+                            text: org,
+                            style: 'Organization',
+                        }));
+                    }
                     if (flags.item_date_tab_right && dates) {
                         titleruns.push(new docx.TextRun({children: [new docx.Tab()]}));
                         titleruns.push(new docx.TextRun({
@@ -1146,25 +1269,12 @@ function makeDocxItems (stack, elem, flags) {
                         children: titleruns,
                     }));
 
-                    if (flags.item_org_run_together && org && loc) {
+                    if (org && !flags.item_org_run_together) {
                         stack.add(new docx.Paragraph({
-                            text: org + loc,
+                            text: org,
                             style: 'Organization',
                         }));
-                    } else {
-                        if (org) {
-                            stack.add(new docx.Paragraph({
-                                text: org,
-                                style: 'Organization',
-                            }));
-                        }
-                        if (loc) {
-                            stack.add(new docx.Paragraph({
-                                text: loc,
-                                style: 'Organization',
-                            }));
-                        }
-                    }
+                    } 
 
                     if (!flags.item_date_tab_right && dates) {
                         stack.add(new docx.Paragraph({
@@ -1174,7 +1284,7 @@ function makeDocxItems (stack, elem, flags) {
                     }
 
                 } else if (block.className === 'subitems') {
-                    if (!flags.item_skip_subtitle) {
+                    if (!flags.item_skip_subtitle && !flags.subiteminline) {
                         stack.add(new docx.Paragraph({
                             text: block.children[0].innerText,
                             heading: docx.HeadingLevel.HEADING_3,
@@ -1182,8 +1292,18 @@ function makeDocxItems (stack, elem, flags) {
                     }
 
                     if (flags.subiteminline) {
-                        stack.add(new docx.Paragraph({
+                        const subruns = [];
+                        if (!flags.item_skip_subtitle) {
+                            subruns.push(new docx.TextRun({
+                                text: block.children[0].innerText,
+                                style: 'ListHeading',
+                            }));
+                        }
+                        subruns.push(new docx.TextRun({
                             text: block.children[1].innerText,
+                        }));
+                        stack.add(new docx.Paragraph({
+                            children: subruns,
                             style: 'InlineList',
                         }));
                     } else {
