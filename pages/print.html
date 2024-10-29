@@ -48,7 +48,12 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             margin:         'mgmedium',
         }).as('printstyles'),
 
-        order:          $persist(resetOrder('standard')).as('order'),
+        order:          $persist([]).as('order'),
+        init() {
+            if (this.order.length == 0) {
+                this.order = resetOrder(this.sections, 'chronological');
+            }
+        },
 
     }"
     class="printcontainer"
@@ -69,10 +74,11 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
 
 <div class="columns printcontainer">
 
-    <div class="column noprint" x-data="{opentab: 'page'}">
+    <div class="column noprint" x-data="{opentab: $persist('page').as('opentab')}">
         <div><div class="tabs is-boxed is-centered">
             <ul>
                 <li class="" :class="opentab == 'page' && 'is-active'"><a @click="opentab = 'page'">Page</a></li>
+                <li class="" :class="opentab == 'order' && 'is-active'"><a @click="opentab = 'order'">Section Order</a></li>
                 <li class="" :class="opentab == 'fonts' && 'is-active'"><a @click="opentab = 'fonts'">Fonts</a></li>
                 <li class="" :class="opentab == 'items' && 'is-active'"><a @click="opentab = 'items'">Items</a></li>
                 <li class="" :class="opentab == 'lists' && 'is-active'"><a @click="opentab = 'lists'">Lists</a></li>
@@ -94,16 +100,33 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
                     <button class="button is-primary is-large has-text-weight-bold" :class="style.margin == 'mgwide' || 'is-outlined'" @click="style.margin='mgwide'" >Wide</button>
                 </div>
             </div>
-            {% comment %}
-            <div x-show="opentab == 'items'">
-                <h2 class="title is-3">Item Styles</h2>
-                <div class="buttons is-centered">
-                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemstandard' || 'is-outlined'" @click="style.itemstyle='itemstandard'" >Standard Style</button>
-                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemblock' || 'is-outlined'" @click="style.itemstyle='itemblock'" >Block Style</button>
-                    <button class="button is-primary is-large has-text-weight-bold" :class="style.itemstyle == 'itemcompact' || 'is-outlined'" @click="style.itemstyle='itemcompact'" >Compact Style</button>
+            <div x-show="opentab == 'order'">
+                <h2 class="title is-3">Section Order</h2>
+                <div class="block">
+                    <ul class="panel">
+                        <template x-for="(section, index) in order" :key="section.section">
+                            <li class="panel-block is-flex is-flex-direction-row">
+                                <span class="is-flex-grow-1" :class="section.hidden ? 'has-text-danger' : 'has-text-weight-bold'" x-text="section.name"></span>
+                                <span class="buttons has-addons field are-small" x-show="section.section != 'contact'">
+                                    <button class="button" :disabled="index < 2" @click="order.splice(index-1, 0, order.splice(index, 1)[0])">
+                                        <span class="icon is-small">
+                                            {% include icon.html i='caret-up' %}
+                                        </span>
+                                    </button>
+                                    <button class="button" :disabled="index > order.length - 2" @click="order.splice(index+1, 0, order.splice(index, 1)[0])">
+                                        <span class="icon is-small">
+                                            {% include icon.html i='caret-down' %}
+                                        </span>
+                                    </button>
+                                </span>
+                                <label class="checkbox ml-4" x-show="section.section != 'contact'">
+                                    <input class="mr-1" type="checkbox" x-model="section.hidden">Hide
+                                </label>
+                            </li>
+                        </template>
+                    </ul>
                 </div>
             </div>
-            {% endcomment %}
             <div x-show="opentab == 'items'">
                 <h2 class="title is-3">Experience Item Styles</h2>
                 <h3 class="subtitle is-3">Item Layout</h3>
@@ -293,8 +316,8 @@ extrajs: ['docx.min.js', 'FileSaver.min.js']
             <div class="page" id="page" :style="style.pagesize == 'pageletter' ? {scale: boxwidth / 816} : {scale: boxwidth / 794}"
                 :class="Object.values(style)"
             >
-                <template x-for="section in order">
-                    <section x-data="{current: sections[section]}" x-show="!current.skipped">
+                <template x-for="section in order" :key="section.section">
+                    <section x-data="{current: sections[section.section]}" x-show="!section.hidden">
                         <template x-if="current.type === 'contact'">
                             <div class="contact">
                                 <h1 class="fullname" x-text="current.fullname"></h1>

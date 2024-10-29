@@ -199,9 +199,8 @@ function dateString(instring, format = 'itemdatelong') {
     } 
 }
 
-function resetOrder(order) {
-    if (order === 'education') {
-        return [
+const defaultOrder = {
+    education: [
             'contact',
             'summary',
             'education',
@@ -213,9 +212,8 @@ function resetOrder(order) {
             'proskills',
             'awards',
             'languages'
-        ];
-    } else if (order === 'functional') {
-        return [
+        ],
+    functional: [
             'contact',
             'summary',
             'skills',
@@ -227,9 +225,8 @@ function resetOrder(order) {
             'activities',
             'awards',
             'languages'
-        ];
-    } else {
-        return [
+        ],
+    chronological: [
             'contact',
             'summary',
             'experience',
@@ -241,8 +238,23 @@ function resetOrder(order) {
             'proskills',
             'awards',
             'languages'
-        ];
+        ],
+}
+
+function resetOrder(sections, order='chronological') {
+    const baseorder = defaultOrder[order];
+    const currentOrder = [];
+    for (sect of baseorder) {
+        var section = sections[sect];
+        if (!section.skipped) {
+            currentOrder.push({
+                section: sect,
+                name: section.title,
+                hidden: false,
+            });
+        }
     }
+    return currentOrder;
 }
 
 function showprint() {
